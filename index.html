@@ -1,538 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom LLC — AI &amp; Automation Systems</title>
-    <meta name="description" content="Axiom LLC — AI &amp; Automation Systems">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-    <style>
-        /* ── Reset ─────────────────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        /* ── Tokens (Cyan Palette Color-Aligned with Logo &amp; Stack) ── */
-        :root {
-            --bg:          #080a0f;
-            --surface:     #0e1118;
-            --surface-2:   #151922;
-            --border:      #1e2530;
-            --border-hi:   #2b3545;
-            --text:        #b4b9c4;
-            --text-dim:    #64748b;
-            --text-mute:   #475569;
-            --text-hi:     #f8fafc;
-            --accent:      #38bdf8;
-            --accent-dim:  rgba(56, 189, 248, 0.06);
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --mono: "Azeret Mono", "Fira Code", monospace;
-            --sans: "Bricolage Grotesque", system-ui, sans-serif;
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            font-size: 16px;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-            overflow-x: hidden;
-        }
-
-        /* ── Grid background ───────────────────────────────────────── */
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(var(--text-mute) 1px, transparent 1px),
-                linear-gradient(90deg, var(--text-mute) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
-        }
-
-        /* ── Noise overlay ─────────────────────────────────────────── */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.4;
-        }
-
-        /* ── Top accent rule ───────────────────────────────────────── */
-        .top-rule {
-            position: relative;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
-            box-shadow: 0 0 40px 0 var(--accent-glow), 0 0 80px 0 rgba(56, 189, 248, 0.07);
-        }
-
-        /* ── Layout ────────────────────────────────────────────────── */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.75rem 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ── Header ────────────────────────────────────────────────── */
-        .wordmark {
-            padding: 4rem 0 3.2rem;
-            border-bottom: 1px solid var(--border);
-            opacity: 0;
-            transform: translateY(12px);
-            animation: fadeUp 0.8s var(--ease) 0.05s forwards;
-        }
-
-        .wordmark-lockup {
-            display: flex;
-            align-items: flex-end;
-            line-height: 1;
-        }
-
-        .wordmark-axiom {
-            font-family: var(--sans);
-            font-size: clamp(3rem, 9vw, 5.2rem);
-            font-weight: 800;
-            color: var(--text-hi);
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        .wordmark-llc {
-            font-family: var(--mono);
-            font-size: clamp(0.55rem, 1.2vw, 0.72rem);
-            font-weight: 400;
-            color: var(--text-dim);
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            padding-left: 0.18em;
-            padding-bottom: 0.18em;
-        }
-
-        .wordmark-rule {
-            display: block;
-            width: 36px;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            margin: 1.5rem 0 0.9rem;
-        }
-
-        .wordmark-sub {
-            display: block;
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--accent);
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-        }
-
-        /* ── Sections ──────────────────────────────────────────────── */
-        .section {
-            padding: 3.2rem 0;
-            border-bottom: 1px solid var(--border);
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        .section.visible {
-            animation: fadeUp 0.65s var(--ease) forwards;
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── Section headings ──────────────────────────────────────── */
-        h2 {
-            font-family: var(--mono);
-            font-size: 9.5px;
-            font-weight: 400;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2::before {
-            content: "";
-            display: block;
-            width: 20px;
-            height: 1px;
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent-glow);
-            flex-shrink: 0;
-        }
-
-        /* ── Overview text ─────────────────────────────────────────── */
-        .section > p {
-            font-size: 1.04rem;
-            color: var(--text);
-            max-width: 720px;
-            margin-bottom: 0.9rem;
-            line-height: 1.7;
-        }
-
-        .section > p:last-of-type { margin-bottom: 0; }
-
-        .section > p strong {
-            color: var(--text-hi);
-            font-weight: 600;
-        }
-
-        .inline-link {
-            color: inherit;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.35);
-            transition: color 0.18s, border-color 0.18s;
-        }
-
-        .inline-link:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        .inline-link strong { font-weight: 600; }
-
-        /* ── Services grid ─────────────────────────────────────────── */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .project {
-            background: var(--surface);
-            padding: 1.8rem 1.8rem 2rem;
-            position: relative;
-            transition: background 0.22s;
-            overflow: hidden;
-        }
-
-        .project::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 0;
-            background: var(--accent);
-            transition: height 0.3s var(--ease);
-        }
-
-        .project:hover::after { height: 100%; }
-        .project:hover        { background: var(--surface-2); }
-
-        .project-num {
-            font-family: var(--mono);
-            font-size: 9px;
-            color: var(--text-mute);
-            letter-spacing: 0.12em;
-            margin-bottom: 0.9rem;
-        }
-
-        h3 {
-            font-family: var(--sans);
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-hi);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            margin-bottom: 0.6rem;
-        }
-
-        .project p {
-            font-size: 0.87rem;
-            color: var(--text-dim);
-            line-height: 1.65;
-            max-width: none;
-            margin-bottom: 0;
-        }
-
-        /* ── Stack tags ────────────────────────────────────────────── */
-        .stack-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-        }
-
-        .tag {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.08em;
-            color: var(--text-dim);
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 2px;
-            transition: color 0.18s, border-color 0.18s, background 0.18s;
-            cursor: default;
-        }
-
-        .tag:hover {
-            color: var(--accent);
-            border-color: rgba(56, 189, 248, 0.2);
-            background: var(--accent-dim);
-        }
-
-        /* ── Contact ───────────────────────────────────────────────── */
-        .contact-rows {
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-            margin-bottom: 1.8rem;
-        }
-
-        .contact-row {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-        }
-
-        .contact-label {
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            min-width: 50px;
-        }
-
-        .contact-value {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            padding-bottom: 1px;
-            transition: color 0.18s, border-color 0.18s;
-        }
-
-        .contact-value:hover {
-            color: var(--accent);
-            border-bottom-color: rgba(56, 189, 248, 0.4);
-        }
-
-        /* ── Buttons ───────────────────────────────────────────────── */
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 10px 22px;
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            border-radius: 2px;
-            text-decoration: none;
-            border: none;
-            transition: all 0.18s var(--ease);
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: #000;
-            font-weight: 500;
-        }
-
-        .btn-primary:hover {
-            background: #7dd3fc;
-            box-shadow: 0 0 28px var(--accent-glow), 0 4px 16px rgba(56, 189, 248, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-dim);
-            border: 1px solid var(--border-hi);
-        }
-
-        .btn-secondary:hover {
-            color: var(--text-hi);
-            border-color: var(--text-dim);
-            transform: translateY(-1px);
-        }
-
-        /* ── Footer ────────────────────────────────────────────────── */
-        footer {
-            padding: 2rem 0;
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
-        }
-
-        /* ── Focus ─────────────────────────────────────────────────── */
-        .visually-hidden {
-            position: absolute; width: 1px; height: 1px;
-            padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
-
-        :focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
-
-        /* ── Responsive ────────────────────────────────────────────── */
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b1115">
+  <title>AXIOM LLC — AI &amp; Automation Systems</title>
+  <meta name="description" content="AXIOM LLC builds AI runtimes, execution policies, retrieval systems, and applied automation. Explore our systems or discuss your project.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#top" aria-label="AXIOM LLC home"><img src="favicon.svg" width="32" height="32" alt=""><span>AXIOM <small>LLC</small></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#systems">Systems</a>
+      <a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
 
-<div class="top-rule"></div>
-
-<div class="container">
-
-    <header>
-        <h1 class="visually-hidden">Axiom LLC — AI &amp; Automation Systems</h1>
-        <div class="wordmark">
-
-            <div class="wordmark-lockup">
-                <span class="wordmark-axiom">Axiom</span>
-                <span class="wordmark-llc">LLC</span>
-            </div>
-
-            <span class="wordmark-rule" aria-hidden="true"></span>
-            <span class="wordmark-sub">AI &amp; Automation Systems</span>
-
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">AI &amp; automation systems</p>
+        <h1 id="hero-title">Intelligence,<br>with <em>structure.</em></h1>
+        <p class="hero-description">Turn language into explicit plans, controlled execution, and inspectable results.</p>
+        <p class="intro">AXIOM LLC engineers the runtimes, policies, and retrieval systems that connect AI models to practical work.</p>
+        <div class="actions">
+          <a class="button primary" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#systems">Explore the systems <span aria-hidden="true">↓</span></a>
         </div>
-    </header>
-
-    <section class="section" data-observe>
-        <h2>Overview</h2>
-        <p>
-            Axiom LLC engineers plan-deterministic operating system layers designed to enforce execution safety and context discipline over probabilistic language models.
-        </p>
-        <p>
-            Our runtimes validate generated plans before execution. An approved plan fixes the tool sequence; model generation and external tool results can vary. APEX owns execution, ASON applies policy, and the shared RAG library supplies retrieval across separate repositories.
-        </p>
+      </div>
+      <div class="execution" aria-label="Execution flow: intent, plan, execution, record">
+        <div class="diagram-heading"><span>From intent to execution</span><span class="diagram-index" aria-hidden="true">01—04</span></div>
+        <ol class="flow">
+          <li><span class="step-number" aria-hidden="true">01</span><div><h2>Intent</h2><p>Describe the task in natural language.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">02</span><div><h2>Plan</h2><p>Compile and validate explicit tool calls.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">03</span><div><h2>Execution</h2><p>Follow the approved sequence within configured limits.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">04</span><div><h2>Record</h2><p>Inspect complete plans and tool events.</p></div></li>
+        </ol>
+        <p class="diagram-note">The plan fixes the sequence. Model outputs and external results can vary.</p>
+      </div>
     </section>
 
-    <section class="section" data-observe>
-        <h2>Services</h2>
-        <div class="grid" role="list">
-            <div class="project" role="listitem">
-                <div class="project-num">01</div>
-                <h3>Plan-Deterministic Engines</h3>
-                <p>Imposing operating system discipline over language models. Our functional run loops run over compiled, schema-validated plans, ensuring reliable, step-bounded executions.</p>
-            </div>
-            <div class="project" role="listitem">
-                <div class="project-num">02</div>
-                <h3>Safety &amp; Execution Policies</h3>
-                <p>Pre-execution contract auditing. Evaluating tool calls against strict, nested policy constraints—enforcing step caps, blocked commands, and process-isolated blast-radius limits before run initiation.</p>
-            </div>
-            <div class="project" role="listitem">
-                <div class="project-num">03</div>
-                <h3>In-Process Context Grounding</h3>
-                <p>Context grounding pipelines. Embedding advanced semantic chunkers, vector search interfaces, and generative retrieval systems directly into the execution path to enforce absolute grounding discipline.</p>
-            </div>
-            <div class="project" role="listitem">
-                <div class="project-num">04</div>
-                <h3>Applied Blueprints</h3>
-                <p>Fully containerized deployment surfaces. Building and hosting transaction dashboards, secure API servers, and serverless voice interfaces on hardened Unix-aligned cloud architectures.</p>
-            </div>
-        </div>
+    <section class="section wrap" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading"><p class="eyebrow">01 / Capabilities</p><h2 id="capabilities-title">From model output<br>to useful operations.</h2><p>Focused components for the decisions, context, and execution behind an AI workflow.</p></div>
+      <div class="capabilities">
+        <article><span class="category">Execution</span><h3>Agent runtimes</h3><p>Compile requests into schema-validated plans. Execute explicit tool calls with step limits and a recorded history.</p></article>
+        <article><span class="category">Control</span><h3>Safety &amp; policy</h3><p>Evaluate plans against execution policies, tool restrictions, and step caps before dispatching approved work.</p></article>
+        <article><span class="category">Context</span><h3>Retrieval systems</h3><p>Connect document ingestion, semantic search, and source-cited answers through one reusable retrieval library.</p></article>
+        <article><span class="category">Application</span><h3>Applied automation</h3><p>Bring the components together in API services, logistics dashboards, and voice interfaces.</p></article>
+      </div>
     </section>
 
-    <section class="section" data-observe>
-		<h2>Stack</h2>
-		<div class="stack-list" role="list">
-			<span class="tag" role="listitem">Python</span>
-			<span class="tag" role="listitem">Bash</span>
-			<span class="tag" role="listitem">Gemini API</span>
-			<span class="tag" role="listitem">Pydantic</span>
-			<span class="tag" role="listitem">Deterministic Agent Runtimes</span>
-			<span class="tag" role="listitem">Multi-agent Systems</span>
-			<span class="tag" role="listitem">RAG / Vector Search</span>
-			<span class="tag" role="listitem">SQLite</span>
-			<span class="tag" role="listitem">ChromaDB</span>
-			<span class="tag" role="listitem">PostgreSQL / pgvector</span>
-			<span class="tag" role="listitem">Flask</span>
-			<span class="tag" role="listitem">Docker</span>
-			<span class="tag" role="listitem">GCP Cloud Run</span>
-			<span class="tag" role="listitem">REST APIs</span>
-			<span class="tag" role="listitem">Twilio</span>
-			<span class="tag" role="listitem">Ollama</span>
-		</div>
-	</section>
-
-    <section class="section" data-observe>
-        <h2>Architecture</h2>
-        <img src="architecture/system-stack.svg" alt="Axiom LLC system architecture" style="width:100%;border-radius:3px;">
+    <section class="section wrap" id="systems" aria-labelledby="systems-title">
+      <div class="section-heading"><p class="eyebrow">02 / Systems</p><h2 id="systems-title">Clear responsibilities.<br>Connected by design.</h2><p>APEX executes. ASON applies policy. RAG supplies retrieval. Each has a distinct interface and repository.</p></div>
+      <div class="systems">
+        <article class="system featured">
+          <div class="system-label"><span class="eyebrow">Core runtime</span><span class="system-id" aria-hidden="true">A / 01</span></div>
+          <h3>APEX</h3><p class="system-expansion">Agentic Process Executor</p>
+          <p>Natural-language planning, bounded tool execution, and a complete record of what ran.</p>
+          <ul class="features"><li>Schema-validated plans</li><li>Execution history &amp; replay</li><li>Isolated RSI candidate evaluation</li></ul>
+          <a class="text-link" href="https://github.com/axiom-llc/axiom-apex">Explore APEX <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="system">
+          <div class="system-label"><span class="eyebrow">Policy layer</span><span class="system-id" aria-hidden="true">A / 02</span></div>
+          <h3>ASON</h3><p class="system-expansion">Policy before execution</p>
+          <p>Evaluate proposed plans against declared constraints, then pass the approved plan to APEX.</p>
+          <p class="system-note">A separate policy boundary with APEX as the execution engine.</p>
+        </article>
+        <article class="system">
+          <div class="system-label"><span class="eyebrow">Retrieval library</span><span class="system-id" aria-hidden="true">A / 03</span></div>
+          <h3>RAG</h3><p class="system-expansion">Context from your documents</p>
+          <p>Chunk, embed, and search documents to support answers with retrieved sources.</p>
+          <p class="system-note">One canonical implementation shared by the runtime and its consumers.</p>
+        </article>
+      </div>
+      <div class="system-footer"><p>Explore applied blueprints and ongoing research.</p><div><a href="https://github.com/axiom-llc/axiom-demos">Demos <span aria-hidden="true">↗</span></a><a href="https://github.com/axiom-llc/axiom-research">Research <span aria-hidden="true">↗</span></a></div></div>
     </section>
 
-    <section class="section contact" data-observe>
-        <h2>Contact</h2>
-        <div class="contact-rows">
-            <div class="contact-row">
-                <span class="contact-label">email</span>
-                <a href="mailto:axiom.co@proton.me" class="contact-value">axiom.co@proton.me</a>
-            </div>
-            <div class="contact-row">
-                <span class="contact-label">phone</span>
-                <a href="tel:+16468834329" class="contact-value">646-883-4329</a>
-            </div>
-            <div class="contact-row">
-                <span class="contact-label">github</span>
-                <a href="https://github.com/axiom-llc" target="_blank" rel="noopener" class="contact-value">github.com/axiom-llc</a>
-            </div>
-        </div>
-        <nav class="contact-links" aria-label="Contact and portfolio links">
-            <a href="mailto:axiom.co@proton.me" class="btn btn-primary">Start a Project</a>
-            <a href="https://github.com/axiom-llc" target="_blank" rel="noopener" class="btn btn-secondary">View Work &rarr;</a>
-        </nav>
+    <section class="section wrap approach" aria-labelledby="approach-title">
+      <div><p class="eyebrow">03 / Engineering</p><h2 id="approach-title">Explicit interfaces.<br>Inspectable behavior.</h2></div>
+      <div class="approach-detail"><p>Language models propose. Software validates and executes. We keep these responsibilities distinct so a workflow can be understood, tested, and improved.</p><p class="muted">Execution safeguards are specific to each component. A plan audit is advisory; isolated candidate evaluation does not imply every runtime tool is sandboxed.</p>
+        <ul class="stack" aria-label="Technology stack"><li>Python</li><li>Bash</li><li>Gemini API</li><li>Ollama</li><li>Pydantic</li><li>SQLite</li><li>ChromaDB</li><li>PostgreSQL / pgvector</li><li>Flask</li><li>REST APIs</li><li>Docker</li><li>Cloud Run</li><li>Twilio</li></ul>
+      </div>
     </section>
 
-    <footer>
-        <span>&copy; 2026 Axiom LLC</span>
-    </footer>
-
-</div>
-
-<script>
-    (function () {
-        'use strict';
-
-        var sections = document.querySelectorAll('[data-observe]');
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-
-        sections.forEach(function (el) { observer.observe(el); });
-    })();
-</script>
-
+    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+      <div><p class="eyebrow">04 / Contact</p><h2 id="contact-title">What should<br>your system do?</h2><p>Tell us about the workflow, the constraints, and the outcome you need.</p><a class="button primary" href="mailto:axiom.co@proton.me">Start a conversation <span aria-hidden="true">↗</span></a></div>
+      <address class="contact-details">
+        <div><span>Email</span><a href="mailto:axiom.co@proton.me">axiom.co@proton.me</a></div>
+        <div><span>Phone</span><a href="tel:+16094030646">(609) 403-0646</a></div>
+        <div><span>GitHub</span><a href="https://github.com/axiom-llc">github.com/axiom-llc <span aria-hidden="true">↗</span></a></div>
+      </address>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI &amp; automation systems</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>

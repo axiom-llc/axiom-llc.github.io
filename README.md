@@ -1,21 +1,42 @@
-# AXIOM LLC — Public Web Portal
+# AXIOM LLC website
 
-The static, public-facing web presentation layer for the AXIOM LLC AI systems and automation consultancy. Deployed globally via GitHub Pages, this repository serves the primary organizational landing page at [https://axiom-llc.github.io](https://axiom-llc.github.io).
+The public site for AXIOM LLC's AI and automation systems:
+[axiom-llc.github.io](https://axiom-llc.github.io).
 
-## Repository Assets
+## Run locally
 
-*   `index.html`: A lightweight, responsive single-page presentation interface. It outlines AXIOM's core capabilities in plan-deterministic engines, execution safety policies, and embedded context grounding.
-*   `favicon.svg`: Core organizational brand identity asset.
-*   `architecture/system-stack.svg`: A technical architectural diagram illustrating the 8-layer AXIOM execution stack (transitioning from the probabilistic LLM planner through the deterministic `axiom-apex` execution kernel and out to applied deployment blueprints).
+```bash
+python -m http.server 8000
+```
 
-## Deployment Pipeline
+Open `http://localhost:8000`. There is no build step, package installation,
+JavaScript requirement, analytics, or external font request. GitHub Pages publishes
+`main` using the repository's configured Pages deployment.
 
-This repository is configured for continuous deployment. Commits merged into the `main` branch are automatically built and published to the production GitHub Pages domain. No external build steps or artifact compilations are required.
+## Maintain
 
-## Organizational Repositories
+- `index.html`: business information, capabilities, system boundaries, and contact links.
+- `styles.css`: dark-only responsive layout, typography, and keyboard focus states.
+- `favicon.svg`: AXIOM brand mark.
 
-The AXIOM ecosystem is modularized across the following operational units:
+Keep visible contact details and URI targets consistent. The business number is
+**(609) 403-0646**, linked as `tel:+16094030646`. Email remains
+`axiom.co@proton.me`.
 
-1.  **AXIOM APEX (Core Engine)**: [https://github.com/axiom-llc/axiom-apex](https://github.com/axiom-llc/axiom-apex)
-2.  **AXIOM Demos (Implementation Blueprints)**: [https://github.com/axiom-llc/axiom-demos](https://github.com/axiom-llc/axiom-demos)
-3.  **AXIOM Research (Theoretical Proofs)**: [https://github.com/axiom-llc/axiom-research](https://github.com/axiom-llc/axiom-research)
+Describe APEX as the executor, ASON as the policy layer, and RAG as the canonical
+retrieval library. Do not imply that model outputs are deterministic, audits are
+complete security boundaries, or every runtime tool is sandboxed. Architecture
+is presented as responsive HTML rather than a separate diagram with duplicated
+implementation details.
+
+## Validate
+
+```bash
+python -m unittest discover -s tests -v
+git diff --check
+```
+
+Preview desktop and narrow mobile layouts. Check navigation, keyboard focus,
+contact links, readability at 200% zoom, and the page with JavaScript disabled.
+No content should depend on animation or hover. Review external repository links
+when project visibility changes.
