@@ -23,11 +23,11 @@ Keep visible contact details and URI targets consistent. The business number is
 **(609) 403-0646**, linked as `tel:+16094030646`. Email remains
 `axiom.co@proton.me`.
 
-Describe APEX as the executor, ASON as the policy layer, and RAG as the canonical
-retrieval library. Do not imply that model outputs are deterministic, audits are
-complete security boundaries, or every runtime tool is sandboxed. Architecture
-is presented as responsive HTML rather than a separate diagram with duplicated
-implementation details.
+Describe APEX as the execution/runtime, ASON as pre-execution policy enforcement,
+and RAG as the canonical retrieval/storage HTTP service and library. Do not imply
+that model outputs are deterministic, audits are complete security boundaries, or
+every runtime tool is sandboxed. Architecture is presented as responsive HTML
+rather than a separate diagram with duplicated implementation details.
 
 ## Validate
 
