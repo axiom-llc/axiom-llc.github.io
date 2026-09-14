@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#101214">
+  <title>Engineering — AXIOM LLC</title><meta name="description" content="AXIOM engineering principles, reliability posture, validation practice, and complete curated technology stack.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="brand" href="../" aria-label="AXIOM LLC home"><img src="../favicon.svg" width="28" height="28" alt=""><span>AXIOM <small>LLC</small></span></a><nav aria-label="Main navigation"><a href="../systems/">Systems</a><a href="../research/">Research</a><a href="./" aria-current="page">Engineering</a><a href="../contact/">Contact</a></nav></header>
+  <main id="main">
+    <header class="page-hero wrap"><p class="eyebrow">Engineering</p><h1>Explicit systems.<br><em>Inspectable behavior.</em></h1><p class="lede">AXIOM favors narrow interfaces, deterministic control paths, local-first validation, and evidence that can be reproduced without a hidden platform.</p></header>
+    <section class="section wrap" aria-labelledby="practice-title">
+      <div class="section-intro"><p class="eyebrow">Practice</p><h2 id="practice-title">Reliability is a boundary discipline.</h2></div>
+      <div class="principles">
+        <article><span class="index">01</span><h3>Separate proposal from execution</h3><p>Models may generate plans. Typed schemas, policy checks, active tool registries, and runtime limits determine what can execute.</p></article>
+        <article><span class="index">02</span><h3>Fail closed around uncertainty</h3><p>Unknown tools, ambiguous recovery states, invalid storage identity, and absent authority stop work instead of being silently inferred.</p></article>
+        <article><span class="index">03</span><h3>Record before mutation</h3><p>Where effects matter, durable intent and accepted-plan identity are established before dispatch so recovery can be conservative.</p></article>
+        <article><span class="index">04</span><h3>State the operating envelope</h3><p>Process-crash tests do not prove host-power-loss behavior. Local integration does not imply a production deployment. Limits belong beside results.</p></article>
+      </div>
+    </section>
+    <section class="section wrap" aria-labelledby="validation-title">
+      <div class="section-intro"><p class="eyebrow">Validation</p><h2 id="validation-title">Reproducibility over ceremony.</h2><p>Evidence is kept close to the implementation and strengthened in proportion to the risk.</p></div>
+      <ol class="validation-flow">
+        <li><span>01</span><div><h3>Specify the invariant</h3><p>Name the interface, state transition, trust boundary, and failure semantics before expanding the implementation.</p></div></li>
+        <li><span>02</span><div><h3>Exercise the owning component</h3><p>Run repository tests, static checks, failure-path probes, and targeted integration checks with controlled inputs.</p></div></li>
+        <li><span>03</span><div><h3>Preserve the evidence</h3><p>Record relevant revisions, configurations, known exclusions, and the exact commands needed to reproduce a result.</p></div></li>
+      </ol>
+    </section>
+    <section class="section stack-section wrap" aria-labelledby="stack-title">
+      <div class="section-intro"><p class="eyebrow">Technology</p><h2 id="stack-title">A compact, composable stack.</h2><p>Branded marks are shown in their supplied treatment and identify technologies in use; they do not imply vendor affiliation or endorsement.</p></div>
+      <div class="stack" aria-label="Complete engineering technology stack">
+        <section class="stack-group"><h3>Systems</h3><ul><li class="technology wordmark"><img src="../assets/technology/python.svg" width="74" height="30" alt=""><span>Python</span></li><li class="text-technology">Bash</li><li class="text-technology">Linux</li></ul></section>
+        <section class="stack-group"><h3>AI &amp; agents</h3><ul><li class="text-technology">Agent orchestration</li><li class="text-technology">MCP</li><li class="text-technology">RAG</li><li class="technology icon-only"><img src="../assets/technology/gemini.png" width="29" height="29" alt=""><span>Gemini</span></li><li class="technology icon-only"><img src="../assets/technology/ollama.svg" width="29" height="29" alt=""><span>Ollama</span></li></ul></section>
+        <section class="stack-group"><h3>Data</h3><ul><li class="technology wordmark"><img src="../assets/technology/sqlite.svg" width="74" height="30" alt=""><span>SQLite</span></li><li class="technology wordmark"><img src="../assets/technology/chroma.svg" width="74" height="30" alt=""><span>ChromaDB</span></li></ul></section>
+        <section class="stack-group"><h3>Interfaces</h3><ul><li class="technology icon-only"><img src="../assets/technology/pydantic.svg" width="29" height="29" alt=""><span>Pydantic</span></li><li class="technology icon-only"><img src="../assets/technology/flask.svg" width="29" height="29" alt=""><span>Flask</span></li><li class="text-technology">REST / HTTP</li></ul></section>
+        <section class="stack-group"><h3>Infrastructure</h3><ul><li class="technology wordmark"><img src="../assets/technology/git.svg" width="74" height="30" alt=""><span>Git</span></li><li class="technology icon-only mono-mark"><img src="../assets/technology/github-actions.svg" width="29" height="29" alt=""><span>GitHub Actions</span></li><li class="technology wordmark"><img src="../assets/technology/docker.png" width="74" height="30" alt=""><span>Docker / Compose</span></li></ul></section>
+        <section class="stack-group"><h3>Applied</h3><ul><li class="text-technology">Twilio</li><li class="technology wordmark"><img src="../assets/technology/blender.svg" width="74" height="30" alt=""><span>Blender</span></li></ul></section>
+      </div>
+      <p class="trademark-note">Python and the Python Logo are trademarks of the Python Software Foundation. Git and the Git logo are trademarks of Software Freedom Conservancy, Inc. Other marks belong to their respective owners.</p>
+    </section>
+    <section class="next-page wrap"><p class="eyebrow">Next</p><a href="../contact/"><span>Discuss a system</span><b aria-hidden="true">→</b></a></section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="../contact/">Contact <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>

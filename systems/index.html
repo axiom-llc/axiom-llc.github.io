@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#101214">
+  <title>Systems — AXIOM LLC</title><meta name="description" content="The AXIOM system architecture: ASON policy, APEX execution, RAG context, and focused supporting systems.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="brand" href="../" aria-label="AXIOM LLC home"><img src="../favicon.svg" width="28" height="28" alt=""><span>AXIOM <small>LLC</small></span></a><nav aria-label="Main navigation"><a href="./" aria-current="page">Systems</a><a href="../research/">Research</a><a href="../engineering/">Engineering</a><a href="../contact/">Contact</a></nav></header>
+  <main id="main">
+    <header class="page-hero wrap"><p class="eyebrow">Systems</p><h1>Boundaries before<br><em>capabilities.</em></h1><p class="lede">AXIOM separates policy, execution, and context so each responsibility has an explicit interface and a testable operational boundary.</p></header>
+    <section class="architecture wrap" aria-labelledby="architecture-title">
+      <div class="section-intro"><p class="eyebrow">Core / 01—03</p><h2 id="architecture-title">The execution path.</h2><p>This is a responsibility map, not a claim that every deployment has the same threat model or operating envelope.</p></div>
+      <ol class="architecture-flow">
+        <li><div class="arch-meta"><span>01</span><span>Pre-execution</span></div><div class="arch-name"><h3>ASON</h3><p>Policy enforcement</p></div><div class="arch-copy"><p>Validates a caller-supplied plan against caller-supplied step limits, tool controls, and impact classification. An accepted tool sequence is translated and submitted to APEX without probabilistic replanning.</p><a href="https://github.com/axiom-llc/axiom-ason">Repository <span aria-hidden="true">↗</span></a></div></li>
+        <li><div class="arch-meta"><span>02</span><span>Execution</span></div><div class="arch-name"><h3>APEX</h3><p>Agentic Process Executor</p></div><div class="arch-copy"><p>Accepts natural-language tasks or exact plans, validates tool schemas, records the accepted sequence, and executes within configured limits. Its durable ledger supports conservative recovery and replay; it does not establish exactly-once external effects.</p><a href="https://github.com/axiom-llc/axiom-apex">Repository <span aria-hidden="true">↗</span></a></div></li>
+        <li><div class="arch-meta"><span>03</span><span>Context</span></div><div class="arch-name"><h3>RAG</h3><p>Retrieval and storage</p></div><div class="arch-copy"><p>Owns document ingestion, embedding-space identity, semantic retrieval, and grounded generation. A versioned HTTP boundary lets runtime consumers use storage without opening its persistent root directly.</p><a href="https://github.com/axiom-llc/axiom-rag">Repository <span aria-hidden="true">↗</span></a></div></li>
+      </ol>
+      <div class="relationship-note"><span class="eyebrow">Relationship</span><p>ASON governs submission to APEX. APEX executes the accepted plan. RAG is a context service reached through explicit adapters; it is not the policy or execution engine.</p></div>
+    </section>
+    <section class="section wrap" aria-labelledby="support-title">
+      <div class="section-intro"><p class="eyebrow">Supporting systems</p><h2 id="support-title">Focused roles around the core.</h2><p>These repositories support transport, integration, operations, and applied work. They are not presented as interchangeable product layers.</p></div>
+      <div class="system-rows">
+        <article><div><span class="index">Interface</span><h3>API</h3></div><p>Reusable Python HTTP client foundation with bounded retry, throttling, credential-header, and redirect controls.</p><a href="https://github.com/axiom-llc/axiom-api" aria-label="AXIOM API repository">Repository ↗</a></article>
+        <article><div><span class="index">Integration</span><h3>Infra</h3></div><p>Local Docker Compose integration and cross-repository validation for the public runtime portfolio.</p><a href="https://github.com/axiom-llc/axiom-infra" aria-label="AXIOM Infra repository">Repository ↗</a></article>
+        <article><div><span class="index">Operations</span><h3>Ops</h3></div><p>Tooling for encrypted backups, guarded Git synchronization, and incremental log monitoring.</p><a href="https://github.com/axiom-llc/axiom-ops" aria-label="AXIOM Ops repository">Repository ↗</a></article>
+        <article><div><span class="index">Applied</span><h3>Blender</h3></div><p>Declarative scene automation and reproducible headless rendering for Blender workflows.</p><a href="https://github.com/axiom-llc/axiom-blender" aria-label="AXIOM Blender repository">Repository ↗</a></article>
+        <article><div><span class="index">Examples</span><h3>Demos</h3></div><p>Bounded examples spanning logistics, telephony, and local voice automation, each with its own operating limits.</p><a href="https://github.com/axiom-llc/axiom-demos" aria-label="AXIOM Demos repository">Repository ↗</a></article>
+      </div>
+    </section>
+    <section class="next-page wrap"><p class="eyebrow">Next</p><a href="../research/"><span>Research agenda and evidence</span><b aria-hidden="true">→</b></a></section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="../contact/">Contact <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>

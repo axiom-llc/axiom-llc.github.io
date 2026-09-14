@@ -1,7 +1,20 @@
 # AXIOM LLC website
 
-The public site for AXIOM LLC's AI and automation systems:
+The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
 [axiom-llc.github.io](https://axiom-llc.github.io).
+
+## Information architecture
+
+- `/` — concise flagship identity, core architecture, selected evidence, and contact path.
+- `/systems/` — ASON, APEX, and RAG relationships plus validated supporting systems.
+- `/research/` — current research agenda, artifacts, and evidence boundaries.
+- `/engineering/` — engineering principles, validation posture, and the complete stack.
+- `/contact/` — project brief guidance and contact details.
+
+Each route is plain HTML. `styles.css` is the shared Graphite / Ivory / Ice visual
+system, `favicon.svg` is the AXIOM mark, and `assets/technology/` contains locally
+vendored technology marks. Asset provenance and treatment notes are recorded in
+[`assets/technology/SOURCES.md`](assets/technology/SOURCES.md).
 
 ## Run locally
 
@@ -10,24 +23,23 @@ python -m http.server 8000
 ```
 
 Open `http://localhost:8000`. There is no build step, package installation,
-JavaScript requirement, analytics, or external font request. GitHub Pages publishes
-`main` using the repository's configured Pages deployment.
+JavaScript requirement, analytics, tracker, or external runtime asset request.
+GitHub Pages publishes `main` using the repository's configured Pages deployment.
 
 ## Maintain
 
-- `index.html`: business information, capabilities, system boundaries, and contact links.
-- `styles.css`: dark-only responsive layout, typography, and keyboard focus states.
-- `favicon.svg`: AXIOM brand mark.
+Keep the compact navigation and visible contact details consistent across pages.
+The business number is **(609) 403-0646**, linked as `tel:+16094030646`. Email
+remains `axiom.co@proton.me`.
 
-Keep visible contact details and URI targets consistent. The business number is
-**(609) 403-0646**, linked as `tel:+16094030646`. Email remains
-`axiom.co@proton.me`.
+Describe APEX as execution/runtime, ASON as caller-policy enforcement before
+submission, and RAG as the canonical retrieval/storage HTTP service and library.
+Do not imply deterministic model output, exactly-once external effects, general
+runtime sandboxing, third-party assurance, or a production deployment without
+new direct evidence.
 
-Describe APEX as the execution/runtime, ASON as pre-execution policy enforcement,
-and RAG as the canonical retrieval/storage HTTP service and library. Do not imply
-that model outputs are deterministic, audits are complete security boundaries, or
-every runtime tool is sandboxed. Architecture is presented as responsive HTML
-rather than a separate diagram with duplicated implementation details.
+Add system detail pages only when enough distinct public material exists to
+justify a maintained page. Prefer direct repository links over thin summaries.
 
 ## Validate
 
@@ -36,7 +48,7 @@ python -m unittest discover -s tests -v
 git diff --check
 ```
 
-Preview desktop and narrow mobile layouts. Check navigation, keyboard focus,
-contact links, readability at 200% zoom, and the page with JavaScript disabled.
-No content should depend on animation or hover. Review external repository links
-when project visibility changes.
+Preview desktop and narrow mobile layouts. Check keyboard navigation, focus
+visibility, readability at 200% zoom, and every page with JavaScript disabled.
+No content may depend on animation or hover. Recheck external repository links
+and technology mark guidance when their public state changes.

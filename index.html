@@ -4,115 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#002b36">
+  <meta name="theme-color" content="#101214">
   <title>AXIOM LLC — AI Systems Engineering Lab</title>
-  <meta name="description" content="AXIOM LLC is an AI systems engineering lab building deterministic agent runtimes, policy layers, retrieval systems, operations tooling, and applied automation.">
+  <meta name="description" content="AXIOM is an AI systems engineering lab building explicit, inspectable infrastructure for model-driven work.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body id="top">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="#top" aria-label="AXIOM LLC home"><img src="favicon.svg" width="32" height="32" alt=""><span>AXIOM <small>LLC</small></span></a>
+    <a class="brand" href="./" aria-label="AXIOM LLC home"><img src="favicon.svg" width="28" height="28" alt=""><span>AXIOM <small>LLC</small></span></a>
     <nav aria-label="Main navigation">
-      <a href="#capabilities">Capabilities</a>
-      <a href="#systems">Systems</a>
-      <a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+      <a href="systems/">Systems</a><a href="research/">Research</a><a href="engineering/">Engineering</a><a href="contact/">Contact</a>
     </nav>
   </header>
-
   <main id="main">
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">AI systems engineering lab</p>
-        <h1 id="hero-title">Intelligence,<br>with <em>structure.</em></h1>
-        <p class="hero-description">Turn language into explicit plans, controlled execution, and inspectable results.</p>
-        <p class="intro">AXIOM LLC builds the runtimes, policies, retrieval systems, and operational tooling that connect AI models to practical work.</p>
-        <div class="actions">
-          <a class="button primary" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="#systems">Explore the systems <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-      <div class="execution" aria-label="Execution flow: intent, plan, execution, record">
-        <div class="diagram-heading"><span>From intent to execution</span><span class="diagram-index" aria-hidden="true">01—04</span></div>
-        <ol class="flow">
-          <li><span class="step-number" aria-hidden="true">01</span><div><h2>Intent</h2><p>Describe the task in natural language.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">02</span><div><h2>Plan</h2><p>Compile and validate explicit tool calls.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">03</span><div><h2>Execution</h2><p>Follow the approved sequence within configured limits.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">04</span><div><h2>Record</h2><p>Inspect complete plans and tool events.</p></div></li>
-        </ol>
-        <p class="diagram-note">The plan fixes the sequence. Model outputs and external results can vary.</p>
+    <section class="home-hero wrap" aria-labelledby="hero-title">
+      <p class="eyebrow">AI systems engineering lab</p>
+      <h1 id="hero-title">Intelligence,<br><em>given structure.</em></h1>
+      <div class="hero-bottom">
+        <p class="lede">AXIOM builds explicit, inspectable infrastructure for model-driven work—from policy and retrieval to bounded execution.</p>
+        <div class="actions"><a class="button" href="systems/">Explore the systems <span aria-hidden="true">↗</span></a><a class="quiet-link" href="contact/">Discuss a project</a></div>
       </div>
     </section>
-
-    <section class="section wrap" id="capabilities" aria-labelledby="capabilities-title">
-      <div class="section-heading"><p class="eyebrow">01 / Capabilities</p><h2 id="capabilities-title">From model output<br>to useful operations.</h2><p>Focused components for the decisions, context, and execution behind an AI workflow.</p></div>
-      <div class="capabilities">
-        <article><span class="category">Execution</span><h3>Agent runtimes</h3><p>Compile requests into schema-validated plans. Execute explicit tool calls with step limits and a recorded history.</p></article>
-        <article><span class="category">Control</span><h3>Safety &amp; policy</h3><p>Evaluate plans against execution policies, tool restrictions, and step caps before dispatching approved work.</p></article>
-        <article><span class="category">Context</span><h3>Retrieval systems</h3><p>Connect document ingestion, semantic search, and source-cited answers through a reusable retrieval service and library.</p></article>
-        <article><span class="category">Application</span><h3>Applied automation</h3><p>Bring the components together in API services, logistics dashboards, and voice interfaces.</p></article>
+    <section class="section wrap" aria-labelledby="core-title">
+      <div class="section-intro"><p class="eyebrow">Core architecture</p><h2 id="core-title">Three distinct boundaries.</h2><p>Policy governs the proposed plan. Execution carries out the accepted sequence. Retrieval supplies governed context.</p></div>
+      <div class="core-grid">
+        <article><p class="index">01 / Policy</p><h3>ASON</h3><p>Checks caller-supplied plans against declared constraints before submission.</p></article>
+        <article><p class="index">02 / Runtime</p><h3>APEX</h3><p>Validates, records, and executes bounded tool sequences without replanning an approved plan.</p></article>
+        <article><p class="index">03 / Context</p><h3>RAG</h3><p>Provides document ingestion, semantic retrieval, and source-cited generation through a library and HTTP service.</p></article>
+      </div>
+      <a class="section-link" href="systems/">See the complete system architecture <span aria-hidden="true">→</span></a>
+    </section>
+    <section class="section wrap" aria-labelledby="evidence-title">
+      <div class="section-intro compact"><p class="eyebrow">Selected evidence</p><h2 id="evidence-title">Engineering that leaves a record.</h2></div>
+      <div class="evidence-list">
+        <a href="https://github.com/axiom-llc/axiom-apex"><span><strong>Durable execution</strong><small>APEX</small></span><span>Plan identity, effect states, recovery, and replay</span><b aria-hidden="true">↗</b></a>
+        <a href="https://github.com/axiom-llc/axiom-rag"><span><strong>Retrieval durability</strong><small>RAG</small></span><span>Single-owner storage, journaled replacement, and namespace identity</span><b aria-hidden="true">↗</b></a>
+        <a href="research/"><span><strong>Research record</strong><small>Artifacts</small></span><span>Falsifiable programs, architecture decisions, and explicit limits</span><b aria-hidden="true">→</b></a>
       </div>
     </section>
-
-    <section class="section wrap" id="systems" aria-labelledby="systems-title">
-      <div class="section-heading"><p class="eyebrow">02 / Systems</p><h2 id="systems-title">Clear responsibilities.<br>Connected by design.</h2><p>APEX executes. ASON applies policy. RAG supplies retrieval. Each has a distinct interface and repository.</p></div>
-      <div class="systems">
-        <article class="system featured">
-          <div class="system-label"><span class="eyebrow">Core runtime</span><span class="system-id" aria-hidden="true">A / 01</span></div>
-          <h3>APEX</h3><p class="system-expansion">Agentic Process Executor</p>
-          <p>Natural-language planning, bounded tool execution, and a complete record of what ran.</p>
-          <ul class="features"><li>Schema-validated plans</li><li>Execution history &amp; replay</li><li>Isolated RSI candidate evaluation</li></ul>
-          <a class="text-link" href="https://github.com/axiom-llc/axiom-apex">Explore APEX <span aria-hidden="true">↗</span></a>
-        </article>
-        <article class="system">
-          <div class="system-label"><span class="eyebrow">Policy layer</span><span class="system-id" aria-hidden="true">A / 02</span></div>
-          <h3>ASON</h3><p class="system-expansion">Policy before execution</p>
-          <p>Evaluate proposed plans against declared constraints, then pass the approved plan to APEX.</p>
-          <p class="system-note">A separate policy boundary with APEX as the execution engine.</p>
-          <a class="text-link" href="https://github.com/axiom-llc/axiom-ason">Explore ASON <span aria-hidden="true">↗</span></a>
-        </article>
-        <article class="system">
-          <div class="system-label"><span class="eyebrow">Retrieval layer</span><span class="system-id" aria-hidden="true">A / 03</span></div>
-          <h3>RAG</h3><p class="system-expansion">Context from your documents</p>
-          <p>Chunk, embed, and search documents to support answers with retrieved sources.</p>
-          <p class="system-note">One canonical implementation shared by the runtime and its consumers.</p>
-          <a class="text-link" href="https://github.com/axiom-llc/axiom-rag">Explore RAG <span aria-hidden="true">↗</span></a>
-        </article>
-      </div>
-      <div class="system-footer"><p>Explore operations, applied systems, and ongoing research.</p><div><a href="https://github.com/axiom-llc/axiom-ops">Ops <span aria-hidden="true">↗</span></a><a href="https://github.com/axiom-llc/axiom-blender">Blender <span aria-hidden="true">↗</span></a><a href="https://github.com/axiom-llc/axiom-demos">Demos <span aria-hidden="true">↗</span></a><a href="https://github.com/axiom-llc/axiom-research">Research <span aria-hidden="true">↗</span></a></div></div>
+    <section class="principle wrap" aria-labelledby="principle-title">
+      <p class="eyebrow">Engineering principle</p><h2 id="principle-title">Models propose.<br>Software decides what runs.</h2>
+      <p>Probabilistic reasoning and deterministic control are different responsibilities. AXIOM designs the boundary between them so behavior can be inspected, tested, and revised.</p>
+      <a class="section-link" href="engineering/">Our engineering practice <span aria-hidden="true">→</span></a>
     </section>
-
-    <section class="section wrap approach" aria-labelledby="approach-title">
-      <div><p class="eyebrow">03 / Engineering</p><h2 id="approach-title">Explicit interfaces.<br>Inspectable behavior.</h2></div>
-      <div class="approach-detail"><p>Language models propose. Software validates and executes. We keep these responsibilities distinct so a workflow can be understood, tested, and improved.</p><p class="muted">Execution safeguards are specific to each component. A plan audit is advisory; isolated candidate evaluation does not imply every runtime tool is sandboxed.</p></div>
-    </section>
-
-    <section class="section wrap stack-section" aria-labelledby="stack-title">
-      <div class="section-heading">
-        <p class="eyebrow">04 / Stack</p>
-        <h2 id="stack-title">Engineering stack.</h2>
-        <p>Composable technologies selected for explicit interfaces, reproducible operation, and low system complexity.</p>
-      </div>
-      <div class="stack" aria-label="Engineering stack">
-        <section class="stack-group"><h3>Systems</h3><ul><li>Python</li><li>Bash</li><li>Linux</li></ul></section>
-        <section class="stack-group"><h3>AI &amp; agents</h3><ul><li>Agent orchestration</li><li>MCP</li><li>RAG</li><li>Gemini</li><li>Ollama</li></ul></section>
-        <section class="stack-group"><h3>Data</h3><ul><li>SQLite</li><li>ChromaDB</li></ul></section>
-        <section class="stack-group"><h3>Interfaces</h3><ul><li>Pydantic</li><li>Flask</li><li>REST / HTTP</li></ul></section>
-        <section class="stack-group"><h3>Infrastructure</h3><ul><li>Git</li><li>GitHub Actions</li><li>Docker</li><li>Compose</li></ul></section>
-        <section class="stack-group"><h3>Applied</h3><ul><li>Twilio</li><li>Blender</li></ul></section>
-      </div>
-    </section>
-
-    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
-      <div><p class="eyebrow">05 / Contact</p><h2 id="contact-title">What should<br>your system do?</h2><p>Tell us about the workflow, the constraints, and the outcome you need.</p><a class="button primary" href="mailto:axiom.co@proton.me">Start a conversation <span aria-hidden="true">↗</span></a></div>
-      <address class="contact-details">
-        <div><span>Email</span><a href="mailto:axiom.co@proton.me">axiom.co@proton.me</a></div>
-        <div><span>Phone</span><a href="tel:+16094030646">(609) 403-0646</a></div>
-        <div><span>GitHub</span><a href="https://github.com/axiom-llc">github.com/axiom-llc <span aria-hidden="true">↗</span></a></div>
-      </address>
+    <section class="home-contact wrap" aria-labelledby="contact-title">
+      <div><p class="eyebrow">Work with AXIOM</p><h2 id="contact-title">Bring the difficult system.</h2></div>
+      <div><p>Start with the workflow, its constraints, and the evidence the result must leave behind.</p><a class="button" href="mailto:axiom.co@proton.me">Start a conversation <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
-  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
+  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="contact/">Contact <span aria-hidden="true">→</span></a></footer>
 </body>
 </html>
