@@ -63,6 +63,7 @@ class SiteTests(unittest.TestCase):
             if tag == 'nav':
                 self.assertIn('aria-label', attrs)
         self.assertIn(('meta', {'name': 'color-scheme', 'content': 'dark'}), self.page.elements)
+        self.assertIn('a:focus-visible', STYLES)
 
     def test_system_cards_have_independent_borders(self):
         """Grid placement must never determine whether a card has an edge."""
@@ -76,6 +77,21 @@ class SiteTests(unittest.TestCase):
         )
         self.assertNotIn('.system + .system', STYLES)
         self.assertNotIn('.system:nth-child', STYLES)
+
+    def test_system_card_headers_share_grid_tracks(self):
+        """Metadata height must not set an individual card title's position."""
+        self.assertIn('grid-template-rows: repeat(6, auto)', STYLES)
+        self.assertIn('grid-row: span 6', STYLES)
+        self.assertIn('grid-template-rows: subgrid', STYLES)
+        for row in range(1, 5):
+            self.assertIn(f'grid-row: {row}', STYLES)
+
+    def test_engineering_stack_is_grouped_and_excludes_unverified_tools(self):
+        text = ''.join(self.page.text)
+        for label in ('Systems', 'AI & agents', 'Data', 'Interfaces', 'Infrastructure', 'Applied'):
+            self.assertIn(label, text)
+        for excluded in ('PostgreSQL', 'pgvector', 'Cloud Run', 'OpenCode', 'Podman'):
+            self.assertNotIn(excluded, text)
 
     def test_static_assets_do_not_require_external_requests(self):
         resource_links = [

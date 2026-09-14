@@ -62,17 +62,18 @@ h2 { font-size: clamp(30px, 3vw, 42px); }
 .category { color: var(--muted); }
 h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
 .capabilities p { color: var(--muted); font-size: 15px; }
-.systems { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 12px; }
-.system { padding: 30px; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.systems { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: repeat(6, auto); gap: 12px; }
+.system { grid-row: span 6; padding: 30px; border: 1px solid var(--line); display: grid; grid-template-rows: subgrid; }
 .system.featured { background: var(--surface); border-top: 2px solid var(--accent); padding-top: 29px; }
-.system-label { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.system-label { grid-row: 1; display: flex; align-items: start; justify-content: space-between; gap: 10px; }
 .system-id { color: var(--muted); }
-.system h3 { font-size: 42px; letter-spacing: -.03em; margin: 34px 0 4px; }
-.system-expansion { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
-.system > p:not(.system-expansion) { font-size: 15px; }
+.system h3 { grid-row: 2; font-size: 42px; letter-spacing: -.03em; margin: 34px 0 4px; }
+.system-expansion { grid-row: 3; font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+.system > p:not(.system-expansion):not(.system-note) { grid-row: 4; font-size: 15px; }
+.features, .system-note { grid-row: 5; }
 .features { padding-left: 17px; color: var(--muted); font-size: 13px; margin: 24px 0; }
 .features li { padding-block: 3px; }
-.system .text-link { margin-top: auto; color: var(--accent); align-self: start; }
+.system .text-link { grid-row: 6; margin-top: auto; color: var(--accent); align-self: start; }
 .system .system-note { color: var(--muted); padding-top: 30px; margin-top: auto; }
 .system-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 22px; font-size: 14px; }
 .system-footer p { color: var(--muted); }
@@ -82,8 +83,12 @@ h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
 .approach h2 { margin-top: 22px; }
 .approach-detail > p { font-size: 18px; }
 .approach-detail .muted { font-size: 14px; color: var(--muted); margin-top: 20px; }
-.stack { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 28px 0 0; padding: 0; }
-.stack li { font: 11px/1.5 var(--mono); color: var(--muted); padding: 6px 10px; border: 1px solid var(--line); }
+.stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin-top: 30px; }
+.stack-group { border-top: 1px solid var(--line); padding-top: 12px; }
+.stack-group h3 { color: var(--accent); font: 11px/1.5 var(--mono); letter-spacing: .1em; margin: 0 0 8px; text-transform: uppercase; }
+.stack-group ul { display: flex; flex-wrap: wrap; gap: 2px 0; list-style: none; margin: 0; padding: 0; }
+.stack-group li { color: var(--muted); font: 12px/1.5 var(--mono); }
+.stack-group li + li::before { content: "·"; color: var(--line); margin-inline: 7px; }
 .contact { border-top: 1px solid var(--line); padding-block: 80px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; scroll-margin-top: 24px; }
 .contact h2 { font-size: clamp(40px, 4.5vw, 60px); margin: 22px 0; }
 .contact p:not(.eyebrow) { max-width: 380px; color: var(--muted); }
@@ -119,13 +124,15 @@ h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
   .capabilities { gap: 30px 24px; }
   .capabilities h3 { font-size: 19px; }
   .systems { grid-template-columns: 1fr; }
-  .system { padding: 24px; }
+  .system { grid-row: auto; grid-template-rows: none; display: block; padding: 24px; }
+  .system > * { grid-row: auto; }
   .system-footer { align-items: start; flex-direction: column; gap: 8px; }
   .site-footer { flex-wrap: wrap; gap: 12px 24px; }
   .site-footer p:nth-child(2) { display: none; }
 }
 @media (max-width: 460px) {
   .capabilities { grid-template-columns: 1fr; }
+  .stack { grid-template-columns: 1fr; gap: 18px; }
   .diagram-heading, .flow, .diagram-note { padding-inline: 18px; }
   .flow li { gap: 16px; }
 }
