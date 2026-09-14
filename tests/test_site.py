@@ -187,6 +187,28 @@ class SiteTests(unittest.TestCase):
                     self.assertFalse(urlsplit(attrs["src"]).scheme, f"{path}: {attrs['src']}")
         self.assertNotRegex(self.styles, r"url\(['\"]?https?://")
 
+    def test_local_variable_fonts_and_licenses(self):
+        expected = {
+            "InterVariable.woff2": "Inter",
+            "IBMPlexMonoVariable.woff2": "IBM Plex Mono",
+        }
+        for filename, family in expected.items():
+            path = ROOT / "assets/fonts" / filename
+            self.assertTrue(path.is_file(), filename)
+            self.assertEqual(path.read_bytes()[:4], b"wOF2", filename)
+            self.assertIn(f'font-family: "{family}"', self.styles)
+            self.assertIn(f'url("assets/fonts/{filename}")', self.styles)
+        self.assertEqual(self.styles.count("font-display: swap"), 2)
+        for filename in ("LICENSE-Inter.txt", "LICENSE-IBM-Plex.txt"):
+            license_text = (ROOT / "assets/fonts" / filename).read_text()
+            self.assertIn("SIL OPEN FONT LICENSE Version 1.1", license_text)
+        provenance = (ROOT / "assets/fonts/SOURCES.md").read_text()
+        for filename in (*expected, "LICENSE-Inter.txt", "LICENSE-IBM-Plex.txt"):
+            self.assertIn(f"`{filename}`", provenance)
+        for value in re.findall(r"url\([\"']?([^\"')]+)", self.styles):
+            self.assertFalse(urlsplit(value).scheme, value)
+            self.assertTrue((ROOT / value).is_file(), value)
+
     def test_svg_assets_are_valid_and_documented(self):
         sources = (ROOT / "assets/technology/SOURCES.md").read_text()
         for asset in sorted((ROOT / "assets/technology").glob("*")):
@@ -201,7 +223,7 @@ class SiteTests(unittest.TestCase):
                 self.assertIn(f"`{asset.name}`", sources)
 
     def test_visual_system_and_responsive_guards(self):
-        for value in ("#101214", "#f2eee5", "#9bd9ed"):
+        for value in ("#0d0f12", "#14181c", "#191e23", "#f4f1e9", "#aab0b4", "#91c4d6", "#b9dce8", "#2a3036", "#20262c"):
             self.assertIn(value, self.styles)
         for unwanted in ("linear-gradient", "radial-gradient", "backdrop-filter", "box-shadow", "border-radius", "@keyframes"):
             self.assertNotIn(unwanted, self.styles)
@@ -209,6 +231,27 @@ class SiteTests(unittest.TestCase):
         self.assertIn("@media (max-width: 640px)", self.styles)
         self.assertRegex(self.styles, r"@media \(max-width: 640px\)[\s\S]*?\.core-grid \{ grid-template-columns: 1fr;")
         self.assertRegex(self.styles, r"@media \(max-width: 640px\)[\s\S]*?\.stack \{ grid-template-columns: 1fr;")
+        self.assertNotIn("-webkit-font-smoothing", self.styles)
+        self.assertNotIn("text-shadow", self.styles)
+        self.assertIn("font-synthesis: none", self.styles)
+
+    def test_exact_homepage_hero_and_editorial_rejections(self):
+        home = self.pages[Path("index.html")]
+        hero = " ".join("".join(home.headings[0][1]).split())
+        self.assertEqual(hero, "Intelligence, with structure.")
+        source = (ROOT / "index.html").read_text()
+        self.assertRegex(source, r'with <span class="hero-accent">structure</span>\.')
+        all_content = " ".join(page.content for page in self.pages.values())
+        for rejected in (
+            "Bring the difficult system.",
+            "Software decides what runs.",
+            "What should the system do?",
+            "Boundaries before capabilities.",
+            "Reliability is a boundary discipline.",
+            "Reproducibility over ceremony.",
+            "Intelligence, given structure.",
+        ):
+            self.assertNotIn(rejected, all_content)
 
     def test_claim_boundaries_are_explicit(self):
         all_content = " ".join(page.content for page in self.pages.values()).lower()
@@ -216,7 +259,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(required, all_content)
         for unsupported in ("production-ready", "enterprise-grade", "fully secure", "independently verified", "guaranteed accuracy"):
             self.assertNotIn(unsupported, all_content)
-        self.assertIn("models propose", all_content)
+        self.assertIn("model output is treated as a proposal", all_content)
         self.assertNotIn("deterministic model", all_content)
 
     def test_obsolete_single_page_navigation_is_removed(self):

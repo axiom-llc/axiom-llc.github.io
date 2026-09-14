@@ -13,8 +13,9 @@ The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
 
 Each route is plain HTML. `styles.css` is the shared Graphite / Ivory / Ice visual
 system, `favicon.svg` is the AXIOM mark, and `assets/technology/` contains locally
-vendored technology marks. Asset provenance and treatment notes are recorded in
-[`assets/technology/SOURCES.md`](assets/technology/SOURCES.md).
+vendored technology marks. Inter Variable and IBM Plex Mono Variable are served
+from `assets/fonts/` with their OFL licenses. Provenance is recorded in the
+respective `SOURCES.md` files.
 
 ## Run locally
 
