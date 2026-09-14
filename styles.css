@@ -83,7 +83,8 @@ h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
 .approach h2 { margin-top: 22px; }
 .approach-detail > p { font-size: 18px; }
 .approach-detail .muted { font-size: 14px; color: var(--muted); margin-top: 20px; }
-.stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin-top: 30px; }
+.stack-section { text-align: left; }
+.stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 32px; width: min(960px, 100%); margin: 0 auto; }
 .stack-group { border-top: 1px solid var(--line); padding-top: 12px; }
 .stack-group h3 { color: var(--accent); font: 11px/1.5 var(--mono); letter-spacing: .1em; margin: 0 0 8px; text-transform: uppercase; }
 .stack-group ul { display: flex; flex-wrap: wrap; gap: 2px 0; list-style: none; margin: 0; padding: 0; }
@@ -105,6 +106,7 @@ h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
   .section-heading { grid-template-columns: 1fr 1fr; gap: 22px; }
   .section-heading .eyebrow { grid-column: 1 / -1; }
   .capabilities { grid-template-columns: repeat(2, 1fr); gap: 34px; }
+  .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .systems { grid-template-columns: 1fr 1fr; }
   .featured { grid-column: 1 / -1; }
   .system h3 { margin-top: 22px; }
