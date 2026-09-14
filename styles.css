@@ -77,7 +77,7 @@ h3 { font-size: 21px; margin: 16px 0; letter-spacing: -.025em; }
 .system .system-note { color: var(--muted); padding-top: 30px; margin-top: auto; }
 .system-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 22px; font-size: 14px; }
 .system-footer p { color: var(--muted); }
-.system-footer div { display: flex; gap: 25px; }
+.system-footer div { display: flex; flex-wrap: wrap; gap: 8px 25px; }
 .system-footer a { padding-block: 10px; }
 .approach { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 .approach h2 { margin-top: 22px; }
