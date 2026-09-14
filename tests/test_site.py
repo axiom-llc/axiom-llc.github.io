@@ -6,6 +6,7 @@ import unittest
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+STYLES = (ROOT / 'styles.css').read_text()
 
 
 class Page(HTMLParser):
@@ -62,6 +63,33 @@ class SiteTests(unittest.TestCase):
             if tag == 'nav':
                 self.assertIn('aria-label', attrs)
         self.assertIn(('meta', {'name': 'color-scheme', 'content': 'dark'}), self.page.elements)
+
+    def test_system_cards_have_independent_borders(self):
+        """Grid placement must never determine whether a card has an edge."""
+        self.assertRegex(
+            STYLES,
+            r'\.systems\s*\{[^}]*grid-template-columns:[^;}]+;[^}]*gap:\s*12px;',
+        )
+        self.assertRegex(
+            STYLES,
+            r'\.system\s*\{[^}]*border:\s*1px solid var\(--line\);',
+        )
+        self.assertNotIn('.system + .system', STYLES)
+        self.assertNotIn('.system:nth-child', STYLES)
+
+    def test_static_assets_do_not_require_external_requests(self):
+        resource_links = [
+            attrs['href']
+            for tag, attrs in self.page.elements
+            if tag == 'link' and 'href' in attrs
+        ]
+        self.assertEqual(resource_links, ['favicon.svg', 'styles.css'])
+        embedded_sources = [
+            attrs['src']
+            for tag, attrs in self.page.elements
+            if tag in {'img', 'script', 'iframe', 'audio', 'video'} and 'src' in attrs
+        ]
+        self.assertEqual(embedded_sources, ['favicon.svg'])
 
 
 if __name__ == '__main__':
