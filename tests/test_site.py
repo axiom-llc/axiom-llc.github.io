@@ -13,6 +13,7 @@ PAGE_PATHS = (
     Path("research/index.html"),
     Path("engineering/index.html"),
     Path("contact/index.html"),
+    Path("engagements/reliability-control-sprint/index.html"),
 )
 NAV_LABELS = ("Systems", "Research", "Engineering", "Contact")
 REPOSITORIES = {
@@ -119,7 +120,7 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(navs, [{"aria-label": "Main navigation"}], path)
             nav_links = [(" ".join("".join(text).split()), attrs) for attrs, text in page.links if " ".join("".join(text).split()) in NAV_LABELS]
             self.assertEqual(tuple(label for label, _ in nav_links), NAV_LABELS, path)
-            if path != Path("index.html"):
+            if path.parts[0] in {"systems", "research", "engineering", "contact"}:
                 current = [label for label, attrs in nav_links if attrs.get("aria-current") == "page"]
                 self.assertEqual(current, [path.parts[0].title()], path)
 
@@ -155,6 +156,19 @@ class SiteTests(unittest.TestCase):
         self.assertIn("(609) 403-0646", contact.content)
         numbers = re.findall(r"\(\d{3}\) \d{3}-\d{4}", (ROOT / "README.md").read_text())
         self.assertEqual(numbers, ["(609) 403-0646"])
+
+    def test_reliability_sprint_offer_is_fixed_and_bounded(self):
+        path = Path("engagements/reliability-control-sprint/index.html")
+        page = self.pages[path]
+        home = self.pages[Path("index.html")]
+        hrefs = [attrs.get("href") for attrs, _ in page.links]
+        home_hrefs = [attrs.get("href") for attrs, _ in home.links]
+        self.assertIn("engagements/reliability-control-sprint/", home_hrefs)
+        self.assertIn("mailto:axiom.co@proton.me?subject=Agent%20Reliability%20%26%20Control%20Sprint", hrefs)
+        for required in ("5 business days", "$5,000", "up to five", "up to two", "one retrieval subsystem", "one prioritized control patch"):
+            self.assertIn(required.lower(), page.content.lower())
+        for boundary in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects"):
+            self.assertIn(boundary, page.content.lower())
 
     def test_external_repository_links_are_expected(self):
         found = set()

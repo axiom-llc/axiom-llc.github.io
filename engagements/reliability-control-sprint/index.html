@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#0d0f12">
+  <title>Agent Reliability & Control Sprint — AXIOM LLC</title>
+  <meta name="description" content="A fixed-scope five-day engagement for one AI-agent workflow: deterministic controls, failure tests, one bounded hardening slice, and reproducible evidence.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="brand" href="../../" aria-label="AXIOM LLC home"><img src="../../favicon.svg" width="28" height="28" alt=""><span>AXIOM <small>LLC</small></span></a><nav aria-label="Main navigation"><a href="../../systems/">Systems</a><a href="../../research/">Research</a><a href="../../engineering/">Engineering</a><a href="../../contact/">Contact</a></nav></header>
+  <main id="main">
+    <section class="page-hero wrap" aria-labelledby="sprint-title">
+      <p class="eyebrow">Fixed-scope engagement · 5 business days · $5,000</p>
+      <h1 id="sprint-title">Agent Reliability<br>& Control Sprint</h1>
+      <p class="lede">For one production or near-production tool-using agent that works on normal paths but lacks deterministic evidence for authorization, external effects, failure recovery, or runtime identity.</p>
+    </section>
+    <section class="section wrap" aria-labelledby="scope-title">
+      <div class="section-intro"><p class="eyebrow">Scope</p><h2 id="scope-title">One workflow. Explicit boundaries.</h2><p>One primary repository or service, up to five tool or external-effect types, up to two model/provider profiles, and at most one retrieval subsystem.</p></div>
+      <div class="core-grid">
+        <article><p class="index">01 / Map</p><h3>Control</h3><p>Authority, policy, tools, data, mutations, retry semantics, recovery states, and trust boundaries.</p></article>
+        <article><p class="index">02 / Test</p><h3>Failure</h3><p>Executable deterministic tests for policy rejection, effect safety, ambiguous outcomes, evidence identity, and applicable retrieval boundaries.</p></article>
+        <article><p class="index">03 / Harden</p><h3>One slice</h3><p>One prioritized control patch or executable reference patch, bounded to the agreed workflow and backed by a regression test.</p></article>
+      </div>
+    </section>
+    <section class="section wrap" aria-labelledby="deliverables-title">
+      <div class="section-intro compact"><p class="eyebrow">Deliverables</p><h2 id="deliverables-title">Evidence you can rerun.</h2></div>
+      <div class="evidence-list">
+        <a href="#acceptance"><span><strong>Control map + acceptance pack</strong><small>Boundaries and tests</small></span><span>In-scope effects classified; deterministic failure and acceptance cases captured as executable evidence.</span><b aria-hidden="true">↓</b></a>
+        <a href="#acceptance"><span><strong>Bounded hardening slice</strong><small>Implementation</small></span><span>One prioritized control patch or reference patch with a reproducible regression test.</span><b aria-hidden="true">↓</b></a>
+        <a href="#proof"><span><strong>Evidence pack + remediation queue</strong><small>Handoff</small></span><span>Commands, revisions/profile identifiers, results, limitations, and ranked remaining work, followed by a 60-minute technical review.</span><b aria-hidden="true">↓</b></a>
+      </div>
+    </section>
+    <section class="section wrap" id="acceptance" aria-labelledby="acceptance-title">
+      <div class="section-intro"><p class="eyebrow">Acceptance</p><h2 id="acceptance-title">Pass or fail is defined before handoff.</h2><p>The sprint is accepted only when every applicable criterion below passes. Unsupported guarantees remain explicit.</p></div>
+      <ol class="validation-flow">
+        <li><span>01</span><h3>Pre-effect rejection</h3><p>Policy-invalid or schema-invalid cases produce no in-scope external effect.</p></li>
+        <li><span>02</span><h3>Fail-closed recovery</h3><p>Ambiguous non-retry-safe outcomes do not authorize automatic replay.</p></li>
+        <li><span>03</span><h3>Reproducible evidence</h3><p>One documented command reruns the acceptance pack; failures exit nonzero and tested identity is machine-readable.</p></li>
+      </ol>
+    </section>
+    <section class="evidence-boundary wrap" id="proof" aria-labelledby="proof-title">
+      <p class="eyebrow">Technical proof</p><div><h2 id="proof-title">Built from validated AXIOM control and recovery work.</h2><p>Current evidence includes 159 passing APEX offline tests, 18/18 ASON-to-APEX integration tests, and 63/63 ASON suite tests. APEX revision 67696d6 with Gemini 3.8 Flash and google-genai 1.66.0 passed the live provider smoke, 2/2 integration tests, direct execution, and 12/12 benchmark tasks under its recorded execution-profile digest. AXIOM RAG implements explicit storage ownership, replacement recovery, embedding-space identity, and fail-closed HTTP boundaries. Acceptance remains bound to the recorded source, provider, model, SDK, configuration profile, and workload; materially changed profiles require separate validation.</p></div>
+    </section>
+    <section class="home-contact wrap" aria-labelledby="fit-title">
+      <div><p class="eyebrow">Fit</p><h2 id="fit-title">Start with one consequential workflow.</h2></div>
+      <div><p>Send the workflow, operating environment, tool/effect boundary, known failure modes, and current validation. AXIOM will confirm whether the fixed scope fits before any work begins.</p><a class="button" href="mailto:axiom.co@proton.me?subject=Agent%20Reliability%20%26%20Control%20Sprint">Request sprint fit review <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section class="evidence-boundary wrap" aria-labelledby="limits-title">
+      <p class="eyebrow">Limits</p><div><h2 id="limits-title">Engineering evidence, not certification.</h2><p>This engagement is not independent assurance, not certification, not a legal or compliance opinion, and does not imply a production deployment. It does not establish exactly-once external effects. Production deployment, provider migration, paid infrastructure, credentials administration, ongoing monitoring, and materially expanded scope are separate work.</p></div>
+    </section>
+    <section class="next-page wrap"><p class="eyebrow">Technical context</p><a href="../../systems/">Review AXIOM system architecture <b aria-hidden="true">→</b></a></section>
+  </main>
+  <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="../../contact/">Contact <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>
