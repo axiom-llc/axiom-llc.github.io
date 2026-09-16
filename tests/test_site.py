@@ -277,6 +277,16 @@ class SiteTests(unittest.TestCase):
         self.assertIn("model output is treated as a proposal", all_content)
         self.assertNotIn("deterministic model", all_content)
 
+    def test_engineering_profile_is_evidence_bounded(self):
+        home=self.pages[Path("index.html")].content
+        engineering=self.pages[Path("engineering/index.html")].content
+        self.assertIn("Adam Tacon",home)
+        self.assertIn("AI Systems Engineer",home)
+        self.assertIn("Virtuoso-level engineering breadth",engineering)
+        self.assertIn("Hyper-capable human–AI operation",engineering)
+        self.assertIn("not claims of measured psychometric IQ",engineering)
+        self.assertIn("other contributors",engineering)
+
     def test_obsolete_single_page_navigation_is_removed(self):
         for page in self.pages.values():
             hrefs = [attrs.get("href", "") for attrs, _ in page.links]
