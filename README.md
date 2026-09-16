@@ -10,6 +10,7 @@ The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
 - `/research/` — current research agenda, artifacts, and evidence boundaries.
 - `/engineering/` — Adam Tacon's evidence-backed engineering profile, principles, validation posture, and the complete stack.
 - `/contact/` — project brief guidance and contact details.
+- `/engagements/` — evidence-backed engineering engagement capabilities and contact path.
 - `/engagements/reliability-control-sprint/` — fixed-scope Agent Reliability & Control Sprint offer.
 
 Each route is plain HTML. `styles.css` is the shared Graphite / Ivory / Ice visual

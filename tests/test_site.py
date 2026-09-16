@@ -13,6 +13,7 @@ PAGE_PATHS = (
     Path("research/index.html"),
     Path("engineering/index.html"),
     Path("contact/index.html"),
+    Path("engagements/index.html"),
     Path("engagements/reliability-control-sprint/index.html"),
 )
 NAV_LABELS = ("Systems", "Research", "Engineering", "Contact")
@@ -164,12 +165,17 @@ class SiteTests(unittest.TestCase):
         home = self.pages[Path("index.html")]
         hrefs = [attrs.get("href") for attrs, _ in page.links]
         home_hrefs = [attrs.get("href") for attrs, _ in home.links]
-        self.assertIn("engagements/reliability-control-sprint/", home_hrefs)
+        self.assertIn("engagements/", home_hrefs)
         self.assertIn("mailto:axiom.co@proton.me?subject=Agent%20Reliability%20%26%20Control%20Sprint", hrefs)
         for required in ("5 business days", "$5,000", "up to five", "up to two", "one retrieval subsystem", "one prioritized control patch"):
             self.assertIn(required.lower(), page.content.lower())
         for boundary in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects"):
             self.assertIn(boundary, page.content.lower())
+
+    def test_engagement_surface_is_evidence_backed(self):
+        page=self.pages[Path("engagements/index.html")].content
+        for required in ("Agent reliability & execution control","RAG durability & retrieval engineering","Workflow & systems automation","Architecture, debugging & readiness","not independent certification"):
+            self.assertIn(required,page)
 
     def test_external_repository_links_are_expected(self):
         found = set()
