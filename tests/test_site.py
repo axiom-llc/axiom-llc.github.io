@@ -286,6 +286,8 @@ class SiteTests(unittest.TestCase):
         self.assertIn("Hyper-capable human–AI operation",engineering)
         self.assertIn("not claims of measured psychometric IQ",engineering)
         self.assertIn("other contributors",engineering)
+        self.assertIn("TechEliteAutomation",engineering)
+        self.assertIn("prior-company identity",engineering)
 
     def test_obsolete_single_page_navigation_is_removed(self):
         for page in self.pages.values():
