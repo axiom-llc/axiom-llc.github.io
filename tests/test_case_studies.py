@@ -11,7 +11,19 @@ class CaseStudyTests(unittest.TestCase):
         hrefs=[attrs.get('href','') for attrs,_ in self.page.links]
         for required in ('simulations/portfolio-summary.json','simulations/cross-domain-findings.md','simulations/claims','axiom-demos/tree/main/organizational-simulations'):
             self.assertTrue(any(required in href for href in hrefs),required)
-        self.assertEqual(sum('/simulations/case-studies/' in href for href in hrefs),5)
+        case_hrefs={href for href in hrefs if '/simulations/case-studies/' in href}
+        self.assertEqual(len(case_hrefs),5)
+
+    def test_high_fidelity_cycles_are_bounded_and_traceable(self):
+        text=self.page.content.lower()
+        for required in ('accepted high-fidelity cycles','three days','six work items per domain','shared resources under contention','24/24 successful effects/events','remain synthetic validated executable demonstrations'):
+            self.assertIn(required.lower(),text)
+        hrefs=[attrs.get('href','') for attrs,_ in self.page.links]
+        for required in ('simulations/operational-fidelity/portfolio-acceptance.json','simulations/operational-fidelity/gap-closure-findings.md','organizational-simulations/high-fidelity'):
+            self.assertTrue(any(required in href for href in hrefs),required)
+        self.assertTrue(any('software-development.md' in href for href in hrefs))
+        self.assertTrue(any('logistics-supply-chain.md' in href for href in hrefs))
+
     def test_local_assets_and_links_resolve(self):
         for _,attrs in self.page.elements:
             for key in ('href','src'):
