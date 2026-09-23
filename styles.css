@@ -191,6 +191,14 @@ img { display: block; max-width: 100%; }
 .core-grid article > p:last-child { margin-top: auto; color: var(--muted); font-size: 15px; }
 .section-link { display: inline-flex; gap: 18px; margin-top: 34px; padding-block: 8px; color: var(--accent-strong); }
 
+.ecosystem-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.ecosystem-card { min-height: 170px; display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: center; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(155deg, var(--surface-raised), var(--surface)); box-shadow: var(--shadow-soft); }
+.ecosystem-logo { min-height: 100px; display: grid; place-items: center; padding: 18px; border: 1px solid rgba(20,40,60,.12); border-radius: 16px; background: #fff; }
+.ecosystem-logo img { width: 100%; max-width: 118px; max-height: 68px; object-fit: contain; }
+.ecosystem-card h3 { margin-top: 12px; font-size: clamp(22px, 2.2vw, 30px); }
+.ecosystem-card div > p:last-child { margin-top: 10px; color: var(--muted); font-size: 14px; }
+.ecosystem-attribution { margin-top: 20px; color: var(--muted); font-size: 12px; }
+
 .evidence-list, .artifact-list { display: grid; gap: 14px; }
 .evidence-list > a, .artifact-list > a {
   min-height: 104px;
@@ -306,6 +314,7 @@ img { display: block; max-width: 100%; }
   .relationship-note { margin-left: 120px; }
   .agenda { grid-template-columns: 1fr; }
   .stack { grid-template-columns: repeat(2, 1fr); }
+  .ecosystem-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -331,7 +340,9 @@ img { display: block; max-width: 100%; }
   .section-intro, .section-intro.compact { display: block; margin-bottom: 34px; }
   .section-intro h2 { margin-top: 14px; }
   .section-intro > p:last-child { margin-top: 20px; }
-  .core-grid, .principles, .validation-flow, .stack { grid-template-columns: 1fr; }
+  .core-grid, .principles, .validation-flow, .stack, .ecosystem-grid { grid-template-columns: 1fr; }
+  .ecosystem-card { grid-template-columns: 110px 1fr; gap: 16px; padding: 18px; }
+  .ecosystem-logo { min-height: 84px; padding: 12px; }
   .core-grid article, .agenda article, .principles article { min-height: 220px; }
   .evidence-list > a, .artifact-list > a { grid-template-columns: 1fr auto; gap: 10px 18px; }
   .evidence-list > a > span:nth-child(2) { grid-column: 1; }

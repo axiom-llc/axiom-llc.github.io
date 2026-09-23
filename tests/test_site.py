@@ -274,6 +274,28 @@ class SiteTests(unittest.TestCase):
         for required in ("prefers-color-scheme: dark", "localStorage", "system", "light", "dark"):
             self.assertIn(required, theme)
 
+    def test_technology_ecosystem_groups_and_logos(self):
+        source = (ROOT / "index.html").read_text()
+        home = self.pages[Path("index.html")].content
+        expected = {
+            "ASUS": "asus.svg",
+            "LG Electronics": "lg.svg",
+            "Anker": "anker.png",
+            "American Network Solutions (ANS)": "ans.png",
+            "Advanced Micro Devices, Inc. (AMD)": "amd.svg",
+            "Lenovo": "lenovo.svg",
+            "Arch Linux": "arch-linux.svg",
+            "Android": "android.svg",
+        }
+        for name, asset in expected.items():
+            self.assertIn(name, home)
+            self.assertIn(f"assets/technology/ecosystem/{asset}", source)
+            self.assertTrue((ROOT / "assets/technology/ecosystem" / asset).is_file())
+        self.assertEqual(source.count('class="ecosystem-card"'), 8)
+        self.assertIn("does not imply partnership, sponsorship, endorsement", home)
+        self.assertIn("Android is a trademark of Google LLC", home)
+        self.assertIn("Creative Commons 3.0 Attribution License", home)
+
     def test_exact_homepage_hero_and_editorial_rejections(self):
         home = self.pages[Path("index.html")]
         hero = " ".join("".join(home.headings[0][1]).split())
