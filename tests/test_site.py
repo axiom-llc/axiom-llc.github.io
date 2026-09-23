@@ -20,7 +20,7 @@ NAV_LABELS = ("Systems", "Research", "Engineering", "Contact")
 REPOSITORIES = {
     "axiom-apex", "axiom-api", "axiom-ason", "axiom-blender", "axiom-demos",
     "axiom-infra", "axiom-ops", "axiom-rag", "axiom-research",
-    "wiki-infinite",
+    "axiom-wiki-infinite",
 }
 TECHNOLOGIES = {
     "Python", "Bash", "Linux", "Agent orchestration", "MCP", "RAG",
