@@ -35,7 +35,6 @@
   --sans: "Inter", Arial, sans-serif;
   --radius: 22px;
   --header: rgba(246,251,255,.84);
-  --mark-glow: drop-shadow(0 0 22px rgba(0,190,255,.34));
   background: var(--bg);
   color: var(--text);
   font-family: var(--sans);
@@ -61,7 +60,6 @@
   --shadow-soft: 0 10px 36px rgba(0,0,0,.24);
   --focus: #7be5ff;
   --header: rgba(5,16,29,.84);
-  --mark-glow: drop-shadow(0 0 24px rgba(35,210,255,.46));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,7 +82,6 @@
     --shadow-soft: 0 10px 36px rgba(0,0,0,.24);
     --focus: #7be5ff;
     --header: rgba(5,16,29,.84);
-    --mark-glow: drop-shadow(0 0 24px rgba(35,210,255,.46));
   }
 }
 
@@ -143,7 +140,7 @@ img { display: block; max-width: 100%; }
 }
 .site-header.wrap { width: 100%; padding-inline: max(36px, calc((100vw - 1240px)/2)); }
 .brand { display: inline-flex; align-items: center; gap: 12px; margin-right: auto; color: var(--text-strong); font-size: 22px; font-weight: 760; letter-spacing: .10em; text-decoration: none; white-space: nowrap; }
-.brand img { width: 44px; height: 44px; object-fit: contain; filter: var(--mark-glow); }
+.brand img { width: 44px; height: 44px; object-fit: contain; image-rendering: auto; }
 .brand small { margin-left: 4px; color: var(--accent-strong); font: 600 11px var(--mono); letter-spacing: .08em; }
 .site-header nav { display: flex; align-items: center; gap: clamp(16px, 2.6vw, 34px); }
 .site-header nav a { position: relative; padding-block: 14px; color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
@@ -167,8 +164,7 @@ img { display: block; max-width: 100%; }
 .home-hero h1, h1 { margin-top: 22px; font-size: clamp(56px, 7.4vw, 104px); letter-spacing: -.055em; }
 .hero-accent { color: var(--accent-strong); }
 .hero-mark { grid-area: mark; position: relative; display: grid; place-items: center; min-height: 500px; }
-.hero-mark::before { content: ""; position: absolute; width: 82%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(92,220,255,.24), transparent 67%); filter: blur(10px); }
-.hero-mark img { position: relative; width: min(520px, 92%); aspect-ratio: 1; object-fit: contain; filter: var(--mark-glow); }
+.hero-mark img { position: relative; width: min(520px, 92%); aspect-ratio: 1; object-fit: contain; image-rendering: auto; }
 .hero-bottom { grid-area: bottom; display: grid; gap: 28px; align-self: start; }
 .hero-bottom .lede { max-width: 660px; }
 .actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }

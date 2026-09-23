@@ -15,7 +15,8 @@ The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
 
 Each route is plain HTML. `styles.css` is the shared approved light/dark AXIOM visual
 system, `theme.js` provides progressive theme selection, `favicon.svg` and
-`assets/brand/` contain public deployment derivatives only, and
+`assets/brand/` contain deployment-only derivatives from the private canonical
+AXIOM aura master (including density-aware 1x/2x web renders), and
 `assets/technology/` contains locally vendored technology marks. Inter Variable and IBM Plex Mono Variable are served
 from `assets/fonts/` with their OFL licenses. Provenance is recorded in the
 respective `SOURCES.md` files.

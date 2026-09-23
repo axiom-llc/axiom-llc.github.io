@@ -265,7 +265,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(prefix + "assets/brand/axiom-mark-32.png", hrefs, path)
             self.assertIn(prefix + "assets/brand/axiom-mark-180.png", hrefs, path)
             self.assertIn(prefix + "site.webmanifest", hrefs, path)
-        for size in (16, 32, 64, 128, 180, 192, 512):
+        for size in (16, 32, 64, 128, 180, 192, 512, 1024):
             self.assertTrue((ROOT / "assets" / "brand" / f"axiom-mark-{size}.png").is_file(), size)
         ET.parse(ROOT / "favicon.svg")
         self.assertTrue((ROOT / "favicon.ico").is_file())
@@ -281,6 +281,8 @@ class SiteTests(unittest.TestCase):
         source = (ROOT / "index.html").read_text()
         self.assertIn('class="hero-mark"', source)
         self.assertIn('assets/brand/axiom-mark-512.png', source)
+        self.assertIn('assets/brand/axiom-mark-1024.png 2x', source)
+        self.assertNotIn('hero-mark::before', self.styles)
         all_content = " ".join(page.content for page in self.pages.values())
         for rejected in ("Bring the difficult system.", "Software decides what runs.", "What should the system do?", "Boundaries before capabilities.", "Reliability is a boundary discipline.", "Reproducibility over ceremony.", "Intelligence, given structure."):
             self.assertNotIn(rejected, all_content)
