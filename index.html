@@ -3,28 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0d0f12">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#edf7ff">
   <title>AXIOM LLC — AI Systems Engineering Lab</title>
   <meta name="description" content="AXIOM designs bounded, inspectable AI systems across policy enforcement, execution runtimes, retrieval infrastructure, and operations.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/brand/axiom-mark-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/brand/axiom-mark-180.png"><link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="./" aria-label="AXIOM LLC home"><img src="favicon.svg" width="28" height="28" alt=""><span>AXIOM <small>LLC</small></span></a>
-    <nav aria-label="Main navigation">
+    <a class="brand" href="./" aria-label="AXIOM LLC home"><img src="assets/brand/axiom-mark-64.png" width="44" height="44" alt=""><span>AXIOM <small>LLC</small></span></a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system"><span data-theme-label aria-hidden="true">◐</span><span class="sr-only">Change theme</span></button><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Toggle navigation"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Main navigation">
       <a href="systems/">Systems</a><a href="research/">Research</a><a href="engineering/">Engineering</a><a href="contact/">Contact</a>
     </nav>
   </header>
   <main id="main">
     <section class="home-hero wrap" aria-labelledby="hero-title">
-      <p class="eyebrow">AI systems engineering lab</p>
-      <h1 id="hero-title">Intelligence,<br> with <span class="hero-accent">structure</span>.</h1>
+      <div class="hero-copy">
+        <p class="eyebrow">Ideas · systems · progress</p>
+        <h1 id="hero-title">AXIOM <span class="hero-accent">LLC</span>.<br> Intelligence with structure.</h1>
+      </div>
+      <div class="hero-mark" aria-hidden="true"><img src="assets/brand/axiom-mark-512.png" width="512" height="512" alt=""></div>
       <div class="hero-bottom">
-        <p class="lede">AXIOM designs agent runtimes, policy enforcement, retrieval infrastructure, and operational tooling for bounded, inspectable model-driven execution.</p>
-        <div class="actions"><a class="button" href="systems/">System architecture <span aria-hidden="true">↗</span></a><a class="quiet-link" href="engagements/">Engineering engagements</a></div>
+        <p class="lede">AXIOM LLC designs bounded, inspectable AI systems across policy enforcement, execution runtimes, retrieval infrastructure, and operational tooling.</p>
+        <div class="actions"><a class="button" href="systems/">Explore our systems <span aria-hidden="true">→</span></a><a class="quiet-link" href="engagements/">Engineering engagements</a></div>
       </div>
     </section>
     <section class="section wrap" aria-labelledby="core-title">
@@ -45,7 +48,7 @@
       </div>
     </section>
     <section class="section wrap" aria-labelledby="engineer-title">
-      <div class="section-intro"><p class="eyebrow">Engineering lead</p><h2 id="engineer-title">Adam Tacon — AI Systems Engineer.</h2><p>AXIOM's repository record demonstrates end-to-end engineering across agent runtimes, policy enforcement, retrieval durability, operational orchestration, Unix automation, APIs, infrastructure, applied AI, and source-grounded research.</p></div>
+      <div class="section-intro"><p class="eyebrow">Engineering practice</p><h2 id="engineer-title">AXIOM LLC engineers systems from architecture through validation.</h2><p>The AXIOM repository record demonstrates end-to-end engineering across agent runtimes, policy enforcement, retrieval durability, operational orchestration, Unix automation, APIs, infrastructure, applied AI, and source-grounded research.</p></div>
       <div class="evidence-list">
         <a href="engineering/"><span><strong>Systems engineering</strong><small>Architecture → validation</small></span><span>Explicit interfaces, durable state, failure semantics, recovery, security boundaries, and reproducible integration.</span><b aria-hidden="true">→</b></a>
         <a href="systems/"><span><strong>Shipped systems</strong><small>Runtime portfolio</small></span><span>APEX, ASON, RAG, API, Infra, Ops, applied demos, and deterministic automation across public repositories.</span><b aria-hidden="true">→</b></a>
@@ -63,5 +66,5 @@
     </section>
   </main>
   <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="contact/">Contact <span aria-hidden="true">→</span></a></footer>
-</body>
+  <script src="theme.js" defer></script>\n</body>
 </html>

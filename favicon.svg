@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0d0f12"></rect>
-  <path d="M16 48L32 16L48 48H40L36 40H28L24 48Z" fill="#91c4d6"></path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AXIOM mark">
+  <defs>
+    <linearGradient id="g" x1="12" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e8fbff"/>
+      <stop offset=".42" stop-color="#56dcff"/>
+      <stop offset="1" stop-color="#1487d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#071423"/>
+  <g fill="none" stroke="url(#g)" stroke-width="3" stroke-linejoin="round">
+    <path d="M32 7 53 20 50 46 32 57 14 46 11 20Z"/>
+    <path d="M32 7 22 22h20L32 7Zm-21 13 11 2-8 24m39-26-11 2 8 24M22 22l10 35 10-35M14 46l18-12 18 12"/>
+  </g>
+  <path d="M24 34c4-7 8-7 12 0s8 7 12 0" fill="none" stroke="#69e6ff" stroke-width="2.4" stroke-linecap="round"/>
 </svg>

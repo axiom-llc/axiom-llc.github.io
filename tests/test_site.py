@@ -133,7 +133,10 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(tags.count("main"), 1, path)
             self.assertGreaterEqual(tags.count("header"), 1, path)
             self.assertEqual(tags.count("footer"), 1, path)
-            self.assertNotIn("script", tags, path)
+            scripts = [attrs for tag, attrs in page.elements if tag == "script"]
+            self.assertEqual(len(scripts), 1, path)
+            self.assertEqual(scripts[0].get("src"), ("../" * len(path.parent.parts)) + "theme.js", path)
+            self.assertIn("defer", scripts[0], path)
             self.assertEqual(page.headings[0][0], 1, path)
             for previous, current in zip(page.headings, page.headings[1:]):
                 self.assertLessEqual(current[0] - previous[0], 1, path)
@@ -244,34 +247,42 @@ class SiteTests(unittest.TestCase):
                 self.assertIn(f"`{asset.name}`", sources)
 
     def test_visual_system_and_responsive_guards(self):
-        for value in ("#0d0f12", "#14181c", "#191e23", "#f4f1e9", "#aab0b4", "#91c4d6", "#b9dce8", "#2a3036", "#20262c"):
+        for value in ("#edf7ff", "#06111f", "--surface", "--accent", "--muted", "--line"):
             self.assertIn(value, self.styles)
-        for unwanted in ("linear-gradient", "radial-gradient", "backdrop-filter", "box-shadow", "border-radius", "@keyframes"):
-            self.assertNotIn(unwanted, self.styles)
-        self.assertIn("@media (max-width: 900px)", self.styles)
-        self.assertIn("@media (max-width: 640px)", self.styles)
-        self.assertRegex(self.styles, r"@media \(max-width: 640px\)[\s\S]*?\.core-grid \{ grid-template-columns: 1fr;")
-        self.assertRegex(self.styles, r"@media \(max-width: 640px\)[\s\S]*?\.stack \{ grid-template-columns: 1fr;")
+        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "backdrop-filter", "@media (max-width: 720px)", ".hero-mark", ".theme-toggle"):
+            self.assertIn(required, self.styles)
         self.assertNotIn("-webkit-font-smoothing", self.styles)
-        self.assertNotIn("text-shadow", self.styles)
         self.assertIn("font-synthesis: none", self.styles)
+
+    def test_theme_control_and_brand_derivatives_are_shared(self):
+        for path, page in self.pages.items():
+            buttons = [attrs for tag, attrs in page.elements if tag == "button" and "data-theme-toggle" in attrs]
+            self.assertEqual(len(buttons), 1, path)
+            links = [attrs for tag, attrs in page.elements if tag == "link"]
+            hrefs = {attrs.get("href") for attrs in links}
+            prefix = "../" * len(path.parent.parts)
+            self.assertIn(prefix + "favicon.svg", hrefs, path)
+            self.assertIn(prefix + "assets/brand/axiom-mark-32.png", hrefs, path)
+            self.assertIn(prefix + "assets/brand/axiom-mark-180.png", hrefs, path)
+            self.assertIn(prefix + "site.webmanifest", hrefs, path)
+        for size in (16, 32, 64, 128, 180, 192, 512):
+            self.assertTrue((ROOT / "assets" / "brand" / f"axiom-mark-{size}.png").is_file(), size)
+        ET.parse(ROOT / "favicon.svg")
+        self.assertTrue((ROOT / "favicon.ico").is_file())
+        self.assertTrue((ROOT / "theme.js").is_file())
+        theme = (ROOT / "theme.js").read_text()
+        for required in ("prefers-color-scheme: dark", "localStorage", "system", "light", "dark"):
+            self.assertIn(required, theme)
 
     def test_exact_homepage_hero_and_editorial_rejections(self):
         home = self.pages[Path("index.html")]
         hero = " ".join("".join(home.headings[0][1]).split())
-        self.assertEqual(hero, "Intelligence, with structure.")
+        self.assertEqual(hero, "AXIOM LLC. Intelligence with structure.")
         source = (ROOT / "index.html").read_text()
-        self.assertRegex(source, r'with <span class="hero-accent">structure</span>\.')
+        self.assertIn('class="hero-mark"', source)
+        self.assertIn('assets/brand/axiom-mark-512.png', source)
         all_content = " ".join(page.content for page in self.pages.values())
-        for rejected in (
-            "Bring the difficult system.",
-            "Software decides what runs.",
-            "What should the system do?",
-            "Boundaries before capabilities.",
-            "Reliability is a boundary discipline.",
-            "Reproducibility over ceremony.",
-            "Intelligence, given structure.",
-        ):
+        for rejected in ("Bring the difficult system.", "Software decides what runs.", "What should the system do?", "Boundaries before capabilities.", "Reliability is a boundary discipline.", "Reproducibility over ceremony.", "Intelligence, given structure."):
             self.assertNotIn(rejected, all_content)
 
     def test_claim_boundaries_are_explicit(self):
@@ -283,17 +294,19 @@ class SiteTests(unittest.TestCase):
         self.assertIn("model output is treated as a proposal", all_content)
         self.assertNotIn("deterministic model", all_content)
 
-    def test_engineering_profile_is_evidence_bounded(self):
+    def test_business_identity_is_axiom_llc_only(self):
+        all_sources = "\n".join((ROOT / path).read_text() for path in PAGE_PATHS)
+        forbidden = "".join(chr(x) for x in (65,100,97,109,32,84,97,99,111,110))
+        self.assertNotIn(forbidden, all_sources)
         home=self.pages[Path("index.html")].content
         engineering=self.pages[Path("engineering/index.html")].content
-        self.assertIn("Adam Tacon",home)
-        self.assertIn("AI Systems Engineer",home)
-        self.assertIn("Virtuoso-level engineering breadth",engineering)
-        self.assertIn("Hyper-capable human–AI operation",engineering)
-        self.assertIn("not claims of measured psychometric IQ",engineering)
-        self.assertIn("other contributors",engineering)
-        self.assertIn("TechEliteAutomation",engineering)
-        self.assertIn("prior-company identity",engineering)
+        self.assertIn("AXIOM LLC", home)
+        self.assertIn("AXIOM LLC", engineering)
+        self.assertIn("Virtuoso-level engineering breadth", engineering)
+        self.assertIn("Hyper-capable human–AI operation", engineering)
+        self.assertIn("not claims of measured psychometric IQ", engineering)
+        self.assertIn("other contributors", engineering)
+        self.assertIn("Original Git provenance", engineering)
 
     def test_obsolete_single_page_navigation_is_removed(self):
         for page in self.pages.values():

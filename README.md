@@ -8,14 +8,15 @@ The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
 - `/` — concise flagship identity, core architecture, selected evidence, and contact path.
 - `/systems/` — ASON, APEX, and RAG relationships plus validated supporting systems.
 - `/research/` — current research agenda, artifacts, and evidence boundaries.
-- `/engineering/` — Adam Tacon's evidence-backed engineering profile, principles, validation posture, and the complete stack.
+- `/engineering/` — AXIOM LLC engineering practice, principles, validation posture, and the complete stack.
 - `/contact/` — project brief guidance and contact details.
 - `/engagements/` — evidence-backed engineering engagement capabilities and contact path.
 - `/engagements/reliability-control-sprint/` — fixed-scope Agent Reliability & Control Sprint offer.
 
-Each route is plain HTML. `styles.css` is the shared Graphite / Ivory / Ice visual
-system, `favicon.svg` is the AXIOM mark, and `assets/technology/` contains locally
-vendored technology marks. Inter Variable and IBM Plex Mono Variable are served
+Each route is plain HTML. `styles.css` is the shared approved light/dark AXIOM visual
+system, `theme.js` provides progressive theme selection, `favicon.svg` and
+`assets/brand/` contain public deployment derivatives only, and
+`assets/technology/` contains locally vendored technology marks. Inter Variable and IBM Plex Mono Variable are served
 from `assets/fonts/` with their OFL licenses. Provenance is recorded in the
 respective `SOURCES.md` files.
 
@@ -26,7 +27,9 @@ python -m http.server 8000
 ```
 
 Open `http://localhost:8000`. There is no build step, package installation,
-JavaScript requirement, analytics, tracker, or external runtime asset request.
+analytics, tracker, or external runtime asset request. JavaScript is used only for
+explicit theme selection and mobile navigation; system-preference light/dark styling
+remains available without JavaScript.
 GitHub Pages publishes `main` using the repository's configured Pages deployment.
 
 ## Maintain
