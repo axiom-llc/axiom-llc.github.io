@@ -332,6 +332,12 @@ class SiteTests(unittest.TestCase):
         self.assertIn("other contributors", engineering)
         self.assertIn("Original Git provenance", engineering)
 
+    def test_core_stack_reference_is_public_and_bounded(self):
+        systems=self.pages[Path("systems/index.html")].content
+        source=(ROOT/"systems/index.html").read_text()
+        self.assertIn("durably binding the ASON authorization identity", systems)
+        self.assertIn("axiom-demos/tree/main/core-stack", source)
+
     def test_obsolete_single_page_navigation_is_removed(self):
         for page in self.pages.values():
             hrefs = [attrs.get("href", "") for attrs, _ in page.links]
