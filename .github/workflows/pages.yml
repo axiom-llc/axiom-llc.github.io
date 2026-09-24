@@ -23,12 +23,70 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate site
+        run: |
+          python -m unittest discover -s tests -v
+          python - <<'PY'
+          from pathlib import Path
+          html = Path("index.html").read_text()
+          names = [
+              "ASUS",
+              "LG Electronics",
+              "Anker",
+              "American Network Solutions (ANS)",
+              "Advanced Micro Devices, Inc. (AMD)",
+              "Lenovo",
+              "Arch Linux",
+              "Android",
+          ]
+          assets = [
+              "asus.svg", "lg.svg", "anker.png", "ans.png",
+              "amd.svg", "lenovo.svg", "arch-linux.svg", "android.svg",
+          ]
+          assert all(name in html for name in names)
+          for asset in assets:
+              path = Path("assets/technology/ecosystem") / asset
+              assert path.is_file() and path.stat().st_size > 0, path
+              assert str(path) in html, path
+          PY
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify live production
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base="${PAGE_URL%/}"
+          ok=0
+          for _ in $(seq 1 18); do
+            if curl -fsSL --retry 2 --retry-delay 2 "$base/?deployment=8b65a83a" -o /tmp/live.html &&
+               grep -Fq "Technology ecosystem" /tmp/live.html &&
+               grep -Fq "ASUS" /tmp/live.html &&
+               grep -Fq "LG Electronics" /tmp/live.html &&
+               grep -Fq "Anker" /tmp/live.html &&
+               grep -Fq "American Network Solutions (ANS)" /tmp/live.html &&
+               grep -Fq "Advanced Micro Devices, Inc. (AMD)" /tmp/live.html &&
+               grep -Fq "Lenovo" /tmp/live.html &&
+               grep -Fq "Arch Linux" /tmp/live.html &&
+               grep -Fq "Android" /tmp/live.html; then
+              ok=1
+              break
+            fi
+            sleep 10
+          done
+          test "$ok" -eq 1
+          for asset in asus.svg lg.svg anker.png ans.png amd.svg lenovo.svg arch-linux.svg android.svg; do
+            curl -fsSL --retry 3 "$base/assets/technology/ecosystem/$asset" -o /dev/null
+          done
