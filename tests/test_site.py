@@ -249,7 +249,7 @@ class SiteTests(unittest.TestCase):
     def test_visual_system_and_responsive_guards(self):
         for value in ("#edf7ff", "#06111f", "--surface", "--accent", "--muted", "--line"):
             self.assertIn(value, self.styles)
-        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "backdrop-filter", "@media (max-width: 720px)", ".hero-mark", ".theme-toggle"):
+        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "backdrop-filter", "@media (max-width: 720px)", ".theme-toggle"):
             self.assertIn(required, self.styles)
         self.assertNotIn("-webkit-font-smoothing", self.styles)
         self.assertIn("font-synthesis: none", self.styles)
@@ -280,10 +280,7 @@ class SiteTests(unittest.TestCase):
         expected = {
             "ASUS": "asus.svg",
             "LG Electronics": "lg.svg",
-            "Anker": "anker.png",
-            "American Network Solutions (ANS)": "ans.png",
             "Advanced Micro Devices, Inc. (AMD)": "amd.svg",
-            "Lenovo": "lenovo.svg",
             "Arch Linux": "arch-linux.svg",
             "Android": "android.svg",
         }
@@ -291,8 +288,8 @@ class SiteTests(unittest.TestCase):
             self.assertIn(name, home)
             self.assertIn(f"assets/technology/ecosystem/{asset}", source)
             self.assertTrue((ROOT / "assets/technology/ecosystem" / asset).is_file())
-        self.assertEqual(source.count('class="ecosystem-card"'), 8)
-        self.assertIn("does not imply partnership, sponsorship, endorsement", home)
+        self.assertEqual(source.count('class="ecosystem-card"'), 5)
+        self.assertIn("do not imply partnership, sponsorship, endorsement", home)
         self.assertIn("Android is a trademark of Google LLC", home)
         self.assertIn("Creative Commons 3.0 Attribution License", home)
 
@@ -301,10 +298,10 @@ class SiteTests(unittest.TestCase):
         hero = " ".join("".join(home.headings[0][1]).split())
         self.assertEqual(hero, "AXIOM LLC. Intelligence with structure.")
         source = (ROOT / "index.html").read_text()
-        self.assertIn('class="hero-mark"', source)
-        self.assertIn('assets/brand/axiom-mark-512.png', source)
-        self.assertIn('assets/brand/axiom-mark-1024.png 2x', source)
-        self.assertNotIn('hero-mark::before', self.styles)
+        self.assertNotIn('class="hero-mark"', source)
+        self.assertNotIn('assets/brand/axiom-mark-512.png', source)
+        self.assertNotIn('assets/brand/axiom-mark-512.png', (ROOT / "site.webmanifest").read_text())
+        self.assertNotIn('hero-mark', self.styles)
         all_content = " ".join(page.content for page in self.pages.values())
         for rejected in ("Bring the difficult system.", "Software decides what runs.", "What should the system do?", "Boundaries before capabilities.", "Reliability is a boundary discipline.", "Reproducibility over ceremony.", "Intelligence, given structure."):
             self.assertNotIn(rejected, all_content)

@@ -33,16 +33,12 @@ jobs:
           names = [
               "ASUS",
               "LG Electronics",
-              "Anker",
-              "American Network Solutions (ANS)",
               "Advanced Micro Devices, Inc. (AMD)",
-              "Lenovo",
               "Arch Linux",
               "Android",
           ]
           assets = [
-              "asus.svg", "lg.svg", "anker.png", "ans.png",
-              "amd.svg", "lenovo.svg", "arch-linux.svg", "android.svg",
+              "asus.svg", "lg.svg", "amd.svg", "arch-linux.svg", "android.svg",
           ]
           assert all(name in html for name in names)
           for asset in assets:
@@ -75,10 +71,7 @@ jobs:
                grep -Fq "Technology ecosystem" /tmp/live.html &&
                grep -Fq "ASUS" /tmp/live.html &&
                grep -Fq "LG Electronics" /tmp/live.html &&
-               grep -Fq "Anker" /tmp/live.html &&
-               grep -Fq "American Network Solutions (ANS)" /tmp/live.html &&
                grep -Fq "Advanced Micro Devices, Inc. (AMD)" /tmp/live.html &&
-               grep -Fq "Lenovo" /tmp/live.html &&
                grep -Fq "Arch Linux" /tmp/live.html &&
                grep -Fq "Android" /tmp/live.html; then
               ok=1
@@ -87,6 +80,6 @@ jobs:
             sleep 10
           done
           test "$ok" -eq 1
-          for asset in asus.svg lg.svg anker.png ans.png amd.svg lenovo.svg arch-linux.svg android.svg; do
+          for asset in asus.svg lg.svg amd.svg arch-linux.svg android.svg; do
             curl -fsSL --retry 3 "$base/assets/technology/ecosystem/$asset" -o /dev/null
           done
