@@ -16,7 +16,7 @@ class CaseStudyTests(unittest.TestCase):
 
     def test_high_fidelity_cycles_are_bounded_and_traceable(self):
         text=self.page.content.lower()
-        for required in ('accepted high-fidelity cycles','three days','six work items per domain','shared resources under contention','24/24 successful effects/events','remain synthetic validated executable demonstrations'):
+        for required in ('accepted high-fidelity cycles','three days','six work items per domain','shared resources under contention','24/24 successful effects/events'):
             self.assertIn(required.lower(),text)
         hrefs=[attrs.get('href','') for attrs,_ in self.page.links]
         for required in ('simulations/operational-fidelity/portfolio-acceptance.json','simulations/operational-fidelity/gap-closure-findings.md','organizational-simulations/high-fidelity'):

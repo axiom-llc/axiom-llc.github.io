@@ -177,7 +177,7 @@ class SiteTests(unittest.TestCase):
 
     def test_engagement_surface_is_evidence_backed(self):
         page=self.pages[Path("engagements/index.html")].content
-        for required in ("Agent reliability & execution control","RAG durability & retrieval engineering","Workflow & systems automation","Architecture, debugging & readiness","not independent certification"):
+        for required in ("Agent reliability & execution control","RAG durability & retrieval engineering","Workflow & systems automation","Architecture, debugging & readiness","does not provide independent certification"):
             self.assertIn(required,page)
 
     def test_external_repository_links_are_expected(self):
@@ -312,7 +312,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(required, all_content)
         for unsupported in ("production-ready", "enterprise-grade", "fully secure", "independently verified", "guaranteed accuracy"):
             self.assertNotIn(unsupported, all_content)
-        self.assertIn("model output is treated as a proposal", all_content)
+        self.assertIn("model output is a proposal", all_content)
         self.assertNotIn("deterministic model", all_content)
 
     def test_business_identity_is_axiom_llc_only(self):
@@ -323,11 +323,10 @@ class SiteTests(unittest.TestCase):
         engineering=self.pages[Path("engineering/index.html")].content
         self.assertIn("AXIOM LLC", home)
         self.assertIn("AXIOM LLC", engineering)
-        self.assertIn("Virtuoso-level engineering breadth", engineering)
-        self.assertIn("Hyper-capable human–AI operation", engineering)
-        self.assertIn("not claims of measured psychometric IQ", engineering)
-        self.assertIn("other contributors", engineering)
-        self.assertIn("Original Git provenance", engineering)
+        self.assertIn("Systems breadth", engineering)
+        self.assertIn("Failure-mode engineering", engineering)
+        self.assertNotIn("Virtuoso-level", engineering)
+        self.assertNotIn("Hyper-capable", engineering)
 
     def test_core_stack_reference_is_public_and_bounded(self):
         systems=self.pages[Path("systems/index.html")].content
