@@ -250,7 +250,7 @@ class SiteTests(unittest.TestCase):
     def test_visual_system_and_responsive_guards(self):
         for value in ("#edf7ff", "#03090e", "--surface", "--accent", "--muted", "--line"):
             self.assertIn(value, self.styles)
-        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "@media (max-width: 760px)", ".theme-toggle", ".hero-geometry", ".evidence-panels"):
+        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "@media (max-width: 760px)", ".theme-toggle", ".hero-geometry", ".evidence-panels", ".home-contact-visual"):
             self.assertIn(required, self.styles)
         self.assertNotIn("-webkit-font-smoothing", self.styles)
         self.assertIn("font-synthesis: none", self.styles)
@@ -305,9 +305,11 @@ class SiteTests(unittest.TestCase):
         source = (ROOT / "index.html").read_text()
         self.assertNotIn('class="hero-mark"', source)
         self.assertIn('class="hero-geometry"', source)
-        self.assertIn('assets/brand/axiom-structure.svg', source)
-        self.assertTrue((ROOT / "assets/brand/axiom-structure.svg").is_file())
-        ET.parse(ROOT / "assets/brand/axiom-structure.svg")
+        self.assertIn('assets/visual/hero-axiom.png', source)
+        for asset in ("hero-axiom.png","systems-earth.png","research-wave.png","engineering-hall.png","closing-valley.png"):
+            path = ROOT / "assets" / "visual" / asset
+            self.assertTrue(path.is_file(), asset)
+            self.assertEqual(path.read_bytes()[:8], b"\x89PNG\r\n\x1a\n", asset)
         self.assertNotIn('assets/brand/axiom-mark-512.png', source)
         self.assertNotIn('assets/brand/axiom-mark-512.png', (ROOT / "site.webmanifest").read_text())
         self.assertNotIn('hero-mark', self.styles)
