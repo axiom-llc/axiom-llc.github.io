@@ -134,9 +134,10 @@ class SiteTests(unittest.TestCase):
             self.assertGreaterEqual(tags.count("header"), 1, path)
             self.assertEqual(tags.count("footer"), 1, path)
             scripts = [attrs for tag, attrs in page.elements if tag == "script"]
-            self.assertEqual(len(scripts), 1, path)
-            self.assertEqual(scripts[0].get("src"), ("../" * len(path.parent.parts)) + "theme.js", path)
-            self.assertIn("defer", scripts[0], path)
+            self.assertEqual(len(scripts), 2, path)
+            self.assertNotIn("src", scripts[0], path)
+            self.assertEqual(scripts[1].get("src"), ("../" * len(path.parent.parts)) + "theme.js", path)
+            self.assertIn("defer", scripts[1], path)
             self.assertEqual(page.headings[0][0], 1, path)
             for previous, current in zip(page.headings, page.headings[1:]):
                 self.assertLessEqual(current[0] - previous[0], 1, path)
@@ -247,9 +248,9 @@ class SiteTests(unittest.TestCase):
                 self.assertIn(f"`{asset.name}`", sources)
 
     def test_visual_system_and_responsive_guards(self):
-        for value in ("#edf7ff", "#06111f", "--surface", "--accent", "--muted", "--line"):
+        for value in ("#edf7ff", "#03090e", "--surface", "--accent", "--muted", "--line"):
             self.assertIn(value, self.styles)
-        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "backdrop-filter", "@media (max-width: 720px)", ".theme-toggle"):
+        for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "@media (max-width: 760px)", ".theme-toggle", ".hero-geometry", ".evidence-panels"):
             self.assertIn(required, self.styles)
         self.assertNotIn("-webkit-font-smoothing", self.styles)
         self.assertIn("font-synthesis: none", self.styles)
@@ -273,6 +274,10 @@ class SiteTests(unittest.TestCase):
         theme = (ROOT / "theme.js").read_text()
         for required in ("prefers-color-scheme: dark", "localStorage", "system", "light", "dark"):
             self.assertIn(required, theme)
+        for path in PAGE_PATHS:
+            source=(ROOT/path).read_text()
+            self.assertIn('localStorage.getItem("axiom-theme")',source)
+            self.assertLess(source.index('localStorage.getItem("axiom-theme")'),source.index('rel="stylesheet"'))
 
     def test_technology_ecosystem_groups_and_logos(self):
         source = (ROOT / "index.html").read_text()
@@ -296,9 +301,13 @@ class SiteTests(unittest.TestCase):
     def test_exact_homepage_hero_and_editorial_rejections(self):
         home = self.pages[Path("index.html")]
         hero = " ".join("".join(home.headings[0][1]).split())
-        self.assertEqual(hero, "AXIOM LLC. Intelligence with structure.")
+        self.assertEqual(hero, "Intelligence with structure.")
         source = (ROOT / "index.html").read_text()
         self.assertNotIn('class="hero-mark"', source)
+        self.assertIn('class="hero-geometry"', source)
+        self.assertIn('assets/brand/axiom-structure.svg', source)
+        self.assertTrue((ROOT / "assets/brand/axiom-structure.svg").is_file())
+        ET.parse(ROOT / "assets/brand/axiom-structure.svg")
         self.assertNotIn('assets/brand/axiom-mark-512.png', source)
         self.assertNotIn('assets/brand/axiom-mark-512.png', (ROOT / "site.webmanifest").read_text())
         self.assertNotIn('hero-mark', self.styles)

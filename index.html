@@ -8,67 +8,76 @@
   <title>AXIOM LLC — AI Systems Engineering Lab</title>
   <meta name="description" content="AXIOM designs bounded, inspectable AI systems across policy enforcement, execution runtimes, retrieval infrastructure, and operations.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/brand/axiom-mark-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/brand/axiom-mark-180.png"><link rel="manifest" href="site.webmanifest">
+  <script>(()=>{try{const m=localStorage.getItem("axiom-theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m;}catch(_){}})();</script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="./" aria-label="AXIOM LLC home"><img src="assets/brand/axiom-mark-64.png" width="44" height="44" srcset="assets/brand/axiom-mark-64.png 1x, assets/brand/axiom-mark-128.png 2x" alt=""><span>AXIOM <small>LLC</small></span></a>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system"><span data-theme-label aria-hidden="true">◐</span><span class="sr-only">Change theme</span></button><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Toggle navigation"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav aria-label="Main navigation">
-      <a href="systems/">Systems</a><a href="research/">Research</a><a href="engineering/">Engineering</a><a href="contact/">Contact</a>
-    </nav>
+    <a class="brand" href="./" aria-label="AXIOM LLC home"><img src="assets/brand/axiom-mark-64.png" width="37" height="37" srcset="assets/brand/axiom-mark-64.png 1x, assets/brand/axiom-mark-128.png 2x" alt=""><span>AXIOM</span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Toggle navigation"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <nav aria-label="Main navigation"><a href="systems/">Systems</a><a href="research/">Research</a><a href="engineering/">Engineering</a><a href="contact/">Contact</a></nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system"><span data-theme-label aria-hidden="true">◐</span><span class="sr-only">Change theme</span></button>
   </header>
   <main id="main">
     <section class="home-hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Ideas · systems · progress</p>
-        <h1 id="hero-title">AXIOM <span class="hero-accent">LLC</span>.<br> Intelligence with structure.</h1>
+        <p class="eyebrow">From first principles</p>
+        <h1 id="hero-title">Intelligence<br> with structure.</h1>
+        <div class="hero-bottom">
+          <p class="lede">Bounded, inspectable AI systems across policy enforcement, execution runtimes, retrieval infrastructure, and operational tooling.</p>
+          <div class="actions"><a class="button" href="systems/">Explore systems <span aria-hidden="true">→</span></a><a class="quiet-link" href="engagements/">Engineering engagements</a></div>
+        </div>
       </div>
-      <div class="hero-bottom">
-        <p class="lede">AXIOM LLC designs bounded, inspectable AI systems across policy enforcement, execution runtimes, retrieval infrastructure, and operational tooling.</p>
-        <div class="actions"><a class="button" href="systems/">Explore our systems <span aria-hidden="true">→</span></a><a class="quiet-link" href="engagements/">Engineering engagements</a></div>
+      <div class="hero-geometry" aria-hidden="true"><img src="assets/brand/axiom-structure.svg" width="1600" height="900" alt=""></div>
+      <div class="hero-index" aria-label="AXIOM design progression">
+        <span><b>01</b> First principles</span><span><b>02</b> Core systems</span><span><b>03</b> Evidence</span><span><b>04</b> Progress</span>
       </div>
     </section>
+
     <section class="section wrap" aria-labelledby="core-title">
-      <div class="section-intro"><p class="eyebrow">Core architecture</p><h2 id="core-title">Policy, execution, and context are separated by design.</h2><p>ASON evaluates submitted plans against policy. APEX validates and executes accepted sequences. RAG provides retrieval and storage through explicit interfaces.</p></div>
+      <div class="section-intro"><p class="eyebrow">01 / Core systems</p><h2 id="core-title">Policy, execution, and context are separated by design.</h2><p>Each layer owns a bounded responsibility so probabilistic reasoning can feed deterministic control without collapsing authority boundaries.</p></div>
       <div class="core-grid">
-        <article><p class="index">01 / Policy</p><h3>ASON</h3><p>Evaluates submitted plans against caller-supplied policy before any sequence is submitted for execution.</p></article>
-        <article><p class="index">02 / Runtime</p><h3>APEX</h3><p>Validates, records, and executes accepted tool sequences within configured runtime limits.</p></article>
-        <article><p class="index">03 / Context</p><h3>RAG</h3><p>Provides retrieval and storage through library and versioned HTTP interfaces.</p></article>
+        <article><p class="index">01 / Policy</p><span class="system-glyph glyph-policy" aria-hidden="true"></span><h3>ASON</h3><p>Evaluates submitted plans against caller-supplied policy before any sequence is submitted for execution.</p></article>
+        <article><p class="index">02 / Runtime</p><span class="system-glyph glyph-runtime" aria-hidden="true"></span><h3>APEX</h3><p>Validates, records, and executes accepted tool sequences within configured runtime limits.</p></article>
+        <article><p class="index">03 / Context</p><span class="system-glyph glyph-context" aria-hidden="true"></span><h3>RAG</h3><p>Provides retrieval and storage through library and versioned HTTP interfaces.</p></article>
       </div>
       <a class="section-link" href="systems/">Complete system architecture <span aria-hidden="true">→</span></a>
     </section>
+
     <section class="section wrap" aria-labelledby="evidence-title">
-      <div class="section-intro"><p class="eyebrow">Engineering evidence</p><h2 id="evidence-title">Validated systems, research, and engineering practice.</h2><p>AXIOM’s public record covers bounded execution, retrieval durability, automation, architecture, and reproducible validation.</p></div>
-      <div class="evidence-list">
-        <a href="systems/"><span><strong>Systems</strong><small>Runtime portfolio</small></span><span>ASON, APEX, RAG, API, Infra, Ops, and applied demos.</span><b aria-hidden="true">→</b></a>
-        <a href="research/"><span><strong>Research</strong><small>Evidence</small></span><span>Execution safety, crash consistency, control architectures, and explicit limits.</span><b aria-hidden="true">→</b></a>
-        <a href="engineering/"><span><strong>Engineering</strong><small>Practice</small></span><span>Interfaces, failure semantics, recovery, security boundaries, and reproducible integration.</span><b aria-hidden="true">→</b></a>
+      <div class="section-intro"><p class="eyebrow">02 / Evidence in action</p><h2 id="evidence-title">Validated systems, research, and engineering practice.</h2><p>The public record covers bounded execution, retrieval durability, architecture, failure modes, and reproducible validation.</p></div>
+      <div class="evidence-panels">
+        <a class="evidence-panel" href="systems/"><span class="evidence-visual visual-systems" aria-hidden="true"></span><h3>Systems</h3><p>ASON, APEX, RAG, API, Infra, Ops, and applied demos. <span aria-hidden="true">→</span></p></a>
+        <a class="evidence-panel" href="research/"><span class="evidence-visual visual-research" aria-hidden="true"></span><h3>Research</h3><p>Execution safety, crash consistency, control architectures, and explicit limits. <span aria-hidden="true">→</span></p></a>
+        <a class="evidence-panel" href="engineering/"><span class="evidence-visual visual-engineering" aria-hidden="true"></span><h3>Engineering</h3><p>Interfaces, recovery, security boundaries, and reproducible integration. <span aria-hidden="true">→</span></p></a>
       </div>
     </section>
-    <section class="section wrap" aria-labelledby="ecosystem-title">
-      <div class="section-intro"><p class="eyebrow">Technology ecosystem</p><h2 id="ecosystem-title">Hardware and software used across AXIOM.</h2><p>Technology listings identify usage only and do not imply partnership, sponsorship, endorsement, authorized-reseller status, direct procurement, or commercial agreement.</p></div>
-      <div class="ecosystem-grid" role="list">
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/asus.svg" alt="ASUS logo" width="160" height="80"></div><div><p class="index">Hardware supplier</p><h3>ASUS</h3><p>Systems hardware.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/lg.svg" alt="LG logo" width="160" height="80"></div><div><p class="index">Hardware supplier</p><h3>LG Electronics</h3><p>Displays and hardware.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/amd.svg" alt="AMD logo" width="160" height="80"></div><div><p class="index">Component supplier</p><h3>Advanced Micro Devices, Inc. (AMD)</h3><p>Processors and graphics.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/arch-linux.svg" alt="Arch Linux logo" width="160" height="80"></div><div><p class="index">Software platform</p><h3>Arch Linux</h3><p>Linux operating system.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/android.svg" alt="Android robot logo" width="160" height="80"></div><div><p class="index">Software platform</p><h3>Android</h3><p>Mobile platform.</p></div></article>
-      </div>
-      <p class="ecosystem-attribution">Android is a trademark of Google LLC. The Android robot is reproduced from work created and shared by Google and used according to the Creative Commons 3.0 Attribution License.</p>
-    </section>
+
     <section class="principle wrap" aria-labelledby="principle-title">
-      <p class="eyebrow">Engineering principle</p><h2 id="principle-title">Probabilistic reasoning.<br>Deterministic control.</h2>
+      <p class="eyebrow">03 / Our principles</p><h2 id="principle-title">Probabilistic reasoning.<br>Deterministic control.</h2>
       <p>Model output is a proposal; typed interfaces, policy checks, state transitions, and bounded runtimes govern execution and recovery.</p>
       <a class="section-link" href="engineering/">Engineering principles and methods <span aria-hidden="true">→</span></a>
     </section>
+
+    <section class="section wrap" aria-labelledby="ecosystem-title">
+      <div class="section-intro"><p class="eyebrow">04 / Technology</p><h2 id="ecosystem-title">Built on a proven foundation.</h2><p>Hardware and software used across AXIOM. Listings identify usage only and do not imply partnership, sponsorship, endorsement, authorized-reseller status, direct procurement, or commercial agreement.</p></div>
+      <div class="ecosystem-grid" role="list">
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/asus.svg" alt="ASUS logo" width="160" height="80" loading="lazy"></div><div><p class="index">Hardware</p><h3>ASUS</h3><p>Systems hardware.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/lg.svg" alt="LG logo" width="160" height="80" loading="lazy"></div><div><p class="index">Hardware</p><h3>LG Electronics</h3><p>Displays and hardware.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/amd.svg" alt="AMD logo" width="160" height="80" loading="lazy"></div><div><p class="index">Components</p><h3>Advanced Micro Devices, Inc. (AMD)</h3><p>Processors and graphics.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/arch-linux.svg" alt="Arch Linux logo" width="160" height="80" loading="lazy"></div><div><p class="index">Platform</p><h3>Arch Linux</h3><p>Linux operating system.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/android.svg" alt="Android robot logo" width="160" height="80" loading="lazy"></div><div><p class="index">Platform</p><h3>Android</h3><p>Mobile platform.</p></div></article>
+      </div>
+      <p class="ecosystem-attribution">Android is a trademark of Google LLC. The Android robot is reproduced from work created and shared by Google and used according to the Creative Commons 3.0 Attribution License.</p>
+    </section>
+
     <section class="home-contact wrap" aria-labelledby="contact-title">
-      <div><p class="eyebrow">Engagements</p><h2 id="contact-title">Complex AI systems require precise engineering.</h2></div>
-      <div><p>AXIOM undertakes architecture, implementation, validation, and research engagements where model behavior intersects with consequential software, data, and external effects.</p><a class="button" href="mailto:axiom.co@proton.me">Discuss an engagement <span aria-hidden="true">↗</span></a></div>
+      <div><p class="eyebrow">05 / What’s next</p><h2 id="contact-title">A more capable tomorrow.</h2></div>
+      <div><p>Architecture, implementation, validation, and research for consequential AI systems where models intersect with software, data, and external effects.</p><a class="button" href="mailto:axiom.co@proton.me">Get in touch <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
   <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>AI systems engineering lab</p><a href="contact/">Contact <span aria-hidden="true">→</span></a></footer>
   <script src="theme.js" defer></script>
-  <!-- deployment-sync: technology-ecosystem 2026-09-23T20:49-04:00 -->
 </body>
 </html>
