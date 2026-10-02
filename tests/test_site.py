@@ -19,7 +19,7 @@ PAGE_PATHS = (
 NAV_LABELS = ("Systems", "Research", "Engineering", "Contact")
 REPOSITORIES = {
     "axiom-apex", "axiom-api", "axiom-ason", "axiom-blender", "axiom-demos",
-    "axiom-infra", "axiom-ops", "axiom-rag", "axiom-research",
+    "axiom-infra", "axiom-rag", "axiom-research",
     "axiom-wiki-infinite",
 }
 TECHNOLOGIES = {
