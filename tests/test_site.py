@@ -192,6 +192,23 @@ class SiteTests(unittest.TestCase):
         all_html = "\n".join((ROOT / path).read_text() for path in PAGE_PATHS)
         self.assertNotIn("axiom-director", all_html)
 
+
+    def test_migrated_research_artifacts_link_to_current_owners(self):
+        hrefs = {attrs.get("href") for attrs, _ in self.pages[Path("research/index.html")].links}
+        relocated = {
+            "apex-transactional-effects-research.md": "axiom-apex",
+            "rag-crash-consistency-architecture.md": "axiom-rag",
+            "rag-http-compatibility-contract.md": "axiom-rag",
+            "write-file-compensation-readiness.md": "axiom-apex",
+            "tacon2026-apex-deterministic-execution-contracts.md": "axiom-apex",
+        }
+        for filename, owner in relocated.items():
+            expected = f"https://github.com/axiom-llc/{owner}/blob/main/research/{filename}"
+            obsolete = f"https://github.com/axiom-llc/axiom-research/blob/main/{filename}"
+            with self.subTest(filename=filename):
+                self.assertIn(expected, hrefs)
+                self.assertNotIn(obsolete, hrefs)
+
     def test_complete_stack_lives_only_on_engineering(self):
         engineering = self.pages[Path("engineering/index.html")].content
         for name in TECHNOLOGIES:
