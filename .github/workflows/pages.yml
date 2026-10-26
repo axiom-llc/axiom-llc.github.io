@@ -67,7 +67,9 @@ jobs:
           base="${PAGE_URL%/}"
           ok=0
           for _ in $(seq 1 18); do
-            if curl -fsSL --retry 2 --retry-delay 2 "$base/?deployment=8b65a83a" -o /tmp/live.html &&
+            if curl -fsSL --retry 2 --retry-delay 2 "$base/?deployment=${GITHUB_SHA}" -o /tmp/live.html &&
+               grep -Fq "Recovery you can reproduce." /tmp/live.html &&
+               grep -Fq "assets/demos/apex-recovery.svg" /tmp/live.html &&
                grep -Fq "Technology ecosystem" /tmp/live.html &&
                grep -Fq "ASUS" /tmp/live.html &&
                grep -Fq "LG Electronics" /tmp/live.html &&
@@ -83,3 +85,5 @@ jobs:
           for asset in asus.svg lg.svg amd.svg arch-linux.svg android.svg; do
             curl -fsSL --retry 3 "$base/assets/technology/ecosystem/$asset" -o /dev/null
           done
+          curl -fsSL --retry 3 "$base/assets/demos/apex-recovery.svg" -o /tmp/apex-recovery.svg
+          grep -Fq "APEX recovery demonstration" /tmp/apex-recovery.svg

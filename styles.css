@@ -645,3 +645,27 @@ img { display: block; max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+
+/* Featured evidence: keep the demo readable alongside the existing editorial grid. */
+.featured-demo {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  padding-block: clamp(44px, 6vw, 88px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.featured-demo-copy { display: grid; gap: 22px; min-width: 0; }
+.featured-demo h2 { font-size: clamp(32px, 3.3vw, 52px); }
+.featured-demo .actions { gap: 22px; }
+.featured-demo .demo-requirements { font: 400 12px/1.7 var(--mono); }
+.featured-demo-figure { min-width: 0; margin: 0; }
+.featured-demo-figure > a { display: block; border-radius: 14px; }
+.featured-demo-figure img { width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 14px; }
+.featured-demo-figure figcaption { margin-top: 16px; font-size: 13px; line-height: 1.65; }
+@media (max-width: 1000px) {
+  .featured-demo { grid-template-columns: minmax(0, 1fr); }
+  .featured-demo-copy { max-width: 680px; }
+}

@@ -35,6 +35,26 @@
       </div>
     </section>
 
+    <section class="featured-demo wrap" aria-labelledby="apex-demo-title">
+      <div class="featured-demo-copy">
+        <p class="eyebrow">Featured engineering / APEX</p>
+        <h2 id="apex-demo-title">Recovery you can reproduce.</h2>
+        <p class="lede">Completed effects are reused. Uncertain effects block recovery.</p>
+        <p>Watch a real process crash between a tool action and its recorded result. APEX uses its SQLite ledger to decide what can safely continue—and when to stop.</p>
+        <div class="actions">
+          <a class="button" href="https://github.com/axiom-llc/axiom-apex#try-the-recovery-demo">Run the demo <span aria-hidden="true">↗</span></a>
+          <a class="quiet-link" href="https://github.com/axiom-llc/axiom-apex/blob/b879681f8e51e7e6fe31c9d6fffa770da00298e8/examples/recovery.py">Read the code</a>
+        </div>
+        <p class="demo-requirements">Python 3.11–3.12 · Linux/macOS · No API key</p>
+      </div>
+      <figure class="featured-demo-figure">
+        <a href="assets/demos/apex-recovery.svg" aria-label="Open the full-size APEX recovery transcript">
+          <img src="assets/demos/apex-recovery.svg" width="1080" height="505" alt="Two real crash scenarios: a committed result is reused and recovery finishes; an uncertain result blocks recovery. Repeating either recovery adds zero effects." loading="lazy">
+        </a>
+        <figcaption>Captured from the runnable demo using temporary synthetic data. Demonstrates process-crash recovery, not exactly-once external delivery. <a href="https://github.com/axiom-llc/axiom-apex/blob/b879681f8e51e7e6fe31c9d6fffa770da00298e8/docs/assets/recovery.txt">Plain-text transcript</a>.</figcaption>
+      </figure>
+    </section>
+
     <section class="section wrap" aria-labelledby="core-title">
       <div class="section-intro"><p class="eyebrow">01 / Core systems</p><h2 id="core-title">Policy, execution, and context are separated by design.</h2><p>Each layer owns a bounded responsibility so probabilistic reasoning can feed deterministic control without collapsing authority boundaries.</p></div>
       <div class="core-grid">
@@ -81,3 +101,4 @@
   <script src="theme.js" defer></script>
 </body>
 </html>
+
