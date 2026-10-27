@@ -295,6 +295,19 @@ class SiteTests(unittest.TestCase):
             source=(ROOT/path).read_text()
             self.assertIn('localStorage.getItem("axiom-theme")',source)
             self.assertLess(source.index('localStorage.getItem("axiom-theme")'),source.index('rel="stylesheet"'))
+            for icon in ("system", "light", "dark"):
+                self.assertIn(f'class="theme-icon theme-icon-{icon}"', source, path)
+                self.assertIn(f'.theme-toggle[data-mode="{icon}"] .theme-icon-{icon}', self.styles)
+            self.assertIn('<span data-theme-label>System</span>', source, path)
+            self.assertIn('data-theme-toggle data-mode="system"', source, path)
+            self.assertNotIn('data-theme-label aria-hidden="true"', source, path)
+        self.assertIn('mix-blend-mode: screen', self.styles)
+        self.assertIn(':root[data-theme="light"] .brand img', self.styles)
+        self.assertIn(':root:not([data-theme]) .brand img', self.styles)
+        self.assertIn('button.dataset.mode = mode', theme)
+        self.assertIn('button.setAttribute("aria-label"', theme)
+        self.assertIn('mode[0].toUpperCase() + mode.slice(1)', theme)
+        self.assertNotIn('label.textContent = mode === "light"', theme)
 
     def test_asus_dark_mode_and_closing_contact_paths(self):
         source = (ROOT / "index.html").read_text()
