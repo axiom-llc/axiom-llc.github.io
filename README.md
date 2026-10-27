@@ -1,7 +1,11 @@
 # AXIOM LLC website
 
-The dependency-free public site for AXIOM LLC, an AI systems engineering lab:
+The dependency-free public site for AXIOM LLC, an Super intelligence systems engineering:
 [axiom-llc.github.io](https://axiom-llc.github.io).
+
+## SI terminology
+
+AXIOM uses **SI (super intelligence)** as its strategic research and engineering direction, not as a claim that any published implementation has achieved superhuman performance. Existing provider names, public API contracts, established research terminology, source filenames and historical evidence remain accurate and unchanged.
 
 ## Information architecture
 
