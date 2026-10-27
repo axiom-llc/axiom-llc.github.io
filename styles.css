@@ -151,10 +151,10 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .brand img { width: 37px; height: 37px; object-fit: contain; image-rendering: auto; }
-/* Brand PNGs are RGB (opaque). Screen blend matches dark pixels to the light header. */
-:root[data-theme="light"] .brand img { mix-blend-mode: screen; }
+/* Opaque brand PNG: invert light lines to dark, then multiply its light backdrop into the page. */
+:root[data-theme="light"] .brand img { filter: invert(1); mix-blend-mode: multiply; }
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .brand img { mix-blend-mode: screen; }
+  :root:not([data-theme]) .brand img { filter: invert(1); mix-blend-mode: multiply; }
 }
 .brand small { display: none; }
 .site-header nav { display: flex; align-items: center; gap: clamp(18px, 2.6vw, 40px); }
