@@ -390,8 +390,9 @@ img { display: block; max-width: 100%; }
 .evidence-panel:last-child { border-right: 0; }
 .evidence-panel h3 { margin-top: 18px; font-size: 24px; font-weight: 500; }
 .evidence-panel p { margin-top: 9px; color: var(--muted); font-size: 13px; }
-.evidence-visual { position: relative; display: block; aspect-ratio: 16/7; overflow: hidden; border: 1px solid var(--line); background: #071017; }
-.evidence-visual img { width: 100%; height: 100%; object-fit: cover; }
+/* Editorial assets are 1672 × 941: preserve every subject, including the full engineering assembly. */
+.evidence-visual { position: relative; display: block; aspect-ratio: 1672 / 941; overflow: hidden; border: 1px solid var(--line); background: #071017; }
+.evidence-visual img { width: 100%; height: 100%; object-fit: contain; }
 .visual-systems img { object-position: center 54%; }
 .visual-research img { object-position: center; }
 .visual-engineering img { object-position: center 48%; }
