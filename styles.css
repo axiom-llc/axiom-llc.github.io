@@ -263,11 +263,13 @@ img { display: block; max-width: 100%; }
 }
 .hero-geometry img {
   width: min(900px, 74vw);
+  height: auto;
   max-width: none;
   opacity: .98;
   filter: saturate(.82) contrast(1.02);
 }
-:root[data-theme="light"] .hero-geometry img { opacity: .78; mix-blend-mode: multiply; }\n@media (prefers-color-scheme: light) { :root:not([data-theme]) .hero-geometry img { opacity: .78; mix-blend-mode: multiply; } }
+:root[data-theme="light"] .hero-geometry img { opacity: .78; mix-blend-mode: multiply; }
+@media (prefers-color-scheme: light) { :root:not([data-theme]) .hero-geometry img { opacity: .78; mix-blend-mode: multiply; } }
 .hero-index {
   grid-area: index;
   z-index: 3;
