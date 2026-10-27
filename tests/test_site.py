@@ -371,9 +371,9 @@ class SiteTests(unittest.TestCase):
 
     def test_si_public_positioning_preserves_technical_integrity(self):
         home = self.pages[Path("index.html")].content
-        self.assertIn("super intelligence (SI)", home.lower().replace("(si)", "(SI)"))
+        self.assertIn("super intelligence (si)", home.lower())
         for path, page in self.pages.items():
-            self.assertNotRegex(page.content, r"\\bAI\\b", str(path))
+            self.assertNotRegex(page.content, r"\bAI\b", str(path))
             self.assertIn("Super intelligence systems engineering", page.content)
         readme = (ROOT / "README.md").read_text()
         self.assertIn("not as a claim", readme)
