@@ -151,6 +151,11 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .brand img { width: 37px; height: 37px; object-fit: contain; image-rendering: auto; }
+/* Brand PNGs are RGB (opaque). Screen blend matches dark pixels to the light header. */
+:root[data-theme="light"] .brand img { mix-blend-mode: screen; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .brand img { mix-blend-mode: screen; }
+}
 .brand small { display: none; }
 .site-header nav { display: flex; align-items: center; gap: clamp(18px, 2.6vw, 40px); }
 .site-header nav a {
@@ -187,7 +192,21 @@ img { display: block; max-width: 100%; }
   border: 0;
   cursor: pointer;
 }
-.theme-toggle { width: 36px; height: 36px; flex: 0 0 36px; font-size: 15px; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 36px;
+  min-width: 88px;
+  padding: 0 8px;
+  flex: 0 0 auto;
+  font: 600 11px/1 var(--sans);
+}
+.theme-toggle .theme-icon { display: none; width: 18px; height: 18px; flex: none; }
+.theme-toggle[data-mode="system"] .theme-icon-system,
+.theme-toggle[data-mode="light"] .theme-icon-light,
+.theme-toggle[data-mode="dark"] .theme-icon-dark { display: block; }
 .nav-toggle { display: none; width: 38px; height: 38px; padding: 8px; }
 .nav-toggle span { display: block; width: 100%; height: 1px; margin: 5px 0; background: var(--text-strong); }
 
@@ -597,7 +616,8 @@ img { display: block; max-width: 100%; }
   .site-header { min-height: 66px; flex-wrap: wrap; gap: 7px 12px; padding-block: 8px; }
   .brand { font-size: 16px; letter-spacing: .22em; }
   .brand img { width: 34px; height: 34px; }
-  .theme-toggle { width: 34px; height: 34px; flex-basis: 34px; }
+  .theme-toggle { width: 34px; min-width: 34px; height: 34px; flex-basis: 34px; gap: 0; padding: 0; }
+  .theme-toggle [data-theme-label] { display: none; }
   .nav-toggle { display: block; }
   .site-header nav { display: none; order: 3; width: 100%; padding: 10px 0 2px; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--line); }
   .site-header.nav-open nav { display: grid; }
