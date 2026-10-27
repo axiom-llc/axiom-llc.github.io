@@ -309,6 +309,12 @@ class SiteTests(unittest.TestCase):
         self.assertIn('mode[0].toUpperCase() + mode.slice(1)', theme)
         self.assertNotIn('label.textContent = mode === "light"', theme)
 
+    def test_editorial_images_are_not_cropped(self):
+        """Maintain the source aspect ratio and show the complete illustrated subject."""
+        self.assertIn("aspect-ratio: 1672 / 941", self.styles)
+        self.assertIn(".evidence-visual img { width: 100%; height: 100%; object-fit: contain; }", self.styles)
+        self.assertNotIn("aspect-ratio: 16/7", self.styles)
+
     def test_asus_dark_mode_and_closing_contact_paths(self):
         source = (ROOT / "index.html").read_text()
         selector = 'img[src$="/asus.svg"] { filter: invert(1); }'
