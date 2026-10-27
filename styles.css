@@ -263,6 +263,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-geometry img {
   width: min(900px, 74vw);
+  height: auto;
   max-width: none;
   opacity: .98;
   filter: saturate(.82) contrast(1.02);
