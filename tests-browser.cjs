@@ -33,7 +33,7 @@ const { pathToFileURL } = require('node:url');
         if (!(await source.evaluate(el => el === document.activeElement && getComputedStyle(el).outlineStyle !== 'none'))) throw Error('Keyboard focus failed');
         await section.screenshot({path:`browser-results/apex-${width}-${theme}.png`});
         const toggle = page.locator('[data-theme-toggle]');
-        await page.evaluate(() => localStorage.removeItem('axiom-theme'));
+        await page.evaluate(() => { try { localStorage.removeItem('axiom-theme'); } catch (_) {} });
         await page.reload();
         const modes = ['system', 'light', 'dark'];
         for (const mode of modes) {
