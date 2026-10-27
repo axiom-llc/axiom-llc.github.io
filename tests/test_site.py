@@ -296,6 +296,19 @@ class SiteTests(unittest.TestCase):
             self.assertIn('localStorage.getItem("axiom-theme")',source)
             self.assertLess(source.index('localStorage.getItem("axiom-theme")'),source.index('rel="stylesheet"'))
 
+    def test_asus_dark_mode_and_closing_contact_paths(self):
+        source = (ROOT / "index.html").read_text()
+        selector = 'img[src$="/asus.svg"] { filter: invert(1); }'
+        self.assertEqual(self.styles.count(selector), 2)
+        self.assertIn(':root[data-theme="dark"] .ecosystem-logo ' + selector, self.styles)
+        self.assertIn(':root:not([data-theme]) .ecosystem-logo ' + selector, self.styles)
+        self.assertIn('class="home-contact-main"', source)
+        self.assertIn('class="home-contact-focus"', source)
+        self.assertIn('class="home-contact-visual"', source)
+        self.assertIn('class="button" href="contact/"', source)
+        self.assertIn('class="quiet-link" href="engagements/"', source)
+        self.assertIn('href="mailto:axiom.co@proton.me"', source)
+
     def test_technology_ecosystem_groups_and_logos(self):
         source = (ROOT / "index.html").read_text()
         home = self.pages[Path("index.html")].content
