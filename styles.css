@@ -396,6 +396,9 @@ img { display: block; max-width: 100%; }
 .ecosystem-logo img { width: auto; max-width: 116px; max-height: 40px; object-fit: contain; }
 :root[data-theme="dark"] .ecosystem-logo img { filter: saturate(.72) brightness(1.5) grayscale(.18); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme]) .ecosystem-logo img { filter: saturate(.72) brightness(1.5) grayscale(.18); } }
+/* ASUS has black SVG paths; brighten() leaves black unchanged. Invert only this mark. */
+:root[data-theme="dark"] .ecosystem-logo img[src$="/asus.svg"] { filter: invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .ecosystem-logo img[src$="/asus.svg"] { filter: invert(1); } }
 .ecosystem-card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.015em; }
 .ecosystem-card div > p:last-child { color: var(--muted); font-size: 12px; }
 .ecosystem-attribution, .trademark-note { max-width: 850px; margin-top: 18px; color: var(--muted); font-size: 11px; }
@@ -412,20 +415,24 @@ img { display: block; max-width: 100%; }
 .principle .section-link { grid-column: 2; margin-top: 0; justify-self: start; }
 
 .home-contact {
-  position: relative;
   margin-block: 0;
-  padding-block: clamp(64px, 7vw, 100px);
+  padding-block: clamp(80px, 9vw, 132px);
   display: grid;
-  grid-template-columns: 1.05fr .85fr .75fr;
-  gap: 34px;
+  grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 92px);
   border-top: 1px solid var(--line);
-  overflow: clip;
 }
-.home-contact h2 { margin-top: 18px; max-width: 760px; font-size: clamp(44px, 5vw, 76px); font-weight: 400; }
-.home-contact-copy { align-self: end; z-index: 1; }
-.home-contact-copy p { max-width: 470px; color: var(--muted); }
-.home-contact-visual { align-self: end; width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--line); }
-.home-contact .button { margin-top: 26px; }
+.home-contact-main { min-width: 0; }
+.home-contact h2 { margin-top: 18px; max-width: 720px; font-size: clamp(44px, 5vw, 76px); font-weight: 400; }
+.home-contact-lede { max-width: 580px; margin-top: 25px; color: var(--text-strong); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; }
+.home-contact-detail { max-width: 570px; margin-top: 16px; color: var(--muted); font-size: 14px; }
+.home-contact-focus { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 26px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); list-style: none; }
+.home-contact-focus li { color: var(--text); font: 500 11px/1.5 var(--mono); }
+.home-contact .actions { margin-top: 26px; }
+.home-contact-direct { margin-top: 24px; color: var(--muted); font-size: 12px; }
+.home-contact-direct a { color: var(--text-strong); }
+.home-contact-visual { display: block; width: 100%; height: auto; aspect-ratio: 1672 / 941; object-fit: cover; border: 1px solid var(--line); }
 
 .page-hero {
   min-height: 500px;
