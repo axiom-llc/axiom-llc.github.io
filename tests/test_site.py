@@ -369,6 +369,16 @@ class SiteTests(unittest.TestCase):
         self.assertIn("model output is a proposal", all_content)
         self.assertNotIn("deterministic model", all_content)
 
+    def test_si_public_positioning_preserves_technical_integrity(self):
+        home = self.pages[Path("index.html")].content
+        self.assertIn("super intelligence (SI)", home.lower().replace("(si)", "(SI)"))
+        for path, page in self.pages.items():
+            self.assertNotRegex(page.content, r"\\bAI\\b", str(path))
+            self.assertIn("Super intelligence systems engineering", page.content)
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("not as a claim", readme)
+        self.assertIn("public API contracts", readme)
+
     def test_business_identity_is_axiom_llc_only(self):
         all_sources = "\n".join((ROOT / path).read_text() for path in PAGE_PATHS)
         forbidden = "".join(chr(x) for x in (65,100,97,109,32,84,97,99,111,110))
