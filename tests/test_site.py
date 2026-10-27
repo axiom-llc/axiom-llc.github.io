@@ -301,7 +301,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn('<span data-theme-label>System</span>', source, path)
             self.assertIn('data-theme-toggle data-mode="system"', source, path)
             self.assertNotIn('data-theme-label aria-hidden="true"', source, path)
-        self.assertIn('mix-blend-mode: screen', self.styles)
+        self.assertIn('filter: invert(1); mix-blend-mode: multiply;', self.styles)
         self.assertIn(':root[data-theme="light"] .brand img', self.styles)
         self.assertIn(':root:not([data-theme]) .brand img', self.styles)
         self.assertIn('button.dataset.mode = mode', theme)

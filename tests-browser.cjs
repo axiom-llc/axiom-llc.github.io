@@ -46,10 +46,12 @@ const { pathToFileURL } = require('node:url');
             throw Error(`Theme icon mismatch: ${width}/${mode}`);
           const fallback = (await toggle.locator('[data-theme-label]').textContent()).trim();
           if (fallback.toLowerCase() !== mode) throw Error(`Theme label missing: ${mode}`);
-          const expectedBlend = mode === 'light' ? 'screen' : 'normal';
+          const expectedBlend = mode === 'light' ? 'multiply' : 'normal';
           if (mode !== 'system') {
             const blend = await page.locator('.brand img').evaluate(el => getComputedStyle(el).mixBlendMode);
             if (blend !== expectedBlend) throw Error(`Logo blend mismatch: ${width}/${mode}, got ${blend}`);
+            const filter = await page.locator('.brand img').evaluate(el => getComputedStyle(el).filter);
+            if (mode === 'light' && filter === 'none') throw Error(`Logo inversion missing: ${width}/${mode}`);
           }
           await toggle.click();
         }
