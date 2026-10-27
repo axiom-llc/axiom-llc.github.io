@@ -35,7 +35,7 @@
     button.setAttribute("aria-label", "Theme: " + mode + ". Activate for " + next + ".");
     button.setAttribute("title", "Theme: " + mode);
     const label = button.querySelector("[data-theme-label]");
-    if (label) label.textContent = mode === "light" ? "☀" : mode === "dark" ? "☾" : "◐";
+    if (label) label.textContent = mode[0].toUpperCase() + mode.slice(1);
   };
 
   button.addEventListener("click", () => {
