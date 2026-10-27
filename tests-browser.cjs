@@ -32,7 +32,28 @@ const { pathToFileURL } = require('node:url');
         await page.keyboard.press('Tab');
         if (!(await source.evaluate(el => el === document.activeElement && getComputedStyle(el).outlineStyle !== 'none'))) throw Error('Keyboard focus failed');
         await section.screenshot({path:`browser-results/apex-${width}-${theme}.png`});
-        console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus`);
+        const toggle = page.locator('[data-theme-toggle]');
+        await page.evaluate(() => localStorage.removeItem('axiom-theme'));
+        await page.reload();
+        const modes = ['system', 'light', 'dark'];
+        for (const mode of modes) {
+          const actual = await toggle.getAttribute('data-mode');
+          if (actual !== mode) throw Error(`Theme mode mismatch: ${width}/${actual}, wanted ${mode}`);
+          const icons = await toggle.locator('svg').evaluateAll(elements =>
+            elements.map(el => getComputedStyle(el).display !== 'none'));
+          const expected = modes.map(x => x === mode);
+          if (JSON.stringify(icons) !== JSON.stringify(expected))
+            throw Error(`Theme icon mismatch: ${width}/${mode}`);
+          const fallback = (await toggle.locator('[data-theme-label]').textContent()).trim();
+          if (fallback.toLowerCase() !== mode) throw Error(`Theme label missing: ${mode}`);
+          const expectedBlend = mode === 'light' ? 'screen' : 'normal';
+          if (mode !== 'system') {
+            const blend = await page.locator('.brand img').evaluate(el => getComputedStyle(el).mixBlendMode);
+            if (blend !== expectedBlend) throw Error(`Logo blend mismatch: ${width}/${mode}, got ${blend}`);
+          }
+          await toggle.click();
+        }
+        console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus, mode icons, logo blend`);
       }
     }
   } finally { await browser.close(); }
