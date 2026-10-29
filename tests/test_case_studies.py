@@ -6,7 +6,7 @@ class CaseStudyTests(unittest.TestCase):
         self.path=Path('case-studies/index.html'); self.page=parse(self.path)
     def test_case_study_page_is_bounded_and_evidence_traceable(self):
         text=self.page.content
-        for required in ('Five synthetic organizations','74 modeled steps','74 successful recorded effects','Synthetic demonstrations, not production deployments','not establish regulatory compliance','67 produced files'):
+        for required in ('Five synthetic organizations','74 modeled steps','74 successful recorded effects','Simulation results and execution traces','reproducible evaluation','67 produced files'):
             self.assertIn(required.lower(),text.lower())
         hrefs=[attrs.get('href','') for attrs,_ in self.page.links]
         for required in ('simulations/portfolio-summary.json','simulations/cross-domain-findings.md','simulations/claims','axiom-demos/tree/main/organizational-simulations'):

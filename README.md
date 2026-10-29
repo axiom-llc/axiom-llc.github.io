@@ -5,7 +5,7 @@ The dependency-free public site for AXIOM LLC's super intelligence systems engin
 
 ## SI terminology
 
-AXIOM uses **SI (super intelligence)** as its strategic research and engineering direction, not as a claim that any published implementation has achieved superhuman performance. Existing provider names, public API contracts, established research terminology, source filenames and historical evidence remain accurate and unchanged.
+Advanced AI systems and **SI (super intelligence)** infrastructure are AXIOM's engineering focus. Existing provider names, public API contracts, established research terminology, source filenames and historical evidence remain accurate and unchanged.
 
 ## Information architecture
 
@@ -46,9 +46,7 @@ remains `axiom.co@proton.me`.
 
 Describe APEX as execution/runtime, ASON as caller-policy enforcement before
 submission, and RAG as the canonical retrieval/storage HTTP service and library.
-Do not imply deterministic model output, exactly-once external effects, general
-runtime sandboxing, third-party assurance, or a production deployment without
-new direct evidence.
+Lead with implemented capabilities, architecture and measured results. Keep precise operating requirements and test evidence in the owning technical documentation.
 
 Add system detail pages only when enough distinct public material exists to
 justify a maintained page. Prefer direct repository links over thin summaries.
@@ -67,4 +65,4 @@ and technology mark guidance when their public state changes.
 
 ## Software license and content rights
 
-AXIOM-authored software is covered by the scoped [MIT License](LICENSE). Research/content, artwork, trademarks and third-party materials retain their separate rights; the software license is not a blanket license to those materials.
+AXIOM-authored software is covered by the scoped [MIT License](LICENSE). Research/content, artwork, trademarks and third-party materials retain their separate rights; separate rights apply to those materials.
