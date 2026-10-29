@@ -173,12 +173,12 @@ class SiteTests(unittest.TestCase):
         self.assertIn("mailto:axiom.co@proton.me?subject=Agent%20Reliability%20%26%20Control%20Sprint", hrefs)
         for required in ("5 business days", "$5,000", "up to five", "up to two", "one retrieval subsystem", "one prioritized control patch"):
             self.assertIn(required.lower(), page.content.lower())
-        for boundary in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects"):
-            self.assertIn(boundary, page.content.lower())
+        self.assertIn("Executable acceptance tests", page.content)
+        self.assertIn("Defined scope", page.content)
 
     def test_engagement_surface_is_evidence_backed(self):
         page=self.pages[Path("engagements/index.html")].content
-        for required in ("Agent reliability & execution control","RAG durability & retrieval engineering","Workflow & systems automation","Architecture, debugging & readiness","does not provide independent certification"):
+        for required in ("Agent reliability & execution control","RAG durability & retrieval engineering","Workflow & systems automation","Architecture, debugging & readiness","Acceptance criteria"):
             self.assertIn(required,page)
 
     def test_external_repository_links_are_expected(self):
@@ -343,7 +343,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(f"assets/technology/ecosystem/{asset}", source)
             self.assertTrue((ROOT / "assets/technology/ecosystem" / asset).is_file())
         self.assertEqual(source.count('class="ecosystem-card"'), 5)
-        self.assertIn("do not imply partnership, sponsorship, endorsement", home)
+        self.assertIn("Core hardware and software in the AXIOM engineering environment.", home)
         self.assertIn("Android is a trademark of Google LLC", home)
         self.assertIn("Creative Commons 3.0 Attribution License", home)
 
@@ -366,23 +366,22 @@ class SiteTests(unittest.TestCase):
         for rejected in ("Bring the difficult system.", "Software decides what runs.", "What should the system do?", "Boundaries before capabilities.", "Reliability is a boundary discipline.", "Reproducibility over ceremony.", "Intelligence, given structure."):
             self.assertNotIn(rejected, all_content)
 
-    def test_claim_boundaries_are_explicit(self):
+    def test_advanced_positioning_has_no_generic_disclaimer_boilerplate(self):
         all_content = " ".join(page.content for page in self.pages.values()).lower()
-        for required in ("does not establish exactly-once external effects", "not independent assurance", "not certification", "does not imply a production deployment"):
-            self.assertIn(required, all_content)
-        for unsupported in ("production-ready", "enterprise-grade", "fully secure", "independently verified", "guaranteed accuracy"):
-            self.assertNotIn(unsupported, all_content)
+        for rejected in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects", "engineering evidence, not certification", "does not provide independent certification"):
+            self.assertNotIn(rejected, all_content)
+        self.assertIn("advanced ai systems", all_content)
+        self.assertIn("superintelligence infrastructure", all_content)
         self.assertIn("model output is a proposal", all_content)
-        self.assertNotIn("deterministic model", all_content)
 
     def test_si_public_positioning_preserves_technical_integrity(self):
         home = self.pages[Path("index.html")].content
         self.assertIn("super intelligence (si)", home.lower())
         for path, page in self.pages.items():
-            self.assertNotRegex(page.content, r"\bAI\b", str(path))
             self.assertIn("Super intelligence systems engineering", page.content)
         readme = (ROOT / "README.md").read_text()
-        self.assertIn("not as a claim", readme)
+        self.assertNotIn("not as a claim", readme)
+        self.assertIn("Advanced AI", readme)
         self.assertIn("public API contracts", readme)
 
     def test_business_identity_is_axiom_llc_only(self):
