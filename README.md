@@ -64,3 +64,7 @@ Preview desktop and narrow mobile layouts. Check keyboard navigation, focus
 visibility, readability at 200% zoom, and every page with JavaScript disabled.
 No content may depend on animation or hover. Recheck external repository links
 and technology mark guidance when their public state changes.
+
+## Software license and content rights
+
+AXIOM-authored software is covered by the scoped [MIT License](LICENSE). Research/content, artwork, trademarks and third-party materials retain their separate rights; the software license is not a blanket license to those materials.
