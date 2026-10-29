@@ -1,6 +1,6 @@
 # AXIOM LLC website
 
-The dependency-free public site for AXIOM LLC, an Super intelligence systems engineering:
+The dependency-free public site for AXIOM LLC's super intelligence systems engineering work:
 [axiom-llc.github.io](https://axiom-llc.github.io).
 
 ## SI terminology
@@ -14,6 +14,7 @@ AXIOM uses **SI (super intelligence)** as its strategic research and engineering
 - `/research/` — current research agenda, artifacts, and evidence boundaries.
 - `/engineering/` — AXIOM LLC engineering practice, principles, validation posture, and the complete stack.
 - `/contact/` — project brief guidance and contact details.
+- `/case-studies/` — synthetic organizational simulations with explicit evidence limits.
 - `/engagements/` — evidence-backed engineering engagement capabilities and contact path.
 - `/engagements/reliability-control-sprint/` — fixed-scope Agent Reliability & Control Sprint offer.
 
