@@ -1,15 +1,35 @@
 // Run against the checkout; no production service or browser credentials required.
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
 const path = require('node:path');
-const { pathToFileURL } = require('node:url');
+const http = require('node:http');
+const fs = require('node:fs/promises');
 (async () => {
+  // One HTTP origin gives every page the same localStorage, as in production.
+  const root = process.cwd();
+  const types = {'.html':'text/html', '.css':'text/css', '.js':'text/javascript',
+    '.svg':'image/svg+xml', '.png':'image/png', '.woff2':'font/woff2'};
+  const server = http.createServer(async (req, res) => {
+    try {
+      const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+      let file = path.resolve(root, '.' + pathname);
+      if (file !== root && !file.startsWith(root + path.sep)) {
+        res.writeHead(403).end(); return;
+      }
+      if ((await fs.stat(file)).isDirectory()) file = path.join(file, 'index.html');
+      const data = await fs.readFile(file);
+      res.writeHead(200, {'Content-Type': types[path.extname(file)] || 'application/octet-stream'});
+      res.end(data);
+    } catch (_) { res.writeHead(404).end(); }
+  });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const origin = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch({headless:true});
   try {
     const page = await browser.newPage();
     for (const width of [1440, 768, 390, 320]) {
       for (const theme of ['light', 'dark']) {
         await page.setViewportSize({width, height:1000});
-        await page.goto(pathToFileURL(path.resolve('index.html')).href);
+        await page.goto(origin + '/');
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
         if (!(await page.evaluate(() => document.fonts.check('16px "Inter"') && document.fonts.check('12px "IBM Plex Mono"')))) throw Error('Local fonts failed to load');
@@ -66,5 +86,40 @@ const { pathToFileURL } = require('node:url');
         console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus, mode icons, logo blend`);
       }
     }
-  } finally { await browser.close(); }
+    const routes = ['/', '/systems/', '/research/', '/engineering/', '/contact/',
+      '/engagements/', '/engagements/reliability-control-sprint/', '/case-studies/'];
+    for (const deviceTheme of ['light', 'dark']) {
+      await page.emulateMedia({colorScheme: deviceTheme});
+      for (const mode of ['system', 'light', 'dark']) {
+        await page.goto(origin + '/');
+        const toggle = page.locator('[data-theme-toggle]');
+        for (let clicks = 0; await toggle.getAttribute('data-mode') !== mode; clicks++) {
+          if (clicks >= 3) throw Error('Cannot select theme: ' + mode);
+          await toggle.click();
+        }
+        for (const route of routes) {
+          await page.goto(origin + route);
+          for (const reload of [false, true]) {
+            if (reload) await page.reload();
+            const saved = await page.evaluate(() => ({
+              mode: document.querySelector('[data-theme-toggle]').dataset.mode,
+              stored: localStorage.getItem('axiom-theme'),
+              explicit: document.documentElement.dataset.theme || 'system',
+              background: getComputedStyle(document.documentElement).getPropertyValue('--bg').trim(),
+              meta: document.querySelector('meta[name="theme-color"]').content
+            }));
+            const resolved = mode === 'system' ? deviceTheme : mode;
+            const background = resolved === 'dark' ? '#03090e' : '#edf7ff';
+            if (saved.mode !== mode || saved.stored !== mode || saved.explicit !== mode ||
+                saved.background !== background || saved.meta !== background)
+              throw Error('Theme persistence failed: ' + JSON.stringify({route, mode, deviceTheme, reload, saved}));
+          }
+        }
+        console.log('PASS theme persistence: ' + mode + ', device ' + deviceTheme + ', all 8 pages and reloads');
+      }
+    }
+  } finally {
+    await browser.close();
+    await new Promise(resolve => server.close(resolve));
+  }
 })().catch(error => { console.error(error); process.exitCode=1; });
