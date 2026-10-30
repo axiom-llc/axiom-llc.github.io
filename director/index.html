@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#edf7ff">
-  <title>AXIOM Director — Persistent Orchestration</title><meta name="description" content="AXIOM Director: persistent orchestration for complex work, spanning strategic control, capability-based delegation, governed autonomy, verification, and durable state.">
+  <title>AXIOM Director — Persistent Orchestration</title><meta name="description" content="AXIOM Director turns priorities into coordinated, verified outcomes across repositories, models, tools, and services—with persistent context, capability-based routing, and governed autonomy.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/axiom-mark-32.png"><link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/axiom-mark-180.png"><link rel="manifest" href="../site.webmanifest"><script>(()=>{try{const m=localStorage.getItem("axiom-theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m;}catch(_){}})();</script><link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -18,84 +18,55 @@
       <div class="director-hero-copy">
         <p class="eyebrow">Flagship / Control plane</p>
         <h1>AXIOM <span class="hero-accent">Director</span></h1>
-        <p class="lede">Persistent orchestration for complex work.</p>
+        <p class="lede">Persistent orchestration for complex work—turning priorities into coordinated, verified outcomes across repositories, models, tools, and services. Retain context between sessions, route work to capable executors, and keep control of scope, cost, and approvals.</p>
       </div>
       <div class="director-hero-art">
         <img src="../assets/director-orchestration-core.png" width="1672" height="941" alt="Precision metal orchestration core connected to compute modules by cyan optical paths." fetchpriority="high" decoding="async">
       </div>
     </header>
     <section id="director" class="section wrap director-feature" aria-labelledby="director-capability-title">
-      <div class="section-intro">
+      <div class="section-intro compact">
         <p class="eyebrow">Capabilities</p>
         <h2 id="director-capability-title">Strategy through verified execution.</h2>
-        <p>A persistent agent that coordinates repositories, models, tools, and services while retaining authority and operational state between sessions.</p>
       </div>
       <div class="director-capabilities director-capabilities-wide">
-        <article><h3>Strategic control</h3><p>Ranks eligible work against deadlines, dependencies, approvals, and resource constraints. Maintains a canonical queue and one Current Opportunity.</p></article>
-        <article><h3>Capability-based routing</h3><p>Checks live channel access before dispatch. Binds each assignment to its scope, executor, source revision, and acceptance criteria.</p></article>
-        <article><h3>Governed autonomy</h3><p>Coordinates bounded planning, execution, verification, and recovery cycles with finite budgets, human gates, and explicit stop conditions.</p></article>
-        <article><h3>Durable continuity</h3><p>Preserves authoritative state and decision-relevant evidence between sessions. Evaluates returned work before accepting outcomes and uses observed failures to prepare targeted improvements.</p></article>
+        <article><h3>Strategic control</h3><p>Ranks work against deadlines, dependencies, and available resources. Keeps one active opportunity and a durable queue.</p></article>
+        <article><h3>Capability-based routing</h3><p>Matches task requirements to verified channel access. Binds assignments to an executor, source revision, and acceptance criteria.</p></article>
+        <article><h3>Governed autonomy</h3><p>Advances bounded execution with explicit budgets, permitted actions, and human approval gates. Recovers to a safe baseline when validation fails.</p></article>
+        <article><h3>Durable continuity</h3><p>Retains decisions, task state, and validation evidence between sessions. Uses recorded failures to guide targeted improvements.</p></article>
       </div>
-    </section>
-    <section class="section wrap" aria-labelledby="director-cycle-title">
-      <div class="section-intro compact">
-        <p class="eyebrow">Operating cycle</p>
-        <h2 id="director-cycle-title">Advance work through explicit decisions.</h2>
-      </div>
-      <ol class="director-cycle">
-        <li><span class="index">01 / Select</span><h3>Choose eligible work</h3><p>Resolve the active request against priorities, dependencies, approvals, and available capacity.</p></li>
-        <li><span class="index">02 / Assign</span><h3>Bind the task</h3><p>Confirm channel capabilities and specify scope, source identity, permitted effects, and acceptance criteria.</p></li>
-        <li><span class="index">03 / Assess</span><h3>Inspect the evidence</h3><p>Check returned artifacts and decisive validation against the requested outcome.</p></li>
-        <li><span class="index">04 / Continue</span><h3>Accept, revise, or stop</h3><p>Persist verified results; recover to a safe baseline or identify the dependency that prevents progress.</p></li>
-      </ol>
     </section>
     <section class="section wrap" aria-labelledby="director-example-title">
       <div class="section-intro">
         <p class="eyebrow">Illustrative walkthrough</p>
-        <h2 id="director-example-title">A defect fix with bounded authority.</h2>
+        <h2 id="director-example-title">From defect report to reviewable change.</h2>
         <p>Fictional task and evidence, shown to explain the workflow.</p>
       </div>
       <ol class="director-example">
         <li><b>Request</b><p>Correct a parser defect in a Python package. Preserve its public interface; prepare a pull request.</p></li>
         <li><b>Assignment</b><p>Pin the source revision, select an authorized executor, and define a failing case plus the required regression checks.</p></li>
-        <li><b>Evidence</b><p>Inspect the patch, test output, and resulting commit identity. A worker's completion message alone does not establish success.</p></li>
-        <li><b>Decision</b><p>Accept the verified change for review or return a specific correction. Merge and release remain separately governed actions.</p></li>
+        <li><b>Evidence</b><p>Check the patch, regression results, and commit identity against the acceptance criteria.</p></li>
+        <li><b>Decision</b><p>Return a verified pull request for review, or a specific correction with supporting evidence.</p></li>
       </ol>
     </section>
     <section class="section wrap" aria-labelledby="director-architecture-title">
-      <div class="section-intro compact">
+      <div class="section-intro">
         <p class="eyebrow">Architecture</p>
-        <h2 id="director-architecture-title">Distinct owners at each boundary.</h2>
+        <h2 id="director-architecture-title">One control plane. Specialized components.</h2>
+        <p>Director coordinates the work. ASON evaluates plans against policy; APEX handles dispatch and runtime recovery; RAG provides document ingestion, retrieval, and storage.</p>
       </div>
-      <div class="director-table-wrap">
-        <table class="director-table">
-          <caption>Responsibilities within the AXIOM architecture</caption>
-          <thead><tr><th scope="col">Component</th><th scope="col">Owns</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Director</th><td>Task selection, delegation, outcome evaluation, recovery decisions, and persistent coordination state.</td></tr>
-            <tr><th scope="row">ASON</th><td>Evaluation of proposed plans against caller-supplied policy.</td></tr>
-            <tr><th scope="row">APEX</th><td>Plan validation, dispatch, durable effects, and runtime recovery.</td></tr>
-            <tr><th scope="row">RAG</th><td>Document ingestion, retrieval, and storage through explicit interfaces.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <a class="section-link" href="../systems/">Inspect the underlying components <span aria-hidden="true">→</span></a>
+      <a class="section-link" href="../systems/">Explore the underlying systems <span aria-hidden="true">→</span></a>
     </section>
     <section class="section wrap" aria-labelledby="director-interface-title">
       <div class="section-intro">
         <p class="eyebrow">Interfaces and deployment</p>
-        <h2 id="director-interface-title">Connect the work to capable channels.</h2>
-        <p>Operator commands, CLI and HTTP surfaces, normalized events, and remote executor adapters provide explicit entry points.</p>
-      </div>
-      <div class="director-capabilities">
-        <article><h3>Provider-neutral coordination</h3><p>Model and executor selection follows task requirements and verified access. Canonical state stays under its owning authority.</p></article>
-        <article><h3>Remote execution</h3><p>Authorized cloud and service channels supply the required tools. Background activity follows configured triggers, live availability, and permission gates.</p></article>
-        <article><h3>Inspectable outcomes</h3><p>Revision-bound artifacts, validation receipts, and retained decisions support continuity and targeted improvement.</p></article>
+        <h2 id="director-interface-title">Integrate with your existing workflow.</h2>
+        <p>Connect through operator commands, CLI and HTTP interfaces, normalized events, and remote executor adapters. Provider-neutral routing supports authorized cloud and service channels; background execution follows configured triggers and live availability.</p>
       </div>
     </section>
     <section class="next-page wrap">
       <p class="eyebrow">Integration</p>
-      <a href="../contact/"><span>Discuss your workflow</span><b aria-hidden="true">→</b></a>
+      <a href="../contact/"><span>Discuss an orchestration use case</span><b aria-hidden="true">→</b></a>
     </section>
   </main>
   <footer class="site-footer wrap"><p>© 2026 AXIOM LLC</p><p>Super intelligence systems engineering</p><a href="../contact/">Contact <span aria-hidden="true">→</span></a></footer>
