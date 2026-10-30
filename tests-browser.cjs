@@ -12,6 +12,33 @@ const { pathToFileURL } = require('node:url');
         await page.goto(pathToFileURL(path.resolve('index.html')).href);
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
+        const palette = await page.evaluate(() => {
+          const root = getComputedStyle(document.documentElement);
+          const luminance = hex => {
+            const values = hex.match(/[a-f0-9]{2}/gi).map(v => parseInt(v, 16) / 255)
+              .map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4);
+            return values.reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
+          };
+          const get = name => root.getPropertyValue(name).trim();
+          const ratios = ['--text', '--text-strong', '--muted', '--accent-strong'].flatMap(fg =>
+            ['--bg', '--bg-2', '--surface-solid'].map(bg => {
+              const a = luminance(get(fg)), b = luminance(get(bg));
+              return (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+            }));
+          const title = document.querySelector('#hero-title');
+          const accent = title.querySelector('.hero-accent');
+          return {
+            minContrast: Math.min(...ratios),
+            accented: accent?.textContent === 'structure' &&
+              getComputedStyle(accent).color !== getComputedStyle(title).color &&
+              Number(getComputedStyle(accent).fontWeight) > Number(getComputedStyle(title).fontWeight),
+            colorScheme: root.colorScheme,
+            overflow: document.documentElement.scrollWidth > innerWidth,
+          };
+        });
+        if (palette.minContrast < 4.5 || !palette.accented || palette.overflow || palette.colorScheme !== theme)
+          throw Error('Palette, hero accent, or readability failed: ' + JSON.stringify(palette));
+        await page.locator('.home-hero').screenshot({path:`browser-results/hero-${width}-${theme}.png`});
         const section = page.locator('.featured-demo');
         await section.scrollIntoViewIfNeeded();
         await page.waitForFunction(() => document.querySelector('.featured-demo img').naturalWidth > 0);
@@ -53,10 +80,28 @@ const { pathToFileURL } = require('node:url');
             const filter = await page.locator('.brand img').evaluate(el => getComputedStyle(el).filter);
             if (mode === 'light' && filter === 'none') throw Error(`Logo inversion missing: ${width}/${mode}`);
           }
+          const chrome = await page.evaluate(() => ({
+            meta: document.querySelector('meta[name="theme-color"]').content,
+            bg: getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+          }));
+          if (chrome.meta !== chrome.bg) throw Error('Browser theme color mismatch');
           await toggle.click();
         }
         console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus, mode icons, logo blend`);
       }
+    }
+    for (const scheme of ['light', 'dark']) {
+      await page.emulateMedia({colorScheme: scheme});
+      await page.evaluate(() => { try { localStorage.removeItem('axiom-theme'); } catch (_) {} });
+      await page.reload();
+      const system = await page.evaluate(() => ({
+        explicit: document.documentElement.hasAttribute('data-theme'),
+        scheme: getComputedStyle(document.documentElement).colorScheme,
+        meta: document.querySelector('meta[name="theme-color"]').content,
+        bg: getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+      }));
+      if (system.explicit || system.scheme !== scheme || system.meta !== system.bg)
+        throw Error('System theme resolution failed: ' + JSON.stringify(system));
     }
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode=1; });
