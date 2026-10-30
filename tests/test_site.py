@@ -349,8 +349,11 @@ class SiteTests(unittest.TestCase):
             self.assertTrue((ROOT / "assets/technology/ecosystem" / asset).is_file())
         self.assertEqual(source.count('class="ecosystem-card"'), 5)
         self.assertIn("Core hardware and software in the AXIOM engineering environment.", home)
-        self.assertIn("Android is a trademark of Google LLC", home)
-        self.assertIn("Creative Commons 3.0 Attribution License", home)
+        self.assertNotIn("Android is a trademark of Google LLC", home)
+        credits = (ROOT / "assets/technology/ecosystem/SOURCES.md").read_text()
+        self.assertIn("Android is a trademark of Google LLC", credits)
+        self.assertIn("Creative Commons 3.0 Attribution License", credits)
+        self.assertIn("assets/technology/ecosystem/SOURCES.md", source)
 
     def test_exact_homepage_hero_and_editorial_rejections(self):
         home = self.pages[Path("index.html")]

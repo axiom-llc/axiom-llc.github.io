@@ -11,6 +11,10 @@ Vendored solely to identify the listed third-party technologies in AXIOM's factu
 | `amd.svg` | AMD | https://cdn.simpleicons.org/amd | Brand vector distribution; AMD corporate logo identity cross-checked against AMD trademark/marketing materials. |
 | `lenovo.svg` | Lenovo | https://brandworld.lenovo.com/wp-content/themes/brandworld/assets/images/logo-horizontal-transparent.svg | Official Lenovo Brand World site asset; factual nominative identification only. |
 | `arch-linux.svg` | Arch Linux | https://archlinux.org/static/logos/archlinux-logo-dark-scalable.svg | Official Arch Linux press/artwork asset. |
-| `android.svg` | Android robot | https://developer.android.com/static/images/brand/android-head_flat.svg | Official Android robot asset. Android brand guidelines permit robot reproduction under CC BY 3.0 with attribution; attribution is present on the page. |
+| `android.svg` | Android robot | https://developer.android.com/static/images/brand/android-head_flat.svg | Official Android robot asset. Android brand guidelines permit robot reproduction under CC BY 3.0 with attribution; attribution is retained below and linked from the page through Technology asset credits. |
 
 ASUS usage is accompanied by a prominent no-endorsement disclaimer on the page. Lenovo's published trademark policy restricts third-party logo usage; this asset is therefore used only as factual nominative identification in the supplier listing and is not presented as a partnership/sponsorship mark. If AXIOM later obtains a more specific brand-use authorization, record it here.
+
+## Android attribution
+
+Android is a trademark of Google LLC. The Android robot is reproduced from work created and shared by Google and used according to the [Creative Commons 3.0 Attribution License](https://creativecommons.org/licenses/by/3.0/). Source: https://developer.android.com/static/images/brand/android-head_flat.svg. The supplied vector is unchanged.

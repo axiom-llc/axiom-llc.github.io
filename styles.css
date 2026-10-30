@@ -292,7 +292,7 @@ img { display: block; max-width: 100%; }
   height: auto;
   max-width: none;
   opacity: .98;
-  filter: url(#home-hero-alpha) saturate(.82) contrast(1.02);
+  filter: saturate(.82) contrast(1.02);
 }
 :root[data-theme="light"] .hero-geometry img { opacity: .98; mix-blend-mode: normal; }
 @media (prefers-color-scheme: light) { :root:not([data-theme]) .hero-geometry img { opacity: .98; mix-blend-mode: normal; } }
@@ -795,10 +795,12 @@ img { display: block; max-width: 100%; }
 
 /* Fit the complete homepage term to its own column at every viewport. */
 .home-hero .hero-copy { container-type: inline-size; }
-.home-hero #hero-title { font-size: clamp(29px, 10.2cqw, 104px); }
+.home-hero #hero-title { font-size: clamp(31px, 11cqw, 116px); }
 .hero-term { white-space: nowrap; }
 
 /* Give the engagement contact prompt and action distinct breathing room. */
 .engagement-contact-details { display: grid; align-content: center; gap: 30px; padding-block: 12px; }
 .engagement-contact-details > p { max-width: 58ch; line-height: 1.8; }
 .engagement-contact-details > .button { justify-self: start; }
+
+.home-hero .hero-second { font-size: 1.12em; }
