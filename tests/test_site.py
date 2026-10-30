@@ -371,7 +371,7 @@ class SiteTests(unittest.TestCase):
         for rejected in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects", "engineering evidence, not certification", "does not provide independent certification"):
             self.assertNotIn(rejected, all_content)
         self.assertIn("advanced si systems", all_content)
-        self.assertIn("advanced si infrastructure", all_content)
+        self.assertIn("advanced si systems for policy enforcement", all_content)
         self.assertIn("model output is a proposal", all_content)
 
     def test_si_public_positioning_preserves_technical_integrity(self):
