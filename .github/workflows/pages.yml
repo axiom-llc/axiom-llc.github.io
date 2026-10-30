@@ -1,8 +1,8 @@
 name: Deploy GitHub Pages
 
+# Owner hold: no automatic triggers. Earliest review 2026-11-01;
+# explicit Owner confirmation of usable Actions quota required before restoring.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: ${{ false }} # Manual dispatch is also suspended during the Owner hold.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
