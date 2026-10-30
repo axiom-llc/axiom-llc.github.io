@@ -370,7 +370,7 @@ class SiteTests(unittest.TestCase):
         all_content = " ".join(page.content for page in self.pages.values()).lower()
         for rejected in ("not independent assurance", "not certification", "does not imply a production deployment", "does not establish exactly-once external effects", "engineering evidence, not certification", "does not provide independent certification"):
             self.assertNotIn(rejected, all_content)
-        self.assertIn("advanced ai systems", all_content)
+        self.assertIn("advanced si systems", all_content)
         self.assertIn("superintelligence infrastructure", all_content)
         self.assertIn("model output is a proposal", all_content)
 
@@ -381,7 +381,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn("Super intelligence systems engineering", page.content)
         readme = (ROOT / "README.md").read_text()
         self.assertNotIn("not as a claim", readme)
-        self.assertIn("Advanced AI", readme)
+        self.assertIn("Advanced SI", readme)
         self.assertIn("public API contracts", readme)
 
     def test_business_identity_is_axiom_llc_only(self):
