@@ -794,8 +794,8 @@ img { display: block; max-width: 100%; }
 }
 
 /* Fit the complete homepage term to its own column at every viewport. */
-.home-hero .hero-copy { container-type: inline-size; }
-.home-hero #hero-title { font-size: clamp(31px, 11cqw, 116px); }
+.home-hero .hero-copy { container-type: inline-size; grid-column: 1 / -1; width: min(100%, 900px); }
+.home-hero #hero-title { font-size: clamp(32px, 11cqw, 116px); }
 .hero-term { white-space: nowrap; }
 
 /* Give the engagement contact prompt and action distinct breathing room. */

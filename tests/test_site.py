@@ -27,7 +27,9 @@ TECHNOLOGIES = {
     "Python", "Bash", "Linux", "Agent orchestration", "MCP", "RAG",
     "Gemini", "Ollama", "SQLite", "ChromaDB", "Pydantic", "Flask",
     "REST / HTTP", "Git", "GitHub Actions", "Docker / Compose", "Twilio",
-    "Blender",
+    "Blender", "C", "JavaScript", "TypeScript", "Arch Linux", "Unix",
+    "HTML", "CSS", "GCP Cloud Run", "Playwright", "pytest", "Dash",
+    "Vosk", "PortAudio", "JSON Schema", "Requests", "Google Gen AI SDK",
 }
 
 
@@ -219,7 +221,7 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn("Complete engineering technology stack", page.content)
         sources = [attrs["src"] for tag, attrs in self.pages[Path("engineering/index.html")].elements if tag == "img" and "technology/" in attrs.get("src", "")]
         self.assertEqual(len(sources), len(set(sources)))
-        self.assertEqual(len(sources), 13)
+        self.assertEqual(len(sources), 14)
 
     def test_static_runtime_has_no_external_or_active_assets(self):
         for path, page in self.pages.items():
