@@ -351,7 +351,7 @@ class SiteTests(unittest.TestCase):
     def test_exact_homepage_hero_and_editorial_rejections(self):
         home = self.pages[Path("index.html")]
         hero = " ".join("".join(home.headings[0][1]).split())
-        self.assertEqual(hero, "Intelligence with structure.")
+        self.assertEqual(hero, "Super intelligence with structure.")
         source = (ROOT / "index.html").read_text()
         self.assertNotIn('class="hero-mark"', source)
         self.assertIn('class="hero-geometry"', source)
