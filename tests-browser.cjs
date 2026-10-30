@@ -129,7 +129,7 @@ const fs = require('node:fs/promises');
               meta: document.querySelector('meta[name="theme-color"]').content
             }));
             const resolved = mode === 'system' ? deviceTheme : mode;
-            const background = resolved === 'dark' ? '#03090e' : '#edf7ff';
+            const background = resolved === 'dark' ? '#03090e' : '#c5d0d6';
             if (saved.mode !== mode || saved.stored !== mode || saved.explicit !== mode ||
                 saved.background !== background || saved.meta !== background)
               throw Error('Theme persistence failed: ' + JSON.stringify({route, mode, deviceTheme, reload, saved}));
