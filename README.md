@@ -5,7 +5,7 @@ The dependency-free public site for AXIOM LLC's super intelligence systems engin
 
 ## SI terminology
 
-Advanced SI systems and **SI (super intelligence)** infrastructure are AXIOM's engineering focus. Existing provider names, public API contracts, established research terminology, source filenames and historical evidence remain accurate and unchanged.
+Advanced SI infrastructure is AXIOM's engineering focus. Existing provider names, public API contracts, established research terminology, source filenames and historical evidence remain accurate and unchanged.
 
 ## Information architecture
 
