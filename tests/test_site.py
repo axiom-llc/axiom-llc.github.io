@@ -10,13 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGE_PATHS = (
     Path("index.html"),
     Path("systems/index.html"),
+    Path("director/index.html"),
     Path("research/index.html"),
     Path("engineering/index.html"),
     Path("contact/index.html"),
     Path("engagements/index.html"),
     Path("engagements/reliability-control-sprint/index.html"),
 )
-NAV_LABELS = ("Systems", "Research", "Engineering", "Contact")
+NAV_LABELS = ("Director", "Systems", "Research", "Engineering", "Contact")
 REPOSITORIES = {
     "axiom-apex", "axiom-api", "axiom-ason", "axiom-blender", "axiom-demos",
     "axiom-infra", "axiom-rag", "axiom-research",
@@ -122,7 +123,7 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(navs, [{"aria-label": "Main navigation"}], path)
             nav_links = [(" ".join("".join(text).split()), attrs) for attrs, text in page.links if " ".join("".join(text).split()) in NAV_LABELS]
             self.assertEqual(tuple(label for label, _ in nav_links), NAV_LABELS, path)
-            if path.parts[0] in {"systems", "research", "engineering", "contact"}:
+            if path.parts[0] in {"director", "systems", "research", "engineering", "contact"}:
                 current = [label for label, attrs in nav_links if attrs.get("aria-current") == "page"]
                 self.assertEqual(current, [path.parts[0].title()], path)
 
@@ -388,16 +389,19 @@ class SiteTests(unittest.TestCase):
     def test_director_has_prominent_public_presentation_without_private_links(self):
         home = self.pages[Path("index.html")]
         systems = self.pages[Path("systems/index.html")]
-        for page in (home, systems):
+        director = self.pages[Path("director/index.html")]
+        for page in (home, systems, director):
             self.assertIn("AXIOM Director", page.content)
             for attrs, _ in page.links:
                 self.assertNotIn("github.com/axiom-llc/axiom-director", attrs.get("href", ""))
         home_source = (ROOT / "index.html").read_text()
         self.assertLess(home_source.index('id="director-title"'), home_source.index('id="apex-demo-title"'))
         self.assertLess(home_source.index('id="director-title"'), home_source.index('id="core-title"'))
-        self.assertIn("systems/#director", home_source)
+        self.assertIn('href="director/"', home_source)
+        self.assertIn('href="../director/"', (ROOT / "systems/index.html").read_text())
+        self.assertIn("Fictional task and evidence", director.content)
         for capability in ("Strategic control", "Capability-based routing", "Governed autonomy", "Durable continuity"):
-            self.assertIn(capability, systems.content)
+            self.assertIn(capability, director.content)
 
     def test_business_identity_is_axiom_llc_only(self):
         all_sources = "\n".join((ROOT / path).read_text() for path in PAGE_PATHS)

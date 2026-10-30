@@ -92,7 +92,7 @@ const fs = require('node:fs/promises');
           await toggle.click();
         }
         console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus, mode icons, logo blend`);
-        await page.goto(origin + '/systems/#director');
+        await page.goto(origin + '/director/');
         await page.evaluate(theme => localStorage.setItem('axiom-theme', theme), theme);
         await page.reload();
         const controlPlane = page.locator('#director');
@@ -101,12 +101,12 @@ const fs = require('node:fs/promises');
             const rect = node.getBoundingClientRect();
             return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth;
           }));
-        if (!fits) throw Error('Director Systems layout failed: ' + width + '/' + theme);
-        await controlPlane.screenshot({path:`browser-results/director-systems-${width}-${theme}.png`});
+        if (!fits) throw Error('Director page layout failed: ' + width + '/' + theme);
+        await controlPlane.screenshot({path:`browser-results/director-page-${width}-${theme}.png`});
 
       }
     }
-    const routes = ['/', '/systems/', '/research/', '/engineering/', '/contact/',
+    const routes = ['/', '/director/', '/systems/', '/research/', '/engineering/', '/contact/',
       '/engagements/', '/engagements/reliability-control-sprint/', '/case-studies/'];
     for (const deviceTheme of ['light', 'dark']) {
       await page.emulateMedia({colorScheme: deviceTheme});
@@ -135,7 +135,7 @@ const fs = require('node:fs/promises');
               throw Error('Theme persistence failed: ' + JSON.stringify({route, mode, deviceTheme, reload, saved}));
           }
         }
-        console.log('PASS theme persistence: ' + mode + ', device ' + deviceTheme + ', all 8 pages and reloads');
+        console.log('PASS theme persistence: ' + mode + ', device ' + deviceTheme + ', all 9 pages and reloads');
       }
     }
   } finally {
