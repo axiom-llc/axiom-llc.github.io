@@ -251,7 +251,7 @@ class SiteTests(unittest.TestCase):
         for value in re.findall(r"url\([\"']?([^\"')]+)", self.styles):
             self.assertFalse(urlsplit(value).scheme, value)
             if value.startswith("#"):
-                self.assertIn(f'id="{value[1:]}"', self.pages[Path("index.html")].content)
+                self.assertIn(f'id="{value[1:]}"', (ROOT / "index.html").read_text())
             else:
                 self.assertTrue((ROOT / value).is_file(), value)
 
