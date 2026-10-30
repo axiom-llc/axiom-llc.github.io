@@ -12,6 +12,7 @@ const { pathToFileURL } = require('node:url');
         await page.goto(pathToFileURL(path.resolve('index.html')).href);
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
+        if (!(await page.evaluate(() => document.fonts.check('16px "Inter"') && document.fonts.check('12px "IBM Plex Mono"')))) throw Error('Local fonts failed to load');
         const section = page.locator('.featured-demo');
         await section.scrollIntoViewIfNeeded();
         await page.waitForFunction(() => document.querySelector('.featured-demo img').naturalWidth > 0);

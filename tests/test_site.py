@@ -269,7 +269,9 @@ class SiteTests(unittest.TestCase):
             self.assertIn(value, self.styles)
         for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "@media (max-width: 760px)", ".theme-toggle", ".hero-geometry", ".evidence-panels", ".home-contact-visual"):
             self.assertIn(required, self.styles)
-        self.assertNotIn("-webkit-font-smoothing", self.styles)
+        self.assertIn("-webkit-font-smoothing: antialiased", self.styles)
+        self.assertIn("-moz-osx-font-smoothing: grayscale", self.styles)
+        self.assertIn("font-optical-sizing: auto", self.styles)
         self.assertIn("font-synthesis: none", self.styles)
 
     def test_theme_control_and_brand_derivatives_are_shared(self):
