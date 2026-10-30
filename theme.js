@@ -25,10 +25,11 @@
   try { mode = localStorage.getItem(key); } catch (_) { mode = null; }
   if (!modes.includes(mode)) mode = "system";
 
+  const resolved = () => mode === "system" ? (media.matches ? "dark" : "light") : mode;
   const apply = () => {
     if (mode === "system") root.removeAttribute("data-theme");
     else root.dataset.theme = mode;
-    if (themeMeta) themeMeta.content = getComputedStyle(root).getPropertyValue("--bg").trim();
+    if (themeMeta) themeMeta.content = resolved() === "dark" ? "#03090e" : "#edf7ff";
     const next = modes[(modes.indexOf(mode) + 1) % modes.length];
     button.dataset.mode = mode;
     button.setAttribute("aria-label", "Theme: " + mode + ". Activate for " + next + ".");

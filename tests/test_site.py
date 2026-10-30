@@ -265,7 +265,7 @@ class SiteTests(unittest.TestCase):
                 self.assertIn(f"`{asset.name}`", sources)
 
     def test_visual_system_and_responsive_guards(self):
-        for value in ("#e2e7e8", "#182126", "--surface", "--accent", "--muted", "--line"):
+        for value in ("#edf7ff", "#03090e", "--surface", "--accent", "--muted", "--line"):
             self.assertIn(value, self.styles)
         for required in (':root[data-theme="dark"]', "@media (prefers-color-scheme: dark)", "radial-gradient", "linear-gradient", "@media (max-width: 760px)", ".theme-toggle", ".hero-geometry", ".evidence-panels", ".home-contact-visual"):
             self.assertIn(required, self.styles)
