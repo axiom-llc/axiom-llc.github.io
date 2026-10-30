@@ -324,7 +324,6 @@ class SiteTests(unittest.TestCase):
         self.assertIn(':root[data-theme="dark"] .ecosystem-logo ' + selector, self.styles)
         self.assertIn(':root:not([data-theme]) .ecosystem-logo ' + selector, self.styles)
         self.assertIn('class="home-contact-main"', source)
-        self.assertIn('class="home-contact-focus"', source)
         self.assertIn('class="home-contact-visual"', source)
         self.assertIn('class="button" href="contact/"', source)
         self.assertIn('class="quiet-link" href="engagements/"', source)

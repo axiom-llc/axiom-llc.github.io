@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#edf7ff">
   <title>AXIOM LLC — Super Intelligence Systems Engineering</title>
-  <meta name="description" content="Advanced SI infrastructure for policy enforcement, execution runtimes, retrieval engineering, and operations.">
+  <meta name="description" content="SI systems for policy enforcement, execution runtimes, retrieval, and operational control.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/brand/axiom-mark-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/brand/axiom-mark-180.png"><link rel="manifest" href="site.webmanifest">
   <script>(()=>{try{const m=localStorage.getItem("axiom-theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m;}catch(_){}})();</script>
   <link rel="stylesheet" href="styles.css">
@@ -27,24 +27,21 @@
   <main id="main">
     <section class="home-hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">Intelligence<br> with structure.</h1>
+        <h1 id="hero-title">Intelligence<br> with <span class="hero-accent">structure</span>.</h1>
         <div class="hero-bottom">
           <p class="lede">Advanced SI systems for policy enforcement, execution runtimes, retrieval engineering, and operational control.</p>
-          <div class="actions"><a class="button" href="systems/">Explore systems <span aria-hidden="true">→</span></a><a class="quiet-link" href="engagements/">Engineering engagements</a></div>
+          <div class="actions"><a class="button" href="systems/">Explore systems <span aria-hidden="true">→</span></a></div>
         </div>
       </div>
       <div class="hero-geometry" aria-hidden="true"><img src="assets/visual/hero-axiom.png" width="1672" height="941" alt=""></div>
-      <div class="hero-index" aria-label="AXIOM design progression">
-        <span><b>01</b> First principles</span><span><b>02</b> Core systems</span><span><b>03</b> Evidence</span><span><b>04</b> Progress</span>
-      </div>
     </section>
 
     <section class="featured-demo wrap" aria-labelledby="apex-demo-title">
       <div class="featured-demo-copy">
-        <p class="eyebrow">Featured engineering / APEX</p>
-        <h2 id="apex-demo-title">Recovery you can reproduce.</h2>
-        <p class="lede">Completed effects are reused. Uncertain effects block recovery.</p>
-        <p>Watch a real process crash between a tool action and its recorded result. APEX uses its SQLite ledger to decide what can safely continue—and when to stop.</p>
+        <p class="eyebrow">APEX</p>
+        <h2 id="apex-demo-title">Crash recovery, demonstrated.</h2>
+        <p class="lede">Committed effects are kept. Ambiguous outcomes halt the run.</p>
+        <p>Watch a process fail after a tool action but before its outcome reaches the SQLite ledger.</p>
         <div class="actions">
           <a class="button" href="https://github.com/axiom-llc/axiom-apex#try-the-recovery-demo">Run the demo <span aria-hidden="true">↗</span></a>
           <a class="quiet-link" href="https://github.com/axiom-llc/axiom-apex/blob/b879681f8e51e7e6fe31c9d6fffa770da00298e8/examples/recovery.py">Read the code</a>
@@ -53,65 +50,59 @@
       </div>
       <figure class="featured-demo-figure">
         <a href="assets/demos/apex-recovery.svg" aria-label="Open the full-size APEX recovery transcript">
-          <img src="assets/demos/apex-recovery.svg" width="1080" height="505" alt="Two real crash scenarios: a committed result is reused and recovery finishes; an uncertain result blocks recovery. Repeating either recovery adds zero effects." loading="lazy">
+          <img src="assets/demos/apex-recovery.svg" width="1080" height="505" alt="Two failure cases: a committed result allows safe continuation; an ambiguous outcome stops the run. Further attempts add zero effects." loading="lazy">
         </a>
-        <figcaption>Recorded from the executable APEX recovery demo and its SQLite event ledger. <a href="https://github.com/axiom-llc/axiom-apex/blob/b879681f8e51e7e6fe31c9d6fffa770da00298e8/docs/assets/recovery.txt">Plain-text transcript</a>.</figcaption>
+        <figcaption>Captured output and ledger decisions. <a href="https://github.com/axiom-llc/axiom-apex/blob/b879681f8e51e7e6fe31c9d6fffa770da00298e8/docs/assets/recovery.txt">Plain-text transcript</a>.</figcaption>
       </figure>
     </section>
 
     <section class="section wrap" aria-labelledby="core-title">
-      <div class="section-intro"><p class="eyebrow">01 / Core systems</p><h2 id="core-title">Policy, execution, and context are separated by design.</h2><p>Each layer owns a bounded responsibility so probabilistic reasoning can feed deterministic control without collapsing authority boundaries.</p></div>
+      <div class="section-intro"><p class="eyebrow">01 / Architecture</p><h2 id="core-title">Separate authority from action.</h2><p>Three layers connect planning, dispatch, and stored knowledge.</p></div>
       <div class="core-grid">
-        <article><p class="index">01 / Policy</p><span class="system-glyph glyph-policy" aria-hidden="true"></span><h3>ASON</h3><p>Evaluates submitted plans against caller-supplied policy before any sequence is submitted for execution.</p></article>
-        <article><p class="index">02 / Runtime</p><span class="system-glyph glyph-runtime" aria-hidden="true"></span><h3>APEX</h3><p>Validates, records, and executes accepted tool sequences within configured runtime limits.</p></article>
+        <article><p class="index">01 / Policy</p><span class="system-glyph glyph-policy" aria-hidden="true"></span><h3>ASON</h3><p>Checks proposed plans against caller-supplied policy.</p></article>
+        <article><p class="index">02 / Runtime</p><span class="system-glyph glyph-runtime" aria-hidden="true"></span><h3>APEX</h3><p>Validates accepted tool sequences, records effects, and enforces configured limits.</p></article>
         <article><p class="index">03 / Context</p><span class="system-glyph glyph-context" aria-hidden="true"></span><h3>RAG</h3><p>Provides retrieval and storage through library and versioned HTTP interfaces.</p></article>
       </div>
-      <a class="section-link" href="systems/">Complete system architecture <span aria-hidden="true">→</span></a>
+      <a class="section-link" href="systems/">Inspect the stack <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="section wrap" aria-labelledby="evidence-title">
-      <div class="section-intro"><p class="eyebrow">02 / Evidence in action</p><h2 id="evidence-title">Validated systems, research, and engineering practice.</h2><p>The public record covers bounded execution, retrieval durability, architecture, failure modes, and reproducible validation.</p></div>
+      <div class="section-intro"><p class="eyebrow">02 / Portfolio</p><h2 id="evidence-title">Source, findings, and methods.</h2></div>
       <div class="evidence-panels">
         <a class="evidence-panel" href="systems/"><span class="evidence-visual visual-systems" aria-hidden="true"><img src="assets/visual/systems-earth.png" width="1672" height="941" alt="" loading="lazy"></span><h3>Systems</h3><p>ASON, APEX, RAG, API, Infra, Ops, and applied demos. <span aria-hidden="true">→</span></p></a>
-        <a class="evidence-panel" href="research/"><span class="evidence-visual visual-research" aria-hidden="true"><img src="assets/visual/research-wave.png" width="1672" height="941" alt="" loading="lazy"></span><h3>Research</h3><p>Execution safety, crash consistency, control architectures, and explicit limits. <span aria-hidden="true">→</span></p></a>
-        <a class="evidence-panel" href="engineering/"><span class="evidence-visual visual-engineering" aria-hidden="true"><img src="assets/visual/engineering-hall.png" width="1672" height="941" alt="" loading="lazy"></span><h3>Engineering</h3><p>Interfaces, recovery, security boundaries, and reproducible integration. <span aria-hidden="true">→</span></p></a>
+        <a class="evidence-panel" href="research/"><span class="evidence-visual visual-research" aria-hidden="true"><img src="assets/visual/research-wave.png" width="1672" height="941" alt="" loading="lazy"></span><h3>Research</h3><p>Safety analysis, crash consistency, and architectural limits. <span aria-hidden="true">→</span></p></a>
+        <a class="evidence-panel" href="engineering/"><span class="evidence-visual visual-engineering" aria-hidden="true"><img src="assets/visual/engineering-hall.png" width="1672" height="941" alt="" loading="lazy"></span><h3>Engineering</h3><p>Interfaces, security boundaries, and integration. <span aria-hidden="true">→</span></p></a>
       </div>
     </section>
 
     <section class="principle wrap" aria-labelledby="principle-title">
       <p class="eyebrow">03 / From first principles</p><h2 id="principle-title">Probabilistic reasoning.<br>Deterministic control.</h2>
-      <p>Model output is a proposal; typed interfaces, policy checks, state transitions, and bounded runtimes govern execution and recovery.</p>
-      <a class="section-link" href="engineering/">Engineering principles and methods <span aria-hidden="true">→</span></a>
+      <p>Model output is a proposal; typed contracts and explicit state transitions determine what may run.</p>
+      <a class="section-link" href="engineering/">Technical approach <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="section wrap" aria-labelledby="ecosystem-title">
-      <div class="section-intro"><p class="eyebrow">04 / Technology ecosystem</p><h2 id="ecosystem-title">Built on a proven foundation.</h2><p>Core hardware and software in the AXIOM engineering environment.</p></div>
+      <div class="section-intro"><p class="eyebrow">04 / Technology ecosystem</p><h2 id="ecosystem-title">Tools of the trade.</h2><p>Core hardware and software in the AXIOM engineering environment.</p></div>
       <div class="ecosystem-grid" role="list">
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/asus.svg" alt="ASUS logo" width="160" height="80" loading="lazy"></div><div><p class="index">Hardware</p><h3>ASUS</h3><p>Systems hardware.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/lg.svg" alt="LG logo" width="160" height="80" loading="lazy"></div><div><p class="index">Hardware</p><h3>LG Electronics</h3><p>Displays and hardware.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/amd.svg" alt="AMD logo" width="160" height="80" loading="lazy"></div><div><p class="index">Components</p><h3>Advanced Micro Devices, Inc. (AMD)</h3><p>Processors and graphics.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/arch-linux.svg" alt="Arch Linux logo" width="160" height="80" loading="lazy"></div><div><p class="index">Platform</p><h3>Arch Linux</h3><p>Linux operating system.</p></div></article>
-        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/android.svg" alt="Android robot logo" width="160" height="80" loading="lazy"></div><div><p class="index">Platform</p><h3>Android</h3><p>Mobile platform.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/asus.svg" alt="ASUS logo" width="160" height="80" loading="lazy"></div><div><h3>ASUS</h3><p>Computing devices.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/lg.svg" alt="LG logo" width="160" height="80" loading="lazy"></div><div><h3>LG Electronics</h3><p>Displays.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/amd.svg" alt="AMD logo" width="160" height="80" loading="lazy"></div><div><h3>Advanced Micro Devices, Inc. (AMD)</h3><p>Processors and graphics.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/arch-linux.svg" alt="Arch Linux logo" width="160" height="80" loading="lazy"></div><div><h3>Arch Linux</h3><p>Operating system.</p></div></article>
+        <article class="ecosystem-card" role="listitem"><div class="ecosystem-logo"><img src="assets/technology/ecosystem/android.svg" alt="Android robot logo" width="160" height="80" loading="lazy"></div><div><h3>Android</h3><p>Mobile devices.</p></div></article>
       </div>
       <p class="ecosystem-attribution">Android is a trademark of Google LLC. The Android robot is reproduced from work created and shared by Google and used according to the Creative Commons 3.0 Attribution License.</p>
     </section>
 
     <section class="home-contact wrap" aria-labelledby="contact-title">
       <div class="home-contact-main">
-        <p class="eyebrow">05 / What’s next</p>
-        <h2 id="contact-title">A more capable tomorrow.</h2>
-        <p class="home-contact-lede">A focused path from engineering problem to testable result.</p>
-        <p class="home-contact-detail">Explore how AXIOM approaches execution control, recovery, retrieval durability, and integration across model-driven systems.</p>
-        <ul class="home-contact-focus" aria-label="Areas of work">
-          <li>Execution control</li>
-          <li>Retrieval reliability</li>
-          <li>Systems integration</li>
-        </ul>
+        <p class="eyebrow">05 / Contact</p>
+        <h2 id="contact-title">Start a conversation.</h2>
+        <p class="home-contact-lede">Send the problem, constraints, and acceptance criteria.</p>
         <div class="actions">
           <a class="button" href="contact/">Discuss a project <span aria-hidden="true">→</span></a>
-          <a class="quiet-link" href="engagements/">View engineering engagements</a>
+          <a class="quiet-link" href="engagements/">View engagements</a>
         </div>
-        <p class="home-contact-direct">Direct email: <a href="mailto:axiom.co@proton.me">axiom.co@proton.me</a></p>
+        <p class="home-contact-direct"><a href="mailto:axiom.co@proton.me">axiom.co@proton.me</a></p>
       </div>
       <img class="home-contact-visual" src="assets/visual/closing-valley.png" width="1672" height="941" alt="" loading="lazy">
     </section>

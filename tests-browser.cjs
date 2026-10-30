@@ -13,6 +13,13 @@ const { pathToFileURL } = require('node:url');
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
         if (!(await page.evaluate(() => document.fonts.check('16px "Inter"') && document.fonts.check('12px "IBM Plex Mono"')))) throw Error('Local fonts failed to load');
+        const accent = await page.locator('#hero-title').evaluate(el => {
+          const word = el.querySelector('.hero-accent');
+          return word?.textContent === 'structure' &&
+            getComputedStyle(word).color !== getComputedStyle(el).color &&
+            Number(getComputedStyle(word).fontWeight) > Number(getComputedStyle(el).fontWeight);
+        });
+        if (!accent) throw Error('Structure accent missing: ' + width + '/' + theme);
         const section = page.locator('.featured-demo');
         await section.scrollIntoViewIfNeeded();
         await page.waitForFunction(() => document.querySelector('.featured-demo img').naturalWidth > 0);

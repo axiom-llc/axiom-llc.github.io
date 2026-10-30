@@ -68,7 +68,7 @@ jobs:
           ok=0
           for _ in $(seq 1 18); do
             if curl -fsSL --retry 2 --retry-delay 2 "$base/?deployment=${GITHUB_SHA}" -o /tmp/live.html &&
-               grep -Fq "Recovery you can reproduce." /tmp/live.html &&
+               grep -Fq "Crash recovery, demonstrated." /tmp/live.html &&
                grep -Fq "assets/demos/apex-recovery.svg" /tmp/live.html &&
                grep -Fq "Technology ecosystem" /tmp/live.html &&
                grep -Fq "ASUS" /tmp/live.html &&

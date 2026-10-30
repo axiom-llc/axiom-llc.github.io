@@ -239,7 +239,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: -.055em;
   line-height: .98;
 }
-.hero-accent { color: var(--accent-strong); }
+.hero-accent { color: var(--accent-strong); font-weight: 600; }
 .hero-bottom { z-index: 2; display: grid; gap: 28px; margin-top: 34px; }
 .hero-bottom .lede { max-width: 570px; }
 .actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
