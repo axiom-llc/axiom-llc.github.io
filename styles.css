@@ -753,3 +753,7 @@ img { display: block; max-width: 100%; }
   .director-example li { grid-template-columns: 1fr; gap: 10px; }
   .director-table th, .director-table td { padding: 16px 10px; }
 }
+
+/* Approved Director hero artwork: preserve original proportions. */
+.director-hero-art { padding-top: 32px; }
+.director-hero-art img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
