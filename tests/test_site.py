@@ -414,8 +414,8 @@ class SiteTests(unittest.TestCase):
         engineering=self.pages[Path("engineering/index.html")].content
         self.assertIn("AXIOM LLC", home)
         self.assertIn("AXIOM LLC", engineering)
-        self.assertIn("Systems breadth", engineering)
-        self.assertIn("Failure-mode engineering", engineering)
+        self.assertIn("Define executable contracts", engineering)
+        self.assertIn("Preserve durable execution state", engineering)
         self.assertNotIn("Virtuoso-level", engineering)
         self.assertNotIn("Hyper-capable", engineering)
 
