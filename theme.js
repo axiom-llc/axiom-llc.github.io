@@ -29,7 +29,7 @@
   const apply = () => {
     if (mode === "system") root.removeAttribute("data-theme");
     else root.dataset.theme = mode;
-    if (themeMeta) themeMeta.content = resolved() === "dark" ? "#03090e" : "#edf7ff";
+    if (themeMeta) themeMeta.content = resolved() === "dark" ? "#03090e" : "#c5d0d6";
     const next = modes[(modes.indexOf(mode) + 1) % modes.length];
     button.dataset.mode = mode;
     button.setAttribute("aria-label", "Theme: " + mode + ". Activate for " + next + ".");
