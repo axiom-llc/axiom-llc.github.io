@@ -219,7 +219,7 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn("Complete engineering technology stack", page.content)
         sources = [attrs["src"] for tag, attrs in self.pages[Path("engineering/index.html")].elements if tag == "img" and "technology/" in attrs.get("src", "")]
         self.assertEqual(len(sources), len(set(sources)))
-        self.assertEqual(len(sources), 11)
+        self.assertEqual(len(sources), 13)
 
     def test_static_runtime_has_no_external_or_active_assets(self):
         for path, page in self.pages.items():

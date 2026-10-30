@@ -21,9 +21,15 @@ project or vendor locations below and are not arbitrarily recolored.
 
 Twilio remains typographic. Twilio's current trademark guidance generally limits
 third parties to accurate plain-text references unless separately authorized.
-Bash, Linux, agent orchestration, MCP, RAG, and REST / HTTP also remain
-typographic because a brand mark would not improve the conceptual labels.
+Linux, agent orchestration, RAG, and REST / HTTP remain typographic; generic concepts do not receive invented vendor marks.
 
 Python and the Python Logo are trademarks of the Python Software Foundation.
 Git and the Git logo are trademarks of Software Freedom Conservancy, Inc. The
 Blender wordmark is shown complete as supplied and only to identify the software.
+
+## October 30 additions
+
+| Local asset | Technology | Authoritative source |
+| --- | --- | --- |
+| `bash.svg` | GNU Bash | [Official GNU Bash artwork](https://github.com/odb/official-bash-logo/blob/master/assets/Logos/Icons/SVG/64x64.svg), source blob55678a77ed547d9c3bf078d7bc87836a42df3068. Non-rendering Illustrator metadata, foreignObject and unused namespace declarations removed; visible paths/colors preserved. Copyright2016 Free Software Foundation; designed by ProspectOne. Free Art License1.3 retained in `LICENSE-Bash.txt`. |
+| `mcp.svg` | Model Context Protocol | [Official specification/documentation favicon](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/favicon.svg), source bloba280d7fdb5bd14d93d1289838f0b23850f3f8d01. Supplied artwork unchanged. Upstream licensing notice retained in `LICENSE-MCP.txt`. |
