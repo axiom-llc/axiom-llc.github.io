@@ -707,3 +707,20 @@ img { display: block; max-width: 100%; }
   .featured-demo { grid-template-columns: minmax(0, 1fr); }
   .featured-demo-copy { max-width: 680px; }
 }
+
+/* Director has its own control-plane presentation above the three core services. */
+.director-feature { scroll-margin-top: 100px; }
+.director-capabilities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.director-capabilities-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.director-capabilities article { min-width: 0; padding: 28px; border-right: 1px solid var(--line); }
+.director-capabilities article:last-child, .director-capabilities-wide article:nth-child(2n) { border-right: 0; }
+.director-capabilities-wide article:nth-child(n+3) { border-top: 1px solid var(--line); }
+.director-capabilities h3, .director-boundary h3 { font-size: 22px; font-weight: 500; line-height: 1.2; }
+.director-capabilities p { margin-top: 14px; color: var(--muted); font-size: 14px; max-width: 52ch; }
+.director-boundary { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: 32px; margin-top: 32px; }
+.director-boundary p { color: var(--text); font-size: 14px; }
+@media (max-width: 760px) {
+  .director-capabilities, .director-capabilities-wide, .director-boundary { grid-template-columns: 1fr; }
+  .director-capabilities article { padding: 24px 0; border-right: 0; }
+  .director-capabilities article + article { border-top: 1px solid var(--line); }
+}

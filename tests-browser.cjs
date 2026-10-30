@@ -40,6 +40,14 @@ const fs = require('node:fs/promises');
             Number(getComputedStyle(word).fontWeight) > Number(getComputedStyle(el).fontWeight);
         });
         if (!accent) throw Error('Structure accent missing: ' + width + '/' + theme);
+        const director = page.locator('.director-feature');
+        const directorFits = await director.evaluate(el =>
+          [...el.querySelectorAll('article'), el].every(node => {
+            const rect = node.getBoundingClientRect();
+            return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth;
+          }));
+        if (!directorFits) throw Error('Director layout failed: ' + width + '/' + theme);
+        await director.screenshot({path:`browser-results/director-home-${width}-${theme}.png`});
         const section = page.locator('.featured-demo');
         await section.scrollIntoViewIfNeeded();
         await page.waitForFunction(() => document.querySelector('.featured-demo img').naturalWidth > 0);
@@ -48,7 +56,7 @@ const fs = require('node:fs/promises');
           const rect = el.getBoundingClientRect();
           return document.documentElement.scrollWidth <= innerWidth &&
             rect.left >= 0 && rect.right <= innerWidth && image.naturalWidth === 1080 &&
-            el.previousElementSibling.classList.contains('home-hero') &&
+            el.previousElementSibling.classList.contains('director-feature') &&
             el.querySelector('h2').id === el.getAttribute('aria-labelledby');
         });
         if (!valid) throw Error(`Layout or accessible label failed: ${width}/${theme}`);
@@ -84,6 +92,18 @@ const fs = require('node:fs/promises');
           await toggle.click();
         }
         console.log(`PASS ${width}px ${theme}: image, layout, labels, destinations, keyboard focus, mode icons, logo blend`);
+        await page.goto(origin + '/systems/#director');
+        await page.evaluate(theme => localStorage.setItem('axiom-theme', theme), theme);
+        await page.reload();
+        const controlPlane = page.locator('#director');
+        const fits = await controlPlane.evaluate(el =>
+          [...el.querySelectorAll('article'), el].every(node => {
+            const rect = node.getBoundingClientRect();
+            return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth;
+          }));
+        if (!fits) throw Error('Director Systems layout failed: ' + width + '/' + theme);
+        await controlPlane.screenshot({path:`browser-results/director-systems-${width}-${theme}.png`});
+
       }
     }
     const routes = ['/', '/systems/', '/research/', '/engineering/', '/contact/',

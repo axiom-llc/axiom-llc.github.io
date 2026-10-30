@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#edf7ff">
-  <title>Systems — AXIOM LLC</title><meta name="description" content="AXIOM system boundaries for pre-execution policy enforcement, bounded plan execution, recovery, replay, retrieval, and storage.">
+  <title>Systems — AXIOM LLC</title><meta name="description" content="AXIOM Director: persistent orchestration, capability-based routing, verification, and recovery above distinct policy, execution, and context services.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/axiom-mark-32.png"><link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/axiom-mark-180.png"><link rel="manifest" href="../site.webmanifest"><script>(()=>{try{const m=localStorage.getItem("axiom-theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m;}catch(_){}})();</script><link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -14,7 +14,25 @@
       <span data-theme-label>System</span>
     </button></header>
   <main id="main">
-    <header class="page-hero wrap"><p class="eyebrow">Systems</p><h1>Explicit boundaries across<br><span class="hero-accent">policy, execution, and retrieval.</span></h1><p class="lede">The AXIOM architecture assigns policy evaluation, plan execution, and retrieval/storage to distinct components with explicit interfaces and separately testable responsibilities.</p></header>
+    <header class="page-hero wrap"><p class="eyebrow">Systems</p><h1>Orchestration above<br><span class="hero-accent">bounded execution.</span></h1><p class="lede">Strategy, authorization, runtime behavior, and context have distinct owners and testable interfaces.</p></header>
+    <section id="director" class="section wrap director-feature" aria-labelledby="director-system-title">
+      <div class="section-intro">
+        <p class="eyebrow">Persistent control plane</p>
+        <h2 id="director-system-title">AXIOM Director</h2>
+        <p>Owns task selection, delegation, evaluation, recovery decisions, and continuity across sessions.</p>
+      </div>
+      <div class="director-capabilities director-capabilities-wide">
+        <article><h3>Strategic control</h3><p>Ranks eligible work against deadlines, dependencies, approvals, and resource constraints. Maintains a canonical queue and one Current Opportunity.</p></article>
+        <article><h3>Capability-based routing</h3><p>Checks live channel access before dispatch. Binds each assignment to its scope, executor, source revision, and acceptance criteria.</p></article>
+        <article><h3>Governed autonomy</h3><p>Coordinates bounded planning, execution, verification, and recovery cycles with finite budgets, human gates, and explicit stop conditions.</p></article>
+        <article><h3>Durable continuity</h3><p>Preserves authoritative state and decision-relevant evidence between sessions. Evaluates returned work before accepting outcomes and uses observed failures to prepare targeted improvements.</p></article>
+      </div>
+      <div class="director-boundary">
+        <h3>Responsibilities below the control plane</h3>
+        <p>Director determines which work advances and how its outcome is assessed. ASON evaluates proposed plans, APEX owns dispatch and durable effects, and RAG serves stored context. Implementation repositories retain authority over their code, tests, and releases.</p>
+      </div>
+      <a class="section-link" href="../contact/">Discuss the architecture <span aria-hidden="true">→</span></a>
+    </section>
     <section class="architecture wrap" aria-labelledby="architecture-title">
       <div class="section-intro compact"><p class="eyebrow">Core / 01—03</p><h2 id="architecture-title">Core system responsibilities and interfaces.</h2></div>
       <ol class="architecture-flow">

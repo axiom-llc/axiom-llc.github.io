@@ -385,6 +385,20 @@ class SiteTests(unittest.TestCase):
         self.assertIn("Advanced SI", readme)
         self.assertIn("public API contracts", readme)
 
+    def test_director_has_prominent_public_presentation_without_private_links(self):
+        home = self.pages[Path("index.html")]
+        systems = self.pages[Path("systems/index.html")]
+        for page in (home, systems):
+            self.assertIn("AXIOM Director", page.content)
+            for attrs, _ in page.links:
+                self.assertNotIn("github.com/axiom-llc/axiom-director", attrs.get("href", ""))
+        home_source = (ROOT / "index.html").read_text()
+        self.assertLess(home_source.index('id="director-title"'), home_source.index('id="apex-demo-title"'))
+        self.assertLess(home_source.index('id="director-title"'), home_source.index('id="core-title"'))
+        self.assertIn("systems/#director", home_source)
+        for capability in ("Strategic control", "Capability-based routing", "Governed autonomy", "Durable continuity"):
+            self.assertIn(capability, systems.content)
+
     def test_business_identity_is_axiom_llc_only(self):
         all_sources = "\n".join((ROOT / path).read_text() for path in PAGE_PATHS)
         forbidden = "".join(chr(x) for x in (65,100,97,109,32,84,97,99,111,110))
