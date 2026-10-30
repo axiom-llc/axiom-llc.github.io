@@ -33,6 +33,15 @@ const fs = require('node:fs/promises');
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
         if (!(await page.evaluate(() => document.fonts.check('16px "Inter"') && document.fonts.check('12px "IBM Plex Mono"')))) throw Error('Local fonts failed to load');
+        const termFits = await page.locator('.hero-term').evaluate(el => {
+          const range = document.createRange();
+          range.selectNodeContents(el);
+          const rects = [...range.getClientRects()];
+          const bounds = el.closest('.hero-copy').getBoundingClientRect();
+          return el.textContent === 'Super-intelligence' && rects.length === 1 &&
+            rects[0].left >= bounds.left - 1 && rects[0].right <= bounds.right + 1;
+        });
+        if (!termFits) throw Error('Super-intelligence must fit one line: ' + width + '/' + theme);
         const accent = await page.locator('#hero-title').evaluate(el => {
           const word = el.querySelector('.hero-accent');
           return word?.textContent === 'structure' &&
