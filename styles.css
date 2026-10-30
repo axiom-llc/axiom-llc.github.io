@@ -754,20 +754,37 @@ img { display: block; max-width: 100%; }
   .director-table th, .director-table td { padding: 16px 10px; }
 }
 
-/* Director hero: compact artwork beside copy, with original proportions. */
+/* Director hero: overlapping artwork with soft edges and no card frame. */
 .page-hero.director-hero {
-  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto;
   align-items: center;
-  gap: clamp(28px, 4vw, 64px);
+  gap: 0;
+  isolation: isolate;
 }
-.director-hero-copy { min-width: 0; }
+.director-hero-copy {
+  grid-area: 1 / 1;
+  min-width: 0;
+  width: 58%;
+  position: relative;
+  z-index: 1;
+}
 .director-hero .eyebrow { padding-top: 0; margin-bottom: 24px; }
 .director-hero h1 { font-size: clamp(46px, 5vw, 76px); }
 .director-hero .lede { margin-top: 28px; }
-.director-hero-art { width: 100%; max-width: 540px; justify-self: end; }
-.director-hero-art img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.director-hero-art {
+  grid-area: 1 / 1;
+  width: 68%;
+  justify-self: end;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 32%, #000 92%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 32%, #000 92%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent);
+  mask-composite: intersect;
+}
+.director-hero-art img { display: block; width: 100%; height: auto; border: 0; }
 @media (max-width: 760px) {
-  .page-hero.director-hero { display: grid; grid-template-columns: 1fr; gap: 32px; }
-  .director-hero-art { max-width: 540px; justify-self: center; }
+  .page-hero.director-hero { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .director-hero-copy { grid-area: auto; width: 100%; }
+  .director-hero-art { grid-area: auto; width: 100%; max-width: 600px; justify-self: center; margin-top: -8px; }
 }
