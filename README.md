@@ -66,3 +66,24 @@ and technology mark guidance when their public state changes.
 ## Software license and content rights
 
 AXIOM-authored software is covered by the scoped [MIT License](LICENSE). Research/content, artwork, trademarks and third-party materials retain their separate rights; separate rights apply to those materials.
+
+## Search and generative discovery
+
+Every public HTML route declares one absolute HTTPS canonical, matching social
+metadata, and JSON-LD tied to AXIOM LLC's public identity. The unique synthetic
+case-study page remains indexable with its own canonical. `robots.txt` allows
+public crawling and points to `sitemap.xml`; crawler access does not establish
+indexing. Training-bot policy is unchanged. No special GEO file is required.
+
+Keep titles/descriptions useful and distinct. Schema must agree with visible
+content; never add private operational information, invented ratings, or
+unsubstantiated availability/performance claims. JSON-LD is data, not an
+additional executable script. `tests/test_search.py` checks discovery and entity
+consistency along with the existing runtime restrictions.
+
+Search Console and Bing Webmaster Tools verification, sitemap submission and
+account metrics require authenticated property access. No ownership token,
+indexing result, traffic baseline or citation count is fabricated in the site.
+Record performance and qualified-inquiry measurements in the private Director
+implementation record. Use existing search-provider reports before adding
+browser analytics, dependencies or paid tooling.

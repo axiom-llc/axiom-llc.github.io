@@ -26,12 +26,24 @@ const fs = require('node:fs/promises');
   const browser = await chromium.launch({headless:true});
   try {
     const page = await browser.newPage();
+    const measurements = [];
+    await fs.mkdir('browser-results', {recursive:true});
     for (const width of [1440, 768, 390, 320]) {
       for (const theme of ['light', 'dark']) {
         await page.setViewportSize({width, height:1000});
         await page.goto(origin + '/');
         await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
         await page.evaluate(() => document.fonts.ready);
+        measurements.push({width, theme, scope:'local unthrottled diagnostic; not field Core Web Vitals',
+          ...await page.evaluate(() => {
+            const nav = performance.getEntriesByType('navigation')[0];
+            return {navigationMs:nav.duration, responseStartMs:nav.responseStart,
+              domContentLoadedMs:nav.domContentLoadedEventEnd,
+              resources:performance.getEntriesByType('resource').map(r => ({
+                path:new URL(r.name).pathname, bytes:r.encodedBodySize, durationMs:r.duration
+              })).sort((a,b) => b.bytes-a.bytes).slice(0,5)};
+          })});
+
         if (!(await page.evaluate(() => document.fonts.check('16px "Inter"') && document.fonts.check('12px "IBM Plex Mono"')))) throw Error('Local fonts failed to load');
         const termFits = await page.locator('.hero-term').evaluate(el => {
           const range = document.createRange();
@@ -147,6 +159,10 @@ const fs = require('node:fs/promises');
         console.log('PASS theme persistence: ' + mode + ', device ' + deviceTheme + ', all 9 pages and reloads');
       }
     }
+    await fs.writeFile('browser-results/performance.json', JSON.stringify({
+      scope:'checkout-local, unthrottled Chromium; no production or field performance claim',
+      samples:measurements
+    }, null, 2) + '\n');
   } finally {
     await browser.close();
     await new Promise(resolve => server.close(resolve));

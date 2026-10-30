@@ -136,7 +136,7 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(tags.count("main"), 1, path)
             self.assertGreaterEqual(tags.count("header"), 1, path)
             self.assertEqual(tags.count("footer"), 1, path)
-            scripts = [attrs for tag, attrs in page.elements if tag == "script"]
+            scripts = [attrs for tag, attrs in page.elements if tag == "script" and attrs.get("type") != "application/ld+json"]
             self.assertEqual(len(scripts), 2, path)
             self.assertNotIn("src", scripts[0], path)
             self.assertEqual(scripts[1].get("src"), ("../" * len(path.parent.parts)) + "theme.js", path)
@@ -226,7 +226,7 @@ class SiteTests(unittest.TestCase):
     def test_static_runtime_has_no_external_or_active_assets(self):
         for path, page in self.pages.items():
             for tag, attrs in page.elements:
-                if tag == "link" and "href" in attrs:
+                if tag == "link" and "href" in attrs and attrs.get("rel") != "canonical":
                     self.assertFalse(urlsplit(attrs["href"]).scheme, f"{path}: {attrs['href']}")
                 if tag in {"img", "script", "iframe", "audio", "video", "source"} and "src" in attrs:
                     self.assertFalse(urlsplit(attrs["src"]).scheme, f"{path}: {attrs['src']}")
@@ -369,7 +369,10 @@ class SiteTests(unittest.TestCase):
             path = ROOT / "assets" / "visual" / asset
             self.assertTrue(path.is_file(), asset)
             self.assertEqual(path.read_bytes()[:8], b"\x89PNG\r\n\x1a\n", asset)
-        self.assertNotIn('assets/brand/axiom-mark-512.png', source)
+        for tag, attrs in home.elements:
+            if tag == 'img':
+                self.assertNotIn('assets/brand/axiom-mark-512.png', attrs.get('src', ''))
+                self.assertNotIn('assets/brand/axiom-mark-512.png', attrs.get('srcset', ''))
         self.assertNotIn('assets/brand/axiom-mark-512.png', (ROOT / "site.webmanifest").read_text())
         self.assertNotIn('hero-mark', self.styles)
         all_content = " ".join(page.content for page in self.pages.values())
