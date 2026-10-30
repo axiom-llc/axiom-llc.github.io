@@ -792,3 +792,8 @@ img { display: block; max-width: 100%; }
     mask-image: linear-gradient(to right, transparent, #000 18%, #000 92%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent);
   }
 }
+
+/* Fit the complete homepage term to its own column at every viewport. */
+.home-hero .hero-copy { container-type: inline-size; }
+.home-hero #hero-title { font-size: clamp(26px, 9cqw, 84px); }
+.hero-term { white-space: nowrap; }
