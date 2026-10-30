@@ -250,7 +250,10 @@ class SiteTests(unittest.TestCase):
             self.assertIn(f"`{filename}`", provenance)
         for value in re.findall(r"url\([\"']?([^\"')]+)", self.styles):
             self.assertFalse(urlsplit(value).scheme, value)
-            self.assertTrue((ROOT / value).is_file(), value)
+            if value.startswith("#"):
+                self.assertIn(f'id="{value[1:]}"', self.pages[Path("index.html")].content)
+            else:
+                self.assertTrue((ROOT / value).is_file(), value)
 
     def test_svg_assets_are_valid_and_documented(self):
         sources = (ROOT / "assets/technology/SOURCES.md").read_text()
