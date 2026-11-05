@@ -76,6 +76,10 @@ const assert = require('node:assert/strict');
             const question = page.getByText('Can we use our existing LLM and infrastructure?', {exact:true});
             await question.click();
             assert.equal(await question.locator('..').getAttribute('open'), '');
+            await page.evaluate(() => {
+              if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+              window.scrollTo({top:0,left:0,behavior:'instant'});
+            });
             await page.screenshot({path:`browser-results/packages-${width}-${colorScheme}.png`,fullPage:true});
           }
           observations.push({route,width,colorScheme,layout:'pass',navigation:'pass'});

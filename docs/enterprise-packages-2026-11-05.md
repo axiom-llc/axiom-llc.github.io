@@ -52,20 +52,42 @@ is implied.
 - [x] Publish matching visible prices, package anchors and structured OfferCatalog data in source.
 - [x] Keep mobile navigation available without JavaScript; close the enhanced menu with Escape and restore focus.
 - [x] Run source, metadata and offer-contract checks.
-- [ ] Run complete original-asset checks and desktop/mobile browser verification when those capabilities are available.
+- [x] Run complete original-asset checks and desktop/mobile browser verification in isolated GitHub Actions CI.
 - [ ] Deploy only through the established publication process after the existing workflow hold is resolved.
 
-## Verification limits in this session
+## Verified recovery and results
 
-The connected GitHub UTF-8 reads supplied all text sources. Its explicit base64
-file interface supplied fonts and smaller existing assets, but returned empty
-content for artwork over 1 MB. None of those binary files is changed in this PR.
-The complete test command ran 39 tests: 38 passed; the original PNG-signature
-test failed because the temporary `hero-axiom.png` snapshot is empty. This is an
-incomplete asset snapshot, not a passing full-suite result.
+[Isolated PR verification run 42100248157](https://github.com/axiom-llc/axiom-llc.github.io/actions/runs/42100248157)
+passed on implementation revision `ec1f2660a217ddfc3f117fe03253467871f281f0`.
+The test workflow is scoped to the named PR branch, has read-only repository
+permissions, and performs no deployment. The existing check/Pages holds remain.
 
-The managed browser failed during initialization with `Browser Use could not
-read requirements`. No screenshot, responsive behavior, keyboard interaction,
-200% zoom, no-JavaScript browser result, or field performance improvement is
-claimed. The existing browser suite remains available; full browser validation
-is outstanding. The source fixes and static tests are reviewable independently.
+- Full Python suite: **39/39 passed** in a complete GitHub checkout.
+- Existing Chromium suite: passed at 320, 390, 768 and 1440px in light/dark
+  modes, including image loading, keyboard focus and theme persistence across
+  all nine routes and reloads.
+- Conversion suite: **90 route/width/theme cases passed** (nine routes × five
+  widths: 320, 390, 768, 1024, 1440 × two themes). Checks cover page/section/card
+  overflow, navigation visibility, menu Escape/focus restoration, touch-target
+  dimensions, four package destinations, and FAQ interaction.
+- Reflow emulation: all nine routes at a 720 CSS-pixel viewport and device scale
+  2, equivalent to a 1440px display at 200% layout zoom; this is not a separate
+  manual browser-zoom measurement.
+- JavaScript-disabled navigation: all nine routes at 320 and 1440px passed.
+- JavaScript syntax and whitespace checks passed. No field performance claim.
+
+The original temporary snapshot failure was caused by GitHub's contents
+interface returning empty base64 content for artwork over 1 MB. The complete
+CI checkout includes the originals and avoids that interface limitation. The
+workflow retains the original-artwork archive and browser evidence for seven
+days. The authenticated artifact download interface recovered all seven large
+artwork files into the temporary snapshot; each Git blob hash matched the
+canonical repository tree, and the full local suite subsequently passed39/39.
+No original image bytes were changed in the PR.
+
+The in-session browser automation service still cannot load its requirements;
+native desktop input also failed provider initialization. Browser validation is
+therefore performed by the repository's reproducible Chromium runner rather
+than treating that session-specific integration as a website defect. Both
+original verification blockers are resolved for this change; no browser-service
+repair or production deployment is claimed.
