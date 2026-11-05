@@ -9,6 +9,14 @@
   const themeMeta = document.querySelector('meta[name="theme-color"]');
 
   if (navButton && header) {
+    header.classList.add("nav-ready");
+    header.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && header.classList.contains("nav-open")) {
+        header.classList.remove("nav-open");
+        navButton.setAttribute("aria-expanded", "false");
+        navButton.focus();
+      }
+    });
     navButton.addEventListener("click", () => {
       const open = header.classList.toggle("nav-open");
       navButton.setAttribute("aria-expanded", String(open));
@@ -47,3 +55,4 @@
   media.addEventListener?.("change", () => { if (mode === "system") apply(); });
   apply();
 })();
+

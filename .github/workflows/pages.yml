@@ -1,8 +1,9 @@
 name: Deploy GitHub Pages
 
-# Owner hold: no automatic triggers. Earliest review 2026-11-01;
-# explicit Owner confirmation of usable Actions quota required before restoring.
+# Owner-authorized release: deploy validated main commits to GitHub Pages.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +17,6 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ false }} # Manual dispatch is also suspended during the Owner hold.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -34,7 +34,7 @@ jobs:
           names = [
               "ASUS",
               "LG Electronics",
-              "Advanced Micro Devices, Inc. (AMD)",
+              "Advanced Micro Devices, Inc.",
               "Arch Linux",
               "Android",
           ]
@@ -74,7 +74,7 @@ jobs:
                grep -Fq "Technology ecosystem" /tmp/live.html &&
                grep -Fq "ASUS" /tmp/live.html &&
                grep -Fq "LG Electronics" /tmp/live.html &&
-               grep -Fq "Advanced Micro Devices, Inc. (AMD)" /tmp/live.html &&
+               grep -Fq "Advanced Micro Devices, Inc." /tmp/live.html &&
                grep -Fq "Arch Linux" /tmp/live.html &&
                grep -Fq "Android" /tmp/live.html; then
               ok=1
@@ -88,3 +88,31 @@ jobs:
           done
           curl -fsSL --retry 3 "$base/assets/demos/apex-recovery.svg" -o /tmp/apex-recovery.svg
           grep -Fq "APEX recovery demonstration" /tmp/apex-recovery.svg
+
+          # Verify the released commercial offer and critical live application routes.
+          # Bounded retries accommodate Pages CDN propagation after artifact deploy.
+          published=0
+          for _ in $(seq 1 18); do
+            if curl -fsSL --retry 2 --retry-delay 2 "$base/engagements/reliability-control-sprint/?deployment=${GITHUB_SHA}" -o /tmp/live-packages.html &&
+               grep -Fq "Agent Failure Triage" /tmp/live-packages.html &&
+               grep -Fq '$1,500' /tmp/live-packages.html &&
+               grep -Fq '$5,000' /tmp/live-packages.html &&
+               grep -Fq "Production Hardening" /tmp/live-packages.html &&
+               grep -Fq '$12,500' /tmp/live-packages.html &&
+               grep -Fq "Execution Assurance" /tmp/live-packages.html &&
+               grep -Fq 'From $25,000' /tmp/live-packages.html &&
+               grep -Fq "Model-agnostic engineering" /tmp/live-packages.html &&
+               grep -Fq "Send the system, objective, constraint, and acceptance target." /tmp/live-packages.html; then
+              published=1
+              break
+            fi
+            sleep 10
+          done
+          test "$published" -eq 1
+          for route in director systems research engineering contact engagements case-studies; do
+            curl -fsSL --retry 3 "$base/$route/?deployment=${GITHUB_SHA}" -o /dev/null
+          done
+          for asset in styles.css theme.js assets/brand/axiom-mark-64.png assets/visual/hero-axiom.png; do
+            curl -fsSL --retry 3 "$base/$asset?deployment=${GITHUB_SHA}" -o /dev/null
+          done
+
