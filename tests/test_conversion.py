@@ -42,7 +42,7 @@ class ConversionTests(unittest.TestCase):
         self.assertIn('Control what AI agents can change.', home)
         self.assertIn('Production reliability engineering', engagements)
         self.assertIn('Control what your AI agents can change.', packages)
-        self.assertIn('RAG durability &amp; retrieval engineering', engagements)
+        self.assertIn('RAG durability & retrieval engineering', engagements)
         self.assertNotIn('Architecture &amp; Readiness Assessment', packages)
         self.assertNotIn('Retrieval Quality &amp; Durability Sprint', packages)
         self.assertNotIn('Workflow Integration Sprint', packages)
