@@ -1,0 +1,52 @@
+name: Verify website PR
+
+# Bounded validation for the requested PR; no deployment or scheduler changes.
+on:
+  push:
+    branches: [website-enterprise-packages-2026-11-05]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify complete original assets and source
+        run: |
+          python -m unittest discover -s tests -v
+          git diff --check
+          node --check theme.js
+      - name: Install browser test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/site-browser" playwright@1.56.1
+          "$RUNNER_TEMP/site-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify original and conversion browser behavior
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/site-browser/node_modules/playwright
+        run: |
+          node tests-browser.cjs
+          node tests-browser-conversion.cjs
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-pr-browser-evidence
+          path: browser-results/
+          retention-days: 7
+      - name: Retain original artwork for snapshot recovery
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-original-artwork
+          path: |
+            assets/visual/*.png
+            assets/director-orchestration-core.png
+            assets/brand/axiom-mark-1024.png
+          retention-days: 7
