@@ -341,7 +341,7 @@ class SiteTests(unittest.TestCase):
         expected = {
             "ASUS": "asus.svg",
             "LG Electronics": "lg.svg",
-            "Advanced Micro Devices, Inc. (AMD)": "amd.svg",
+            "Advanced Micro Devices, Inc.": "amd.svg",
             "Arch Linux": "arch-linux.svg",
             "Android": "android.svg",
         }
@@ -443,3 +443,4 @@ class SiteTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

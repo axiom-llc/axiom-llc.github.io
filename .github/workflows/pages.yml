@@ -34,7 +34,7 @@ jobs:
           names = [
               "ASUS",
               "LG Electronics",
-              "Advanced Micro Devices, Inc. (AMD)",
+              "Advanced Micro Devices, Inc.",
               "Arch Linux",
               "Android",
           ]
@@ -74,7 +74,7 @@ jobs:
                grep -Fq "Technology ecosystem" /tmp/live.html &&
                grep -Fq "ASUS" /tmp/live.html &&
                grep -Fq "LG Electronics" /tmp/live.html &&
-               grep -Fq "Advanced Micro Devices, Inc. (AMD)" /tmp/live.html &&
+               grep -Fq "Advanced Micro Devices, Inc." /tmp/live.html &&
                grep -Fq "Arch Linux" /tmp/live.html &&
                grep -Fq "Android" /tmp/live.html; then
               ok=1
@@ -88,3 +88,4 @@ jobs:
           done
           curl -fsSL --retry 3 "$base/assets/demos/apex-recovery.svg" -o /tmp/apex-recovery.svg
           grep -Fq "APEX recovery demonstration" /tmp/apex-recovery.svg
+
