@@ -2,16 +2,27 @@
 
 ## Decision and scope
 
-Preserve the dependency-free HTML/CSS site, established palette, public URLs,
-source evidence, contact paths and theme behavior. Expand the existing sprint
-URL into a four-package comparison and retain Reliability & Control as the
-core hardening offer. Keep the existing Pages/check workflow suspension.
+Owner-approved commercial strategy (November 5, 2026): focus AXIOM LLC's
+commercial offers on **production AI-agent reliability and execution control**.
+Primary buyers are engineering leads at AI-native B2B SaaS firms; initial
+distribution favors existing AI implementation agencies and qualified
+partnerships to reduce acquisition cost. The next business goal is one paying
+customer and one customer-consented, independently supportable commercial case
+study. These are strategic goals, not achieved outcomes.
 
-The alternative of replacing the sprint with broad strategy consulting would
-weaken the connection to AXIOM's executable policy/recovery evidence. A larger
-retainer or fully managed service would add unverified operating commitments.
-Four independent fixed scopes provide a smaller assessment entry point and
-distinct implementation outcomes without requiring a compulsory discovery sale.
+Retain the existing $5,000 Agent Reliability & Control Sprint as the flagship.
+Add a $1,500 paid diagnostic, a provisionally priced $12,500 hardening tier, and
+a custom enterprise tier starting at a provisional $25,000. The higher-tier
+prices are test proposals, not validated willingness-to-pay or guaranteed
+contracts. No paid outreach, advertisement, external agreement, or deployment
+is authorized by this source change.
+
+Preserve PR #13's mobile navigation, typography, theme,
+model-selection explanation, CTA wording, and established URL. Keep retrieval,
+workflow integration and architecture/debugging as supporting capabilities;
+do not sell them as competing primary package ladders. Preserve the
+dependency-free HTML/CSS stack, existing palette, source evidence and
+suspended production Pages workflow.
 
 ## Research before pricing
 
@@ -25,21 +36,28 @@ evidence of sales volume, equal scope, delivery economics or AXIOM conversion.
 | [McKinsey 2025 survey](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025) | Many respondents remain in pilot stages; workflow redesign and scaling are recurring themes | Inference: scoped integration, acceptance evidence and operational control are credible buyer problems to address. This does not establish demand for AXIOM specifically. |
 | [IBM 2025 CEO study](https://www.ibm.com/thought-leadership/institute-business-value/en-us/report/2025-ceo) | Survey of 2,000 CEOs across 33 geographies and 24 industries examines business outcomes, infrastructure and agent adoption | Lead with measurable workflow outcomes and keep model/infrastructure selection under customer control. |
 
-## Proposed AXIOM offers
+## Approved commercial direction and proposed offers
 
-| Package | Fixed USD fee | Delivery window after scope/access/input readiness | Boundary |
+| Package | Public starting/fixed USD fee | Delivery window after scope/access readiness | Boundary |
 | --- | ---: | --- | --- |
-| Architecture & Readiness Assessment | $2,500 | 3 business days | One existing workflow/repository/service; assessment and prioritized plan. |
-| Agent Reliability & Control Sprint | $5,000 | 5 business days | Existing original scope retained: one repository/service, five effect types, two provider profiles, one retrieval subsystem at most; one prioritized patch. |
-| Retrieval Quality & Durability Sprint | $7,500 | 10 business days | One existing retrieval service/corpus/ingestion path; up to 50 agreed queries; one prioritized improvement. |
-| Workflow Integration Sprint | $12,500 | 15 business days | One workflow, three existing APIs, one provider profile, one staging environment. |
+| Agent Failure Triage | $1,500 fixed | 2 business days | One existing agent workflow, one failure class, diagnosis, evidence map and plan; **no production patch**. |
+| Agent Reliability & Control Sprint | $5,000 fixed (retained) | 5 business days | Existing scope unchanged: one repository/service, up to five effect types, two provider profiles, at most one retrieval subsystem; one prioritized patch and acceptance tests. |
+| Production Hardening | $12,500 fixed (test price) | 10 business days | Up to two agreed existing agent workflows, staging validation, bounded control changes and regression evidence. |
+| Execution Assurance | From $25,000 (custom quote, test floor) | Typically 4+ weeks | Multi-system engineering assessment and prioritized controls; exact price, schedule and delivery boundaries require written scope. No independent certification or SLA. |
 
-These are commercial proposals. Relative scope and retained $5,000 anchor inform
-the prices; no measured close rate, margin, customer result or revenue uplift is
-claimed. Confirm delivery capacity and kickoff before accepting an engagement.
-Usage, taxes and additional scope are explained on the page. No recurring
-service, procurement, compliance certification or guaranteed financial return
-is implied.
+Observed competitors include [Code and Proof's $2,500 five-day diagnostic](https://codeandproof.com/services/ai-reliability-audit),
+[Durgesh Rathod's $4,000–$6,000 audit](https://durgeshrathod.com/work-with-me),
+and [nyk's $4,000–$7,000 production reliability audit](https://www.nyk.dev/consulting).
+Published prices and scope are reference points, not evidence of AXIOM sales,
+conversion, gross margin, or buyer budget. Direct acquisition and delivery costs
+must be measured on actual engagements. Preliminary economics favor low-volume,
+high-context referrals or agency partnerships over paid advertising.
+
+Public proof is AXIOM-controlled tests, code and synthetic simulations; there
+are no substantiated customer outcome metrics or independent certifications.
+Keep customer-selected LLM support scoped to verified provider adapters.
+Website publication, contact discovery, outreach preparation/sending and
+spending remain separately authorization-gated.
 
 ## Implementation plan and acceptance
 
@@ -49,7 +67,7 @@ is implied.
 - [x] Raise tiny labels to at least 12px equivalent and body copy slightly; preserve display hierarchy.
 - [x] Replace AMD display text and suspended workflow's matching assertion.
 - [x] Apply the exact two-sentence CTA on Home, Contact and packages.
-- [x] Publish matching visible prices, package anchors and structured OfferCatalog data in source.
+- [x] Align visible offer names/prices, package anchors and structured OfferCatalog data to the approved strategy.
 - [x] Keep mobile navigation available without JavaScript; close the enhanced menu with Escape and restore focus.
 - [x] Run source, metadata and offer-contract checks.
 - [x] Run complete original-asset checks and desktop/mobile browser verification in isolated GitHub Actions CI.
@@ -57,8 +75,8 @@ is implied.
 
 ## Verified recovery and results
 
-[Isolated PR verification run 42100248157](https://github.com/axiom-llc/axiom-llc.github.io/actions/runs/42100248157)
-passed on implementation revision `ec1f2660a217ddfc3f117fe03253467871f281f0`.
+[Prior isolated PR verification run 42100248157](https://github.com/axiom-llc/axiom-llc.github.io/actions/runs/42100248157)
+passed on earlier implementation revision `ec1f2660a217ddfc3f117fe03253467871f281f0`. The updated commercial positioning requires independent rerun on the new PR head; this historical receipt does not validate subsequent edits.
 The test workflow is scoped to the named PR branch, has read-only repository
 permissions, and performs no deployment. The existing check/Pages holds remain.
 

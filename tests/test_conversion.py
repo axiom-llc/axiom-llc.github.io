@@ -14,6 +14,16 @@ class ConversionTests(unittest.TestCase):
         graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S)[1])['@graph']
         offers = next(item for item in graph if item['@type'] == 'Service')['hasOfferCatalog']['itemListElement']
         self.assertEqual(len(offers), 4)
+        self.assertEqual([(offer['name'], int(offer['price'])) for offer in offers], [
+            ('Agent Failure Triage', 1500),
+            ('Agent Reliability & Control Sprint', 5000),
+            ('Production Hardening', 12500),
+            ('Execution Assurance', 25000),
+        ])
+        self.assertIn('Starting at $25,000', offers[3]['description'])
+        self.assertIn('From $25,000', source)
+        self.assertIn('No production patch included.', source)
+        self.assertIn('No independent audit certification or uptime SLA.', source)
         for offer in offers:
             self.assertEqual(offer['priceCurrency'], 'USD')
             self.assertIn(offer['name'], unescape(source))
@@ -24,6 +34,18 @@ class ConversionTests(unittest.TestCase):
         for contact in contacts:
             self.assertEqual(urlsplit(unescape(contact)).path, 'axiom.co@proton.me')
             self.assertTrue(parse_qs(urlsplit(unescape(contact)).query).get('subject'))
+
+    def test_production_agent_positioning_and_retained_secondary_capabilities(self):
+        home = (ROOT / 'index.html').read_text()
+        engagements = (ROOT / 'engagements/index.html').read_text()
+        packages = (ROOT / 'engagements/reliability-control-sprint/index.html').read_text()
+        self.assertIn('Control what AI agents can change.', home)
+        self.assertIn('Production reliability engineering', engagements)
+        self.assertIn('Control what your AI agents can change.', packages)
+        self.assertIn('RAG durability &amp; retrieval engineering', engagements)
+        self.assertNotIn('Architecture &amp; Readiness Assessment', packages)
+        self.assertNotIn('Retrieval Quality &amp; Durability Sprint', packages)
+        self.assertNotIn('Workflow Integration Sprint', packages)
 
     def test_exact_cta_and_model_choice_are_on_primary_decision_pages(self):
         for path in ['index.html', 'contact/index.html', 'engagements/reliability-control-sprint/index.html']:
