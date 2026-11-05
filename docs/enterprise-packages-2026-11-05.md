@@ -14,15 +14,17 @@ Retain the existing $5,000 Agent Reliability & Control Sprint as the flagship.
 Add a $1,500 paid diagnostic, a provisionally priced $12,500 hardening tier, and
 a custom enterprise tier starting at a provisional $25,000. The higher-tier
 prices are test proposals, not validated willingness-to-pay or guaranteed
-contracts. No paid outreach, advertisement, external agreement, or deployment
-is authorized by this source change.
+contracts. Commercial-strategy approval alone did not authorize outbound outreach or
+publication. On November 5, 2026 the Owner explicitly authorized removal of
+the website publication hold, merging PR #13 and deploying the updated site.
+Outreach, spending and external commitments remain separately gated.
 
 Preserve PR #13's mobile navigation, typography, theme,
 model-selection explanation, CTA wording, and established URL. Keep retrieval,
 workflow integration and architecture/debugging as supporting capabilities;
 do not sell them as competing primary package ladders. Preserve the
 dependency-free HTML/CSS stack, existing palette, source evidence and
-suspended production Pages workflow.
+restored GitHub Pages deployment workflow on main.
 
 ## Research before pricing
 
@@ -32,7 +34,7 @@ evidence of sales volume, equal scope, delivery economics or AXIOM conversion.
 | Primary source | Observed offer | Implication |
 | --- | --- | --- |
 | [FAULTLINE pricing](https://www.faultline-labs.com/pricing/) | $500 rapid diagnostic; $7,500 production reliability and pre-production audits | Differentiate AXIOM's bounded $5,000 sprint by including a control patch and reproducible handoff, rather than matching a larger trace-analysis scope. |
-| [Rewired Ops Sprint](https://www.rewired.co/ai-ops-sprint) | $5,000 two-week assessment; execution separate | A narrower $2,500 architecture assessment creates a lower-commitment entry; the implementation packages must clearly distinguish shipped changes from advisory work. |
+| [Rewired Ops Sprint](https://www.rewired.co/ai-ops-sprint) | $5,000 two-week assessment; execution separate | Historical $2,500 architecture-assessment proposal was superseded by the approved $1,500 agent-failure diagnostic; the implementation packages distinguish shipped changes from advisory work. |
 | [McKinsey 2025 survey](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025) | Many respondents remain in pilot stages; workflow redesign and scaling are recurring themes | Inference: scoped integration, acceptance evidence and operational control are credible buyer problems to address. This does not establish demand for AXIOM specifically. |
 | [IBM 2025 CEO study](https://www.ibm.com/thought-leadership/institute-business-value/en-us/report/2025-ceo) | Survey of 2,000 CEOs across 33 geographies and 24 industries examines business outcomes, infrastructure and agent adoption | Lead with measurable workflow outcomes and keep model/infrastructure selection under customer control. |
 
@@ -56,8 +58,9 @@ high-context referrals or agency partnerships over paid advertising.
 Public proof is AXIOM-controlled tests, code and synthetic simulations; there
 are no substantiated customer outcome metrics or independent certifications.
 Keep customer-selected LLM support scoped to verified provider adapters.
-Website publication, contact discovery, outreach preparation/sending and
-spending remain separately authorization-gated.
+The November 5 Owner instruction specifically authorizes this website merge
+and deployment. Other publication, outreach preparation/sending, and spending
+remain separately authorization-gated.
 
 ## Implementation plan and acceptance
 
@@ -71,7 +74,7 @@ spending remain separately authorization-gated.
 - [x] Keep mobile navigation available without JavaScript; close the enhanced menu with Escape and restore focus.
 - [x] Run source, metadata and offer-contract checks.
 - [x] Run complete original-asset checks and desktop/mobile browser verification in isolated GitHub Actions CI.
-- [ ] Deploy only through the established publication process after the existing workflow hold is resolved.
+- [ ] Merge and deploy through restored main-only Pages workflow per Owner's November 5 authorization; verify the resulting production run and live pages before marking complete in the PR/release receipt.
 
 ## Verified recovery and results
 
