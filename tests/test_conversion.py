@@ -48,9 +48,13 @@ class ConversionTests(unittest.TestCase):
         self.assertNotIn('Workflow Integration Sprint', packages)
 
     def test_exact_cta_and_model_choice_are_on_primary_decision_pages(self):
-        for path in ['index.html', 'contact/index.html', 'engagements/reliability-control-sprint/index.html']:
+        for path in ['index.html', 'contact/index.html']:
             source = (ROOT / path).read_text()
-            self.assertIn('Send the system, objective, constraint, and acceptance target.<br>Let AXIOM handle the rest.', source, path)
+            self.assertIn('Define the objective. Set the constraints. AXIOM engineers the solution.', source, path)
+            self.assertNotIn('Send the system, objective, constraint, and acceptance target.', source, path)
+            self.assertNotIn('Let AXIOM handle the rest.', source, path)
+        packages = (ROOT / 'engagements/reliability-control-sprint/index.html').read_text()
+        self.assertIn('Send the system, objective, constraint, and acceptance target.<br>Let AXIOM handle the rest.', packages)
         for path in ['index.html', 'systems/index.html', 'director/index.html', 'engagements/reliability-control-sprint/index.html']:
             source = (ROOT / path).read_text().lower()
             self.assertIn('model-agnostic', source, path)
