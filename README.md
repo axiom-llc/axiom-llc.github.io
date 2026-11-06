@@ -16,7 +16,7 @@ Advanced SI infrastructure is AXIOM's engineering focus. Existing provider names
 - `/contact/` — project brief guidance and contact details.
 - `/case-studies/` — synthetic organizational simulations with explicit evidence limits.
 - `/engagements/` — evidence-backed engineering engagement capabilities and contact path.
-- `/engagements/reliability-control-sprint/` — three fixed-fee agent reliability engagements and one custom enterprise tier, including the retained Agent Reliability & Control Sprint.
+- `/engagements/reliability-control-sprint/` — AI Agent Reliability Engineering, with three fixed-fee packages and one custom enterprise tier, including the Agent Reliability & Control Sprint.
 
 Each route is plain HTML. `styles.css` is the shared approved light/dark AXIOM visual
 system, `theme.js` provides progressive theme selection, `favicon.svg` and

@@ -102,7 +102,8 @@ jobs:
                grep -Fq "Execution Assurance" /tmp/live-packages.html &&
                grep -Fq 'From $25,000' /tmp/live-packages.html &&
                grep -Fq "Model-agnostic engineering" /tmp/live-packages.html &&
-               grep -Fq "Send the system, objective, constraint, and acceptance target." /tmp/live-packages.html; then
+               grep -Fq "Define the objective. Set the constraints. AXIOM engineers the solution." /tmp/live-packages.html &&
+               grep -Fq "AI Agent Reliability Engineering" /tmp/live-packages.html; then
               published=1
               break
             fi

@@ -62,7 +62,7 @@ const assert = require('node:assert/strict');
           if (route === '/') {
             const links = page.locator('.hero-bottom .actions a');
             assert.deepEqual(await links.allTextContents().then(items => items.map(x => x.replace(/[→↗]/g,'').trim())),
-              ['Explore systems','Meet Director','Agent reliability sprint']);
+              ['Explore systems','Meet Director','Agent Reliability Packages']);
             assert.ok(await page.locator('.director-cta').isVisible());
           }
           if (route === '/engagements/reliability-control-sprint/') {

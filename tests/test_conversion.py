@@ -54,11 +54,28 @@ class ConversionTests(unittest.TestCase):
             self.assertNotIn('Send the system, objective, constraint, and acceptance target.', source, path)
             self.assertNotIn('Let AXIOM handle the rest.', source, path)
         packages = (ROOT / 'engagements/reliability-control-sprint/index.html').read_text()
-        self.assertIn('Send the system, objective, constraint, and acceptance target.<br>Let AXIOM handle the rest.', packages)
+        self.assertIn('Define the objective. Set the constraints. AXIOM engineers the solution.', packages)
+        self.assertNotIn('Let AXIOM handle the rest.', packages)
         for path in ['index.html', 'systems/index.html', 'director/index.html', 'engagements/reliability-control-sprint/index.html']:
             source = (ROOT / path).read_text().lower()
             self.assertIn('model-agnostic', source, path)
             self.assertIn('llm', source, path)
+
+    def test_package_identity_and_theme_foundations(self):
+        home = (ROOT / 'index.html').read_text()
+        engagements = (ROOT / 'engagements/index.html').read_text()
+        packages = (ROOT / 'engagements/reliability-control-sprint/index.html').read_text()
+        styles = (ROOT / 'styles.css').read_text()
+        self.assertIn('>Agent Reliability Packages</a>', home)
+        self.assertIn('>Agent Reliability Packages <span', engagements)
+        self.assertIn('<title>AI Agent Reliability Engineering — AXIOM LLC</title>', packages)
+        self.assertIn('<h1 id="packages-title">AI Agent Reliability Engineering</h1>', packages)
+        self.assertIn('rel="canonical" href="https://axiom-llc.github.io/engagements/reliability-control-sprint/"', packages)
+        self.assertIn('"name":"Agent Reliability Packages"', packages)
+        self.assertIn('  color-scheme: light;', styles)
+        self.assertIn('  color-scheme: dark;', styles)
+        self.assertIn('@media (prefers-reduced-motion: reduce)', styles)
+        self.assertNotIn('Agent reliability sprint</a>', home)
 
     def test_mobile_navigation_has_progressive_enhancement_and_escape(self):
         source = (ROOT / 'theme.js').read_text()
