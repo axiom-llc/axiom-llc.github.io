@@ -27,6 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
@@ -40,6 +41,17 @@ jobs:
           git diff --check
       - name: Generate exact-source proposal without applying it
         run: python -m rsi.native --output "$RUNNER_TEMP/candidates.json"
+      - name: Confirm generated candidate matches event head
+        env:
+          EXPECTED_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path(os.environ["RUNNER_TEMP"], "candidates.json").read_text())
+          assert report["source_revision"] == os.environ["EXPECTED_SOURCE_SHA"], "candidate not pinned to event head"
+          assert report["mutation_authority"] is False
+          PY
       - name: Install isolated Chromium runner
         run: |
           npm install --prefix "$RUNNER_TEMP/site-browser" playwright@1.56.1
