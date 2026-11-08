@@ -1,0 +1,82 @@
+name: native-rsi
+
+# Read-only generator and browser verification; never publish or apply candidate.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'rsi/**'
+      - 'theme.js'
+      - 'tests-browser-rsi.cjs'
+      - '.github/workflows/native-rsi.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    if: github.repository == 'axiom-llc/axiom-llc.github.io'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        python-version: ['3.11','3.12']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Independently verify source, reversible patches and static site
+        run: |
+          python -m unittest rsi.test_native -v
+          python -m unittest discover -s tests -v
+          node --check theme.js
+          node --check tests-browser-rsi.cjs
+          git diff --check
+      - name: Generate exact-source proposal without applying it
+        run: python -m rsi.native --output "$RUNNER_TEMP/candidates.json"
+      - name: Confirm generated candidate matches event head
+        env:
+          EXPECTED_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path(os.environ["RUNNER_TEMP"], "candidates.json").read_text())
+          assert report["source_revision"] == os.environ["EXPECTED_SOURCE_SHA"], "candidate not pinned to event head"
+          assert report["mutation_authority"] is False
+          PY
+      - name: Install isolated Chromium runner
+        run: |
+          npm install --prefix "$RUNNER_TEMP/site-browser" playwright@1.56.1
+          "$RUNNER_TEMP/site-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Validate paired browser behavior and measurements
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/site-browser/node_modules/playwright
+        run: |
+          node tests-browser-rsi.cjs
+          python -m rsi.benchmark --browser-report browser-results/rsi-browser-benchmark.json --output "$RUNNER_TEMP/benchmark.json"
+      - name: Retain non-promotable source-bound evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axiom-llc.github.io-native-rsi-${{ matrix.python-version }}
+          path: |
+            ${{ runner.temp }}/candidates.json
+            ${{ runner.temp }}/benchmark.json
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Retain separate representative browser observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-browser-rsi-${{ matrix.python-version }}
+          path: browser-results/rsi-browser-benchmark.json
+          retention-days: 14
+          if-no-files-found: warn
