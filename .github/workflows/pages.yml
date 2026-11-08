@@ -1,10 +1,13 @@
 name: Deploy GitHub Pages
 
-# Owner-authorized release: deploy validated main commits to GitHub Pages.
+# Owner-authorized policy: deploy only a manually dispatched, reviewed main SHA.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: 'Exact reviewed main commit SHA to deploy'
+        type: string
+        required: true
 
 permissions:
   contents: read
@@ -17,6 +20,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,6 +28,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate reviewed release identity
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
 
       - name: Validate site
         run: |
@@ -56,6 +70,13 @@ jobs:
         with:
           path: .
 
+      - name: Confirm latest main still matches reviewed SHA
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        run: |
+          set -euo pipefail
+          observed="$(git ls-remote --exit-code origin refs/heads/main | cut -f1)"
+          test "$observed" = "$EXPECTED_SHA"
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
