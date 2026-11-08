@@ -58,6 +58,13 @@ jobs:
           path: |
             ${{ runner.temp }}/candidates.json
             ${{ runner.temp }}/benchmark.json
-            browser-results/rsi-browser-benchmark.json
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Retain separate representative browser observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-browser-rsi-${{ matrix.python-version }}
+          path: browser-results/rsi-browser-benchmark.json
           retention-days: 14
           if-no-files-found: warn
