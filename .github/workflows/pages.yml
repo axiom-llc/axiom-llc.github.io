@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.actor == 'axiom-llc'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
