@@ -1,0 +1,16 @@
+{
+  "schema": "axiom-native-rsi/v1",
+  "repository": "axiom-llc/axiom-llc.github.io",
+  "rules": [
+    {
+      "id": "theme-label-query-cache",
+      "path": "theme.js",
+      "before": "  const resolved = () => mode === \"system\" ? (media.matches ? \"dark\" : \"light\") : mode;\n  const apply = () => {\n    if (mode === \"system\") root.removeAttribute(\"data-theme\");\n    else root.dataset.theme = mode;\n    if (themeMeta) themeMeta.content = resolved() === \"dark\" ? \"#03090e\" : \"#c5d0d6\";\n    const next = modes[(modes.indexOf(mode) + 1) % modes.length];\n    button.dataset.mode = mode;\n    button.setAttribute(\"aria-label\", \"Theme: \" + mode + \". Activate for \" + next + \".\");\n    button.setAttribute(\"title\", \"Theme: \" + mode);\n    const label = button.querySelector(\"[data-theme-label]\");\n    if (label) label.textContent = mode[0].toUpperCase() + mode.slice(1);\n  };\n",
+      "after": "  const label = button.querySelector(\"[data-theme-label]\");\n  const resolved = () => mode === \"system\" ? (media.matches ? \"dark\" : \"light\") : mode;\n  const apply = () => {\n    if (mode === \"system\") root.removeAttribute(\"data-theme\");\n    else root.dataset.theme = mode;\n    if (themeMeta) themeMeta.content = resolved() === \"dark\" ? \"#03090e\" : \"#c5d0d6\";\n    const next = modes[(modes.indexOf(mode) + 1) % modes.length];\n    button.dataset.mode = mode;\n    button.setAttribute(\"aria-label\", \"Theme: \" + mode + \". Activate for \" + next + \".\");\n    button.setAttribute(\"title\", \"Theme: \" + mode);\n    if (label) label.textContent = mode[0].toUpperCase() + mode.slice(1);\n  };\n",
+      "benchmark": "rsi/benchmark.py",
+      "tests": [
+        "rsi/test_native.py"
+      ]
+    }
+  ]
+}
