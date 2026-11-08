@@ -35,7 +35,7 @@ jobs:
           content = Path('.github/workflows/pages.yml').read_text()
           assert 'workflow_dispatch:' in content
           assert 'expected_sha:' in content
-          assert 'github.ref == \'refs/heads/main\'' in content
+          assert "github.ref == 'refs/heads/main' && github.actor == 'axiom-llc'" in content
           assert 'test "$GITHUB_SHA" = "$EXPECTED_SHA"' in content
           assert 'test "$observed" = "$EXPECTED_SHA"' in content
           assert '    branches: [main]' not in content
