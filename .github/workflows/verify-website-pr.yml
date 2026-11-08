@@ -9,6 +9,9 @@ on:
     paths:
       - '.github/workflows/pages.yml'
       - '.github/workflows/verify-website-pr.yml'
+      - '.github/workflows/native-rsi.yml'
+      - 'rsi/**'
+      - 'tests-browser-rsi.cjs'
 
 permissions:
   contents: read
@@ -41,6 +44,8 @@ jobs:
           python -m unittest discover -s tests -v
           git diff --check
           node --check theme.js
+          node --check tests-browser-rsi.cjs
+          python -m unittest rsi.test_native -v
       - name: Install browser test tools
         run: |
           npm install --prefix "$RUNNER_TEMP/site-browser" playwright@1.56.1
@@ -51,6 +56,8 @@ jobs:
         run: |
           node tests-browser.cjs
           node tests-browser-conversion.cjs
+          node tests-browser-rsi.cjs
+          python -m rsi.benchmark --browser-report browser-results/rsi-browser-benchmark.json --output browser-results/rsi-normalized-benchmark.json
       - name: Retain browser evidence
         if: always()
         uses: actions/upload-artifact@v4
